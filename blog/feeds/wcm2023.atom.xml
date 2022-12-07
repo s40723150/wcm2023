@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>2023 網際內容管理 - WCM2023</title><link href="https://mde.tw/blog/" rel="alternate"></link><link href="https://mde.tw/blog/feeds/wcm2023.atom.xml" rel="self"></link><id>https://mde.tw/blog/</id><updated>2022-12-07T11:44:25+08:00</updated><entry><title>2023 Spring WCM 課程</title><link href="https://mde.tw/blog/2023-Spring-Intro-to-web-based-content-management.html" rel="alternate"></link><published>2022-12-07T11:00:00+08:00</published><updated>2022-12-07T11:44:25+08:00</updated><author><name>yen</name></author><id>tag:mde.tw,2022-12-07:/blog/2023-Spring-Intro-to-web-based-content-management.html</id><summary type="html">&lt;p&gt;2023 Spring 網際內容管理的教學主要介紹 Github Pages、Nginx、Stunnel 與 cmsimde 網際內容管理程式間的程式開發與應用.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;2023 Spring 網際內容管理的教學主要介紹 Github Pages、Nginx、Stunnel 與 cmsimde 網際內容管理程式間的程式開發與應用.&lt;/p&gt;
+
+
+&lt;p&gt;課程內容管理: &lt;a href="https://mde.tw/wcm2023"&gt;https://mde.tw/wcm2023&lt;/a&gt;&lt;/p&gt;</content><category term="WCM2023"></category><category term="2023SPWCM"></category></entry></feed>
