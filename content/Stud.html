@@ -142,6 +142,10 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref<br /><h1>Stud</h1>
+<p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
+<p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
+<p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
+<p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
 <p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
 <p>lsof: list open files</p>
 <p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p><br />About << <a href='About.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref</div>
