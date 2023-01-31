@@ -132,7 +132,82 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol><h1>Brython</h1>
+</ol>
+<h2>Resize image</h2>
+<p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
+&lt;input id="input" type="file" onchange="handleFiles()"&gt;
+
+&lt;script&gt;
+    function handleFiles()
+    {
+        var dataurl = null;
+        var filesToUpload = document.getElementById('input').files;
+        var file = filesToUpload[0];
+
+        // Create an image
+        var img = document.createElement("img");
+        // Create a file reader
+        var reader = new FileReader();
+        // Set the image once loaded into file reader
+        reader.onload = function(e)
+        {
+            img.src = e.target.result;
+
+            img.onload = function () {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+
+                var MAX_WIDTH = 300;
+                var MAX_HEIGHT = 400;
+                var width = img.width;
+                var height = img.height;
+
+                if (width &gt; height) {
+                  if (width &gt; MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                  }
+                } else {
+                  if (height &gt; MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                  }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                dataurl = canvas.toDataURL("image/jpeg");
+
+                document.getElementById('image').src = dataurl;
+
+                // Post the data
+                var fd = new FormData();
+                fd.append("name", "some_filename.jpg");
+                fd.append("image", dataurl);
+                fd.append("info", "lah_de_dah");
+                $.ajax({
+                    url: '/ajax_photo',
+                    data: fd,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        $('#form_photo')[0].reset();
+                        location.reload();
+                    }
+                });
+            } // img.onload
+        }
+        // Load files into file reader
+        reader.readAsDataURL(file);
+    }
+&lt;/script&gt;</pre>
+<p></p><h1>Brython</h1>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
@@ -413,3 +488,8 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <!-- editor2 結束 --><hr/>
+<h2>Javascript</h2>
+<p><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/ERsqniMYh-dEqUL86Yk0xFABtUAVLcazG4hRsOcOnx7ESA?e=7zZUdH">2023 Programming for Absolute Beginners Using the JavaScript Programming Language</a> (for @nfu users only)</p>
+<script>
+window.alert("This is an example of a computer program.")
+</script>

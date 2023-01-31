@@ -141,14 +141,81 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Motivation << <a href='Motivation.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref<br /><h1>Stud</h1>
-<p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
-<p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
-<p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
-<p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
-<p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
-<p>lsof: list open files</p>
-<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p><br />Motivation << <a href='Motivation.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref</div>
+    <div id="tipue_search_content">cmsimde << <a href='cmsimde.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>Resize image</h1>
+<p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
+&lt;input id="input" type="file" onchange="handleFiles()"&gt;
+
+&lt;script&gt;
+    function handleFiles()
+    {
+        var dataurl = null;
+        var filesToUpload = document.getElementById('input').files;
+        var file = filesToUpload[0];
+
+        // Create an image
+        var img = document.createElement("img");
+        // Create a file reader
+        var reader = new FileReader();
+        // Set the image once loaded into file reader
+        reader.onload = function(e)
+        {
+            img.src = e.target.result;
+
+            img.onload = function () {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+
+                var MAX_WIDTH = 300;
+                var MAX_HEIGHT = 400;
+                var width = img.width;
+                var height = img.height;
+
+                if (width &gt; height) {
+                  if (width &gt; MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                  }
+                } else {
+                  if (height &gt; MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                  }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                dataurl = canvas.toDataURL("image/jpeg");
+
+                document.getElementById('image').src = dataurl;
+
+                // Post the data
+                var fd = new FormData();
+                fd.append("name", "some_filename.jpg");
+                fd.append("image", dataurl);
+                fd.append("info", "lah_de_dah");
+                $.ajax({
+                    url: '/ajax_photo',
+                    data: fd,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        $('#form_photo')[0].reset();
+                        location.reload();
+                    }
+                });
+            } // img.onload
+        }
+        // Load files into file reader
+        reader.readAsDataURL(file);
+    }
+&lt;/script&gt;</pre>
+<p></p><br />cmsimde << <a href='cmsimde.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
         
     <!-- footer -->
       <div class="container">

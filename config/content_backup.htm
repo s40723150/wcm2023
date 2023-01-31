@@ -96,7 +96,10 @@
 <p>或者繼續 Old School Study, 從 cmsimde 研究起, 或修改 cmsimde, 令其更適合手機使用？ (深入了解小型 Python 網際程式開發)</p>
 <p>或者乾脆<span style="background-color: #ffff00;">一組三個人, 每人研究上述一項技術的內涵與應用</span>.</p>
 <p>Web-based 應用程式都需要部署, 也就是需要一台電腦 (可稱為 server) 用來配置網際程式後端, 而使用者連結至 server 後, 會將 html + css + Javascript (Brython) 下載至客戶端 (Web Browser) 後執行.</p>
-<p>而這一台電腦, 可以是 Windows based, Ubuntu based 或 MacOS based. 我們在上學期所使用的 Replit 與自行建構的 stud server, 就是用來配置網際伺服程式.</p><h2>History</h2>
+<p>而這一台電腦, 可以是 Windows based, Ubuntu based 或 MacOS based. 我們在上學期所使用的 Replit 與自行建構的 stud server, 就是用來配置網際伺服程式.</p>
+<p>假如你有一台 Ram 達到 16GB 以上的電腦, 就能自行配置上述三種不同類型的應用程式.</p>
+<p>假如你沒有足夠配備的電腦, 或許可以利用工作站室中的一台虛擬主機讓您學習如何配置網際伺服器與應用程式.</p>
+<p></p><h2>History</h2>
 <p>當我們利用 template 建立個人的作業網站之後, 假如原始的 template 倉儲改版, 而學員的作業倉儲也改版, 學員的倉儲應該要如何納入原始 template 倉儲中的改版資料? 即便在上學期末, 各分組學員已經用過 fork 與 pull requests, 但是針對上述所提出來的資料合併議題, 其實並不簡單. 有興趣處理這項問題, 大家可以<a href="https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository">參考一下網友們如何處理這個 template 改版與合併的問題</a>.</p>
 <p>利用 <a href="https://forms.microsoft.com/">Microsoft Forms</a> 建立各組互評表單</p>
 <p><a href="https://zen1976.com/homework/">https://zen1976.com/homework/</a> </p>
@@ -129,7 +132,82 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol><h1>Brython</h1>
+</ol>
+<h2>Resize image</h2>
+<p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
+&lt;input id="input" type="file" onchange="handleFiles()"&gt;
+
+&lt;script&gt;
+    function handleFiles()
+    {
+        var dataurl = null;
+        var filesToUpload = document.getElementById('input').files;
+        var file = filesToUpload[0];
+
+        // Create an image
+        var img = document.createElement("img");
+        // Create a file reader
+        var reader = new FileReader();
+        // Set the image once loaded into file reader
+        reader.onload = function(e)
+        {
+            img.src = e.target.result;
+
+            img.onload = function () {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+
+                var MAX_WIDTH = 300;
+                var MAX_HEIGHT = 400;
+                var width = img.width;
+                var height = img.height;
+
+                if (width &gt; height) {
+                  if (width &gt; MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                  }
+                } else {
+                  if (height &gt; MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                  }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                dataurl = canvas.toDataURL("image/jpeg");
+
+                document.getElementById('image').src = dataurl;
+
+                // Post the data
+                var fd = new FormData();
+                fd.append("name", "some_filename.jpg");
+                fd.append("image", dataurl);
+                fd.append("info", "lah_de_dah");
+                $.ajax({
+                    url: '/ajax_photo',
+                    data: fd,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        $('#form_photo')[0].reset();
+                        location.reload();
+                    }
+                });
+            } // img.onload
+        }
+        // Load files into file reader
+        reader.readAsDataURL(file);
+    }
+&lt;/script&gt;</pre>
+<p></p><h1>Brython</h1>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
@@ -410,3 +488,8 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <!-- editor2 結束 --><hr/>
+<h2>Javascript</h2>
+<p><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/ERsqniMYh-dEqUL86Yk0xFABtUAVLcazG4hRsOcOnx7ESA?e=7zZUdH">2023 Programming for Absolute Beginners Using the JavaScript Programming Language</a> (for @nfu users only)</p>
+<script>
+window.alert("This is an example of a computer program.")
+</script>
