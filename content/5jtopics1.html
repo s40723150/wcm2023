@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,81 +141,29 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">cmsimde << <a href='cmsimde.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>Resize image</h1>
-<p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
-<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
-&lt;input id="input" type="file" onchange="handleFiles()"&gt;
-
-&lt;script&gt;
-    function handleFiles()
-    {
-        var dataurl = null;
-        var filesToUpload = document.getElementById('input').files;
-        var file = filesToUpload[0];
-
-        // Create an image
-        var img = document.createElement("img");
-        // Create a file reader
-        var reader = new FileReader();
-        // Set the image once loaded into file reader
-        reader.onload = function(e)
-        {
-            img.src = e.target.result;
-
-            img.onload = function () {
-                var canvas = document.createElement("canvas");
-                var ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0);
-
-                var MAX_WIDTH = 300;
-                var MAX_HEIGHT = 400;
-                var width = img.width;
-                var height = img.height;
-
-                if (width &gt; height) {
-                  if (width &gt; MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                  }
-                } else {
-                  if (height &gt; MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                  }
-                }
-                canvas.width = width;
-                canvas.height = height;
-                var ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, width, height);
-
-                dataurl = canvas.toDataURL("image/jpeg");
-
-                document.getElementById('image').src = dataurl;
-
-                // Post the data
-                var fd = new FormData();
-                fd.append("name", "some_filename.jpg");
-                fd.append("image", dataurl);
-                fd.append("info", "lah_de_dah");
-                $.ajax({
-                    url: '/ajax_photo',
-                    data: fd,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    success: function(data){
-                        $('#form_photo')[0].reset();
-                        location.reload();
-                    }
-                });
-            } // img.onload
-        }
-        // Load files into file reader
-        reader.readAsDataURL(file);
-    }
-&lt;/script&gt;</pre>
-<p></p><br />cmsimde << <a href='cmsimde.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+    <div id="tipue_search_content">ChatGPT << <a href='ChatGPT.html'>Previous</a> <a href='四技.html'>Next</a> >> 四技<br /><h1>5jtopics1</h1>
+<p>主題:</p>
+<p style="padding-left: 30px;">利用 Github 儲存資料</p>
+<p>建立 Github 帳號:</p>
+<p style="padding-left: 30px;">如何選擇帳號名稱?</p>
+<p style="padding-left: 30px;">帳號與學號如何對應?</p>
+<p style="padding-left: 30px;">透過 <a href="https://classroom.github.com">Github Classroom</a> 取得作業倉儲</p>
+<p>目的:</p>
+<p style="padding-left: 30px;">整理<a href="https://mde.tw/wcm2023/content/%E4%BA%94%E5%B0%88.html">五專頁面</a>中的所有相關資料</p>
+<p>What you get:</p>
+<p style="padding-left: 30px;">A repository</p>
+<p style="padding-left: 30px;">A Web site (sort of)</p>
+<p>討論:</p>
+<p style="padding-left: 30px;">Why Github?</p>
+<p style="padding-left: 30px;">Why assignment repository from <a href="https://classroom.github.com">Github Classroom</a>?</p>
+<p style="padding-left: 60px;">先前開放的 <a href="https://github.com/education/classroom">Github Classroom 原始碼</a>, 03.13.2020 之後 Github Classroom 原始碼不再公開, 轉為內部程式開發專案.</p>
+<p style="padding-left: 60px;"><a href="https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository">https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository</a></p>
+<p>參考:</p>
+<p style="padding-left: 30px;"><a href="https://youtu.be/PNEM7CH3ZAg">為什麼要學 Git?</a> <a href="https://www.sourcetreeapp.com/">https://www.sourcetreeapp.com/</a></p>
+<p style="padding-left: 30px;"><a href="https://youtu.be/Zd5jSDRjWfA">Learn Git and Github in 15 分鐘</a></p>
+<p style="padding-left: 30px;"><a href="https://git-scm.com/book/zh-tw/v2">Pro Git 電子書繁體中文版</a></p>
+<p style="padding-left: 30px;"><a href="https://backlog.com/git-tutorial/tw/">連猴子都能懂的 Git 入門指南</a></p>
+<p></p><br />ChatGPT << <a href='ChatGPT.html'>Previous</a> <a href='四技.html'>Next</a> >> 四技</div>
         
     <!-- footer -->
       <div class="container">
