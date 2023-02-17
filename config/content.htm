@@ -276,7 +276,76 @@
 <p>當 Ubuntu 操作系統網路設定完成後, 通常會進行系統更新:</p>
 <p style="padding-left: 30px;">sudo apt update</p>
 <p style="padding-left: 30px;">sudo apt upgrade</p>
-<p style="padding-left: 30px;">sudo apt autoremove</p><h2>History</h2>
+<p style="padding-left: 30px;">sudo apt autoremove</p>
+<p>上列 apt 指令說明:</p>
+<p>apt update:</p>
+<p style="padding-left: 30px;">apt update fetches the latest version of the package list from your distro's software repository, and any third-party repositories you may have configured. In other words, it'll figure out what the latest version of each package and dependency is, but will not actually download or install any of those updates. (<a href="https://www.freecodecamp.org/news/sudo-apt-get-update-vs-upgrade-what-is-the-difference/">source</a>)</p>
+<p>apt upgrade:</p>
+<p style="padding-left: 30px;">apt upgrade downloads and installs the updates for each outdated package and dependency on your system. But just running sudo apt-get upgrade will not automatically upgrade the outdated packages – you'll still have a chance to review the changes and confirm that you want to perform the upgrades. (<a href="https://www.freecodecamp.org/news/sudo-apt-get-update-vs-upgrade-what-is-the-difference/">source</a>)</p>
+<p>apt autoremove:</p>
+<p style="padding-left: 30px;">apt autoremove is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed as dependencies changed<br/>or the package(s) needing them were removed in the meantime.</p>
+<p>Ubuntu 可採 netplan 配置網路:</p>
+<p style="padding-left: 30px;">設定檔案位於 /etc/netplan/ 目錄下, 副檔名為 .yaml</p>
+<p style="padding-left: 30px;">修改後必須透過 sudo netplan apply 讀取新修改後的設定檔案</p>
+<p style="padding-left: 30px;">net.yaml 範例檔案:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false"># This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      addresses:
+        - 2001:288:6004:xx::xx/64
+      nameservers:
+        addresses:
+        - 2001:b000:168::1
+      routes:    
+        - to: default
+          via: 2001:288:6004:xx::254
+  version: 2</pre>
+<p>安裝 stunnel:</p>
+<p>sudo apt install stunnel</p>
+<p>stunnel.conf 設定:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">[https]
+accept = project.cycu.org:443
+connect = 127.0.0.1:9443
+cert = fullchain.pem
+key = privkey.pem
+TIMEOUTclose = 0</pre>
+<p>stunnel 服務重新啟動: sudo /etc/init.d/stunnel4 restart<br/><br/>以系統服務設定 stunnel4:<br/><br/>sudo systemctl enable stunnel4.service</p>
+<p>設定 Letsencrypt:</p>
+<p style="padding-left: 30px;">sudo snap install core; sudo snap refresh core</p>
+<p>snap proxy setup:</p>
+<p style="padding-left: 30px;">sudo vi /etc/environment and add the following proxy settings:</p>
+<p style="padding-left: 30px;">http_proxy=http://127.0.0.1:3128</p>
+<p style="padding-left: 30px;">https_proxy=http://127.0.0.1:3128</p>
+<p style="padding-left: 30px;">然後以 sudo systemctl restart snapd 重新啟動 snapd 讓 proxy 設定生效</p>
+<p>Install certbot:</p>
+<p style="padding-left: 30px;">sudo snap install --classic certbot</p>
+<p>Prepare certbot command:</p>
+<p style="padding-left: 30px;">sudo ln -s /snap/bin/certbot /usr/bin/certbot</p>
+<p>Get certificate:</p>
+<p style="padding-left: 30px;">sudo certbot certonly --standalone</p>
+<p>Install pip3:</p>
+<p style="padding-left: 30px;">sudo apt install python3-pip</p>
+<p>Install modules for cmsimde:</p>
+<p style="padding-left: 30px;">sudo pip3 install flask flask_cors bs4 lxml pelican markdown pyopenssl</p>
+<p>Install waitress:</p>
+<p style="padding-left: 30px;">sudo pip3 waitress</p>
+<p>cp nocache.py:</p>
+<p style="padding-left: 30px;">cp cmsimde/nocache.py nocache.py</p>
+<p>For github ssh, install ncat:</p>
+<p style="padding-left: 30px;">sudo apt install ncat</p>
+<p>Secure .ssh/id_rsa:</p>
+<p style="padding-left: 30px;">chmod og-rwx .ssh/id_rsa</p>
+<p>Web-based acp to work:</p>
+<ol>
+<li>.ssh/id_rsa only user can read</li>
+<li>acp is executable</li>
+<li>.git/config url is ether token or SSH based protocol</li>
+<li>nocache.py on root directory</li>
+<li>server.py</li>
+<li>waitress and all cmsimde modules is installed</li>
+<li>ncat is installed</li>
+</ol><h2>History</h2>
 <p>當我們利用 template 建立個人的作業網站之後, 假如原始的 template 倉儲改版, 而學員的作業倉儲也改版, 學員的倉儲應該要如何納入原始 template 倉儲中的改版資料? 即便在上學期末, 各分組學員已經用過 fork 與 pull requests, 但是針對上述所提出來的資料合併議題, 其實並不簡單. 有興趣處理這項問題, 大家可以<a href="https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository">參考一下網友們如何處理這個 template 改版與合併的問題</a>.</p>
 <p>利用 <a href="https://forms.microsoft.com/">Microsoft Forms</a> 建立各組互評表單</p>
 <p><a href="https://zen1976.com/homework/">https://zen1976.com/homework/</a></p>
@@ -397,6 +466,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 &lt;/script&gt;</pre>
 <p></p><h1>Python</h1>
 <p>利用以下流程所建立的 Python 3.11.2 可攜套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EbT9h2uxP41DhXp6TkYQKNABgtLPvnMq5y781nH5TzeuNQ?e=zW9Hkf">Python311_portable.7z</a> (for @nfu users only)</p>
+<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EWWklzSXEqZAoAsF7YCiUdQBq3Frt-VQl9p0ah8ZE2AoBQ?e=qNMs7W">下載可攜 Python3108_for_2023.7z</a> (includes Python 3.0.8, tcc, gnuplot)</p>
 <h4>何謂可攜式 Python 程式環境?</h4>
 <h4 style="padding-left: 30px;">Python 程式是如何執行的?</h4>
 <p style="padding-left: 30px;">首先 Python 是一種解譯式 (Interpreted) 程式語言, 與 C 或 C++ 程式語言最大的差別是, C/C++ 程式碼通常必須透過編譯 (Compile) 與連結 (Link) 的過程, 將原始碼轉為可執行的格式 (在 Windows 操作系統為 .exe 檔案), 而 Python 程式寫好後, 可以直接利用解譯器執行, 使用者不需要手動執行程式碼的編譯, 而是由解譯器在執行前即時將程式碼轉換為可執行檔案.</p>
@@ -456,8 +526,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <ol>
 <li>在未修改 Python Script 目錄中的 .exe 可執行檔之前, 必須透過 .py 執行, 例如: 命令列 中輸入 leo 並無法執行執行, 必須採用 import leo.core.runLeo;leo.core.runLeo.run()</li>
 <li>若在裝有還原卡的電腦, 未修改 Python 系統模組路徑之前, 所安裝的額外模組無法放入 USB 隨身碟中.</li>
-</ol>
-<h2>Brython</h2>
+</ol><h2>Brython</h2>
 <p><a href="https://mde.tw/2022fall/">https://mde.tw/2022fall/</a></p>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
