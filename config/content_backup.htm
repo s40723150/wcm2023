@@ -27,7 +27,7 @@
 <li>展示 - Web browser oriented</li>
 </ol>
 <p>教導或學習網際內容管理的過程, 必須自問學這東西有用嗎? 您自己(平時, 一直)使用嗎?</p>
-<p>數位教材:</p>
+<p>數位參考教材:</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/ET59eCPLupBGgIUmBog-yE0BMkL4RdYWNzpBxW-PzvnX1A?e=RKYWbq">1999 How to be a star engineer</a>, <a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EQtBbwaFSKdCrnxljlGU9NMBcl70NO4OghYo5caSpLcvcw?e=E9iyjL">如何成為一位傑出的工程師</a> (for @nfu users only)</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZzE7rKRQ3ZIvSoavwvZB6gBmupyVpzqRuvH7yO1i0Yj1w?e=h5SBg0">2023 Cloud Computing Technology</a> (for @nfu users only)</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZpULDm6GfNCsuTiqfloxnYBV1GzC1lG39SjU6ooqLWbyA?e=vuIlOV">2021 Cloud Computing Basics</a> (for @nfu users only)</p>
@@ -78,23 +78,55 @@
 <p style="padding-left: 90px;"><a href="https://github.com/MisterFISHUP/fish-up-dictionary-of-array">https://github.com/MisterFISHUP/fish-up-dictionary-of-array</a> </p>
 <p style="padding-left: 60px;"><a href="https://archer1609wp.wordpress.com/2015/02/22/%E5%86%B7%E9%96%80%E4%BD%86%E5%A5%BD%E5%AD%B8%E5%A5%BD%E7%94%A8-%E8%A1%8C%E5%88%97%E8%BC%B8%E5%85%A5%E6%B3%95%E9%80%9F%E6%8E%A2/">行列輸入法速探</a></p>
 <p style="padding-left: 60px;"><a href="https://youtu.be/xNZkMPNi_Qk">https://youtu.be/xNZkMPNi_Qk</a> </p>
-<h2>Trends</h2>
+<h2>Git</h2>
+<p>當切到某先前的提交點後, 進行數次的內容改版, 就會出現 HEAD detached 的註記, 表示目前的版本並非指向 main 分支.</p>
+<p>這時可以將改版內容進行提交之後, 以 "git branch 分支名稱 版次號" 建立分支, 然後 checkout 至 main 分支後, 再利用 git merge 該分支名稱, 就可以將先前 HEAD detached 之後變更的內容合併至 main 主分支.</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">demo@tcexam:~/wcm2023$ git branch
+* (HEAD detached from 2cc9abd)
+  main
+demo@tcexam:~/wcm2023$ git add .
+demo@tcexam:~/wcm2023$ git commit -m "head detached"
+[detached HEAD 7412b5a] head detached
+ 6 files changed, 19 insertions(+), 19 deletions(-)
+ rewrite content/tipuesearch_content.js (99%)
+demo@tcexam:~/wcm2023$ git checkout main
+Warning: you are leaving 5 commits behind, not connected to
+any of your branches:
+
+  7412b5a head detached
+  57c222d 紀錄 project.cycu 虛擬伺服器建立流程
+  ed4d3a7 add project.cycu server for web-based project git processes
+  2f16a5e add Ubuntu page
+  308e8a6 add Python 3.11.2 and Python 3.10.8 portable system links
+
+If you want to keep them by creating a new branch, this may be a good time
+to do so with:
+
+ git branch &lt;new-branch-name&gt; 7412b5a
+
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+demo@tcexam:~/wcm2023$ git branch ubuntu 7412b5a
+demo@tcexam:~/wcm2023$ git branch
+* main
+  ubuntu
+demo@tcexam:~/wcm2023$ git merge ubuntu</pre><h2>Trends</h2>
 <p>Remote work:</p>
 <p><a href="https://hrmasia.com/github-tells-employees-to-prepare-to-work-from-home-permanently/">https://hrmasia.com/github-tells-employees-to-prepare-to-work-from-home-permanently/</a></p>
 <p><a href="https://hrmasia.com/remote-work-leads-to-increased-productivity/">https://hrmasia.com/remote-work-leads-to-increased-productivity/</a></p>
 <p>Or not:</p>
 <p><a href="https://hrmasia.com/is-remote-work-stymieing-business-innovation/">https://hrmasia.com/is-remote-work-stymieing-business-innovation/</a></p>
-<p><a href="https://www.dqindia.com/it-companies-moving-to-work-from-home-permanently-was-a-mistake-says-chatgpt-founder/">https://www.dqindia.com/it-companies-moving-to-work-from-home-permanently-was-a-mistake-says-chatgpt-founder/</a> </p>
+<p><a href="https://www.dqindia.com/it-companies-moving-to-work-from-home-permanently-was-a-mistake-says-chatgpt-founder/">https://www.dqindia.com/it-companies-moving-to-work-from-home-permanently-was-a-mistake-says-chatgpt-founder/</a></p>
 <p>Flexible work:</p>
 <p><a href="https://hrmasia.com/uk-rolls-out-new-initiative-for-flexible-work/">https://hrmasia.com/uk-rolls-out-new-initiative-for-flexible-work/</a></p>
 <p>Four-day workweek:</p>
 <p><a href="https://hrmasia.com/is-the-uk-ready-to-embrace-the-four-day-workweek/">https://hrmasia.com/is-the-uk-ready-to-embrace-the-four-day-workweek/</a></p>
-<p><a href="https://hrmasia.com/most-australians-want-a-four-day-workweek/">https://hrmasia.com/most-australians-want-a-four-day-workweek/</a> </p>
+<p><a href="https://hrmasia.com/most-australians-want-a-four-day-workweek/">https://hrmasia.com/most-australians-want-a-four-day-workweek/</a></p>
 <p>To download or to link?</p>
 <p><a href="/downloads/111-2網路選課加退選重要事項1111228.pdf">111-2網路選課加退選重要事項1111228.pdf</a> (<a href="https://www.google.com/search?client=firefox-b-d&amp;q=nfu+111%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AC%AC2%E5%AD%B8%E6%9C%9F%E7%B6%B2%E8%B7%AF%E5%8A%A0%E9%80%80%E9%81%B8%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A0%85">Google search</a>)</p>
 <p>AI:</p>
-<p><a href="https://www.dqindia.com/future-of-enterprise-ai-becoming-essential-for-ease-of-living/">https://www.dqindia.com/future-of-enterprise-ai-becoming-essential-for-ease-of-living/</a> </p>
-<p><a href="https://www.dqindia.com/how-to-unlock-the-power-of-chatgpt/">https://www.dqindia.com/how-to-unlock-the-power-of-chatgpt/</a> </p>
+<p><a href="https://www.dqindia.com/future-of-enterprise-ai-becoming-essential-for-ease-of-living/">https://www.dqindia.com/future-of-enterprise-ai-becoming-essential-for-ease-of-living/</a></p>
+<p><a href="https://www.dqindia.com/how-to-unlock-the-power-of-chatgpt/">https://www.dqindia.com/how-to-unlock-the-power-of-chatgpt/</a></p>
 <p></p><h1>WCM</h1>
 <p>Web-based Content Management (網際內容管理) - 利用瀏覽器管理個人網站中的前端與後端內容稱為網際內容管理, 此網際指的是全球資訊網 (World Wide Web, WWW), 其中牽涉全球資訊網前端的程式與內容, 以及全球資訊網後端的程式與內容.</p>
 <p>全球資訊網前端指的就是瀏覽器 (Web Browser), 其中首選為 Firefox 與 Waterfox, 其次為 Windows 環境中的 Edge, 最後若需要第四套瀏覽器, 才使用 Google Chrome.</p>
