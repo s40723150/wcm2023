@@ -251,7 +251,7 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>上課時段: <span class="event-when">週一, 13:20 – 16:10</span></p>
 <p>w2 and w7 調整放假.</p>
 <p><span style="background-color: #ffff00;">w2 (2/27, 星期一) 課程將在 3/2 (星期四) 第十至第十二堂補課 (18:30 - 20:55)</span></p>
-<p><span style="background-color: #ffff00;">w7 (4/3, 星期一) 課程將在 4/6 (星期四) 第十至第十二堂補課 (18:30 - 20:55)</span></p>
+<p><span style="background-color: #ffff00;">w7 (4/3, 星期一) 課程將在 4/13 (星期四) 第十至第十二堂補課 (18:30 - 20:55)</span></p>
 <p>課程目標:</p>
 <p style="padding-left: 30px;">Web-based program development - 網際應用程式開發</p>
 <p>數位參考教材:</p>
@@ -396,7 +396,41 @@ TIMEOUTclose = 0</pre>
 <p style="padding-left: 30px;">nssm install ubuntu_for_project</p>
 <p style="padding-left: 30px;">VBoxHeadless.exe --startvm "Ubuntu_2204_for_project"</p>
 <p style="padding-left: 30px;">並且以管理者身分設定 log on 啟動</p>
-<h2>History</h2>
+<p>Use Python to delete user account and directory:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
+name = input("Username: ")
+choice = input("Keep home directory? [Y/n]")
+if choice == 'n':
+    os.system("sudo deluser --remove-home "+name)
+    print("User deleted")
+else:
+    os.system("sudo deluser "+name)
+    print("User deleted")</pre>
+<p>Change user shell:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
+with open("users.txt", "r", encoding="UTF-8") as f:
+    data = f.read().splitlines()
+for i in data:
+    account = i.split(":")[0]
+    print(account)
+    os.system("sudo chsh -s /bin/bash " + account)</pre>
+<p>getps:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#! /bin/bash
+ps axo pid,comm,user | grep "python3"</pre>
+<p>getdir + process id:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pwdx $1
+</pre>
+<p>server.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from waitress import serve
+from cmsimde import flaskapp
+
+serve(flaskapp.app, listen='127.0.0.1:各學員9開頭的內部埠號', threads=8)
+</pre>
+<p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
+<p>lsof: list open files</p>
+<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
+<p>列出目前系統用戶 GID and UID</p>
+<p>cut -d: -f1,3 /etc/passwd</p><h2>History</h2>
 <p>當我們利用 template 建立個人的作業網站之後, 假如原始的 template 倉儲改版, 而學員的作業倉儲也改版, 學員的倉儲應該要如何納入原始 template 倉儲中的改版資料? 即便在上學期末, 各分組學員已經用過 fork 與 pull requests, 但是針對上述所提出來的資料合併議題, 其實並不簡單. 有興趣處理這項問題, 大家可以<a href="https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository">參考一下網友們如何處理這個 template 改版與合併的問題</a>.</p>
 <p>利用 <a href="https://forms.microsoft.com/">Microsoft Forms</a> 建立各組互評表單</p>
 <p><a href="https://zen1976.com/homework/">https://zen1976.com/homework/</a></p>

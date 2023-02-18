@@ -221,7 +221,48 @@ TIMEOUTclose = 0</pre>
 <p style="padding-left: 30px;">nssm install ubuntu_for_project</p>
 <p style="padding-left: 30px;">VBoxHeadless.exe --startvm "Ubuntu_2204_for_project"</p>
 <p style="padding-left: 30px;">並且以管理者身分設定 log on 啟動</p>
-<br />Brython demo << <a href='Brython demo.html'>Previous</a> <a href='History.html'>Next</a> >> History</div>
+<p>Use Python to delete user account and directory:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
+name = input("Username: ")
+choice = input("Keep home directory? [Y/n]")
+if choice == 'n':
+    os.system("sudo deluser --remove-home "+name)
+    print("User deleted")
+else:
+    os.system("sudo deluser "+name)
+    print("User deleted")</pre>
+<p>Change user shell:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
+with open("users.txt", "r", encoding="UTF-8") as f:
+    data = f.read().splitlines()
+for i in data:
+    account = i.split(":")[0]
+    print(account)
+    os.system("sudo chsh -s /bin/bash " + account)</pre>
+<p>getps:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#! /bin/bash
+ps axo pid,comm,user | grep "python3"</pre>
+<p>getdir + process id:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pwdx $1
+</pre>
+<p>server.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from waitress import serve
+from cmsimde import flaskapp
+
+serve(flaskapp.app, listen='127.0.0.1:各學員9開頭的內部埠號', threads=8)
+</pre>
+<p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
+<p>lsof: list open files</p>
+<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
+<p>列出目前系統用戶 GID and UID</p>
+<p>cut -d: -f1,3 /etc/passwd</p>
+<p>users.txt 格式:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">wcmuser1:password1:1002:1002:wcmuser1:/home/wcmuser1:/bin/bash
+wcmuser2:password2:1003:1003:wcmuser2:/home/wcmuser2:/bin/bash
+wcmuser3:password3:1004:1004:wcmuser3:/home/wcmuser3:/bin/bash</pre>
+<p>新增上列三名新用戶指令:</p>
+<p>sudo newusers users.txt</p>
+<p></p><br />Brython demo << <a href='Brython demo.html'>Previous</a> <a href='History.html'>Next</a> >> History</div>
         
     <!-- footer -->
       <div class="container">
