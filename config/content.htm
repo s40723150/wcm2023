@@ -295,8 +295,201 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>下載可攜套件:</p>
 <ol>
 <li>準備一個 USB 3.0 隨身碟.</li>
-<li><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXgExDcYjRxJg2T3q79sHCcBKUDp3j99OilyBEmlq3r3Fw?e=vDE0v7">下載 Python 3.10.8 可攜程式環境</a> (for Win10 與 Win11 64 位元操作系統), 直接解開壓縮至隨身碟 (<a href="https://www.7-zip.org/download.html">使用 7zip</a>).</li>
-</ol><h3>topics1</h3>
+<li>自行製作 Python 可攜程式環境.</li>
+<li><a href="https://steam.oxxostudio.tw/category/python/example/openai.html">安裝 OpenAPI 套件</a>, 並且<a href="https://beta.openai.com/account/api-keys">申請 api key,</a> 練習執行下列範例後, 就可以準備轉系了:-) </li>
+<li><a href="https://en.wikipedia.org/wiki/Sundar_Pichai">修但幾勒</a>！</li>
+</ol>
+<p>OpenAI Python API 程式範例:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 openai
+import openai
+
+# 輸入 api_key
+openai.api_key = "your_key"
+
+# 三個月內有 $18 可以進行測試 Davinci 0.02/1k token
+
+
+# 利用 create 建立問答
+response = openai.Completion.create(
+model="text-davinci-003",
+prompt="請列出不要讀機械設計系的 5 個理由",
+max_tokens=256,
+temperature=0,
+top_p=1,
+frequency_penalty=0,
+presence_penalty=0
+)
+
+# 傳回的 dict 中的 text
+output = response["choices"][0]["text"]
+print(output)
+
+"""
+1. 機械設計系的課程複雜，學習負擔大。
+2. 機械設計系的就業前景不明朗。
+3. 機械設計系的課程需要花費大量時間在實驗室中。
+4. 機械設計系的課程需要掌握大量的專業知識。
+5. 機械設計系的課程需要掌握大量的計算機軟件。
+"""</pre>
+<p>gen_portable_python.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
+import os
+
+# basic files for Python installation
+py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
+# Python version
+version = "3.11.2"
+# Python msi download URL
+ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
+# location for Portable Python
+path = "C:\\tmp\\python311\\data\\Python311"
+# create directory
+try:
+    os.mkdir(path)
+except:
+    # path exists
+    pass
+# get Python installation msi files and extract into target dir
+for i in py_list:
+    filename = i + ".msi"
+    url = ftp + filename
+    # download basic python msi file
+    urllib.request.urlretrieve(url, filename)
+    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
+    # delete msi file
+    os.remove(path + "\\" + i + ".msi")</pre>
+<p>start_ipv6.bat</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
+set Disk=y
+subst %Disk%: "data"
+
+%Disk%:
+
+set HomePath=%Disk%:\home_ipv6
+set HomeDrive=%Disk%:\home_ipv6
+set Home=%Disk%:\home_ipv6
+set USERPROFILE=%Disk%:\home_ipv6
+
+REM 將系統 Python 程式的 io 設為 utf-8
+set PYTHONIOENCODING="utf-8"
+
+set PYTHONPATH=%Disk%:\Python311\DLLs;%Disk%:\Python311\Lib;%Disk%:\Python311\Lib\site-packages;
+set PYTHONHOME=%Disk%:\Python311
+
+REM for putty
+set GIT_SSH=%Disk%:\putty\plink.exe
+
+REM 設定跟 Python 有關的命令搜尋路徑
+set path_python=%Disk%:\Python311;%Disk%:\Python311\Scripts;
+REM 設定跟Git 有關的命令搜尋路徑
+set path_git=%Disk%:\portablegit_2.31.1\bin;
+set path_tcc=%Disk%:\tcc;
+set path_gnuplot=%Disk%:\gnuplot\bin;
+REM for execute scite directly
+set path_scite=%Disk%:\wscite521;
+
+path=%Disk%:;%path_python%;%path_git%;%path_tcc%;%path_gnuplot%;%path_scite%;%path%;
+
+start /MIN cmd.exe
+start /MIN cmd.exe
+start /MIN cmd.exe
+start /MIN cmd.exe
+
+start /MIN %Disk%:\wscite521\SciTE.exe
+start /MIN %Disk%:\wscite521\SciTE.exe
+
+
+Exit
+</pre>
+<p>stop.bat</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
+set Disk=y
+path=%PATH%;
+
+taskkill /IM python.exe /F
+taskkill /IM pythonw.exe /F
+taskkill /IM scite.exe /F
+
+REM 終止虛擬硬碟與目錄的對應
+subst %Disk%: /D
+REM 關閉 cmd 指令視窗
+taskkill /IM cmd.exe /F
+
+EXIT</pre>
+<p></p><h3>Resume</h3>
+<p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Resume-Automation-using-ChatGPT">https://github.com/mdecycu/Resume-Automation-using-ChatGPT</a></p>
+<p>利用 Github Classroom 建立個人作業, 以 Python、LaTeX 與 ChatGPT 協助建立個人 resume, <span style="background-color: #ffff00;">最終希望能用來協助建立個人網頁或分組專題報告</span>.</p>
+<p>Resume-Automation-using-ChatGPT 倉儲:</p>
+<ol>
+<li>所提供的 Template 只支援英文, 可嘗試<a href="https://ithelp.ithome.com.tw/m/articles/10293080">利用 LaTeX 程式語法修改為中文</a></li>
+<li>OpenAI 的使用, 可以利用 Gmail 帳號<a href="https://beta.openai.com/account/api-keys">申請 API key</a></li>
+<li>Resume 內容整理使用 Davinci 模型, 可在<a href="https://openai.com/api/pricing/">免費額度</a>內進行測試</li>
+<li>必須要在可攜程式環境中以 <a href="https://miktex.org/howto/portable-edition">MikTeX</a> (約 800MB) 或 <a href="https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#tlportable">TeXLive</a> (約 2GB) 進行編譯</li>
+<li>Python 必須<a href="https://steam.oxxostudio.tw/category/python/example/openai.html">安裝 openai module</a></li>
+<li>利用 <a href="https://ithelp.ithome.com.tw/articles/10278264">tkinter</a> 建立的 GUI 介面表單輸入 Resume 欄位資料後, 交由 OpenAI</li>
+</ol>
+<p>個人作業倉儲名稱: mdecd2023/resume-github_帳號, 例如: <a href="https://github.com/mdecd2023/resume-scrum-1">https://github.com/mdecd2023/resume-scrum-1</a> 就是帳號為 scrum-1 用戶所取得的 resume 作業倉儲.</p>
+<p>作業討論:</p>
+<p>採 <a href="https://www.bing.com/translator/?mkt=zh-TW">Bing Microsoft Translator</a> 直接將 <a href="https://math.mit.edu/~sswatson/whylatex.html">Why LaTeX</a>? 翻譯如下:</p>
+<p>為什麼選擇 LaTeX？</p>
+<p>對於包含多個或兩個數學表達式的文檔，LaTeX 為教師提供了比 Microsoft Word 等編輯器更多的優勢。</p>
+<ol>
+<li>在 LaTeX 中包含數學運算式涉及鍵入一些適當的字元。相比之下，在 Word 中包含數學需要公式編輯器，這是一個繁瑣且緩慢的圖形用戶介面。</li>
+<li>由於內容是在純文本檔中指定的，因此通常可以使用搜索和替換或其他節省時間的機制有效地處理在 Word 中費力的任務。</li>
+<li>由於上述原因，LaTeX 可節省大量長期運行時間。</li>
+<li>許多用戶發現，隨著時間的推移，LaTeX 中的排版變得越來越有趣和方便。相比之下，經驗表明，即使對於專家用戶來說，Word的挫敗感在很大程度上仍然存在。</li>
+<li>由於 LaTeX 是開源的，因此您可以輕鬆地與其他教師共用您的內容，而不會出現版本相容性或許可問題。</li>
+<li>由於 LaTeX 已經適應了數學和科學研究社區的需求，因此您不太可能希望在 LaTeX 中無法實現的符號。</li>
+<li>重複性任務可以更容易地自動化。例如，通過適當的設置，可以為學習時程表的學生<a href="https://math.mit.edu/~sswatson/pdfs/times.pdf">製作練習表</a>幾秒鐘。</li>
+<li>LaTeX 足夠受歡迎，論壇和其他互聯網資源為那些對高級功能感興趣的人提供了良好的支援。</li>
+</ol>
+<p>值得一提的是幾個缺點:</p>
+<ol>
+<li>LaTeX 有一個學習曲線。這是放棄圖形使用者介面（如 Word 的公式編輯器）所帶來的效率的代價，起初成本肯定很大。</li>
+<li>如果您在代碼中犯了足夠重要的錯誤，LaTeX 將為您提供錯誤訊息而不是輸出檔。但是，調試時間會隨著經驗的增加而迅速減少。</li>
+</ol>
+<p>參考資料:</p>
+<ol>
+<li><a href="http://www.study-area.org/tips/latex/chpdf.html">由 TeX/LaTeX 製作 PDF 中文檔</a></li>
+<li><a href="https://math.ntnu.edu.tw/~pwtsai/quicklatex.pdf">LaTeX 的快速入門</a></li>
+<li><a href="https://raw.githubusercontent.com/mdecycu/4072pj1/master/LaTeX%E5%A0%B1%E5%91%8A/4072pj1.pdf">4072pj1 專題報告</a></li>
+<li><a href="https://raw.githubusercontent.com/mdecycu/4072pj3/master/project3/latex/4072pj3.pdf">4072pj3 專題報告</a></li>
+<li><a href="https://raw.githubusercontent.com/mdecycu/pj4082/main/LaTeX%E5%A0%B1%E5%91%8A/4082pj1-1.pdf">pj4082 專題報告</a></li>
+</ol>
+<p>OpenAI Python API 程式範例:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 openai
+import openai
+
+# 輸入 api_key
+openai.api_key = "your_key"
+
+# 三個月內有 $18 可以進行測試 Davinci 0.02/1k token
+
+
+# 利用 create 建立問答
+response = openai.Completion.create(
+model="text-davinci-003",
+prompt="請列出不要讀機械設計系的 5 個理由",
+max_tokens=256,
+temperature=0,
+top_p=1,
+frequency_penalty=0,
+presence_penalty=0
+)
+
+# 傳回的 dict 中的 text
+output = response["choices"][0]["text"]
+print(output)
+
+"""
+1. 機械設計系的課程複雜，學習負擔大。
+2. 機械設計系的就業前景不明朗。
+3. 機械設計系的課程需要花費大量時間在實驗室中。
+4. 機械設計系的課程需要掌握大量的專業知識。
+5. 機械設計系的課程需要掌握大量的計算機軟件。
+"""</pre>
+<p></p><h3>topics1</h3>
 <p>課程議題:</p>
 <ol>
 <li><a href="https://mde.tw/wcm2023/content/Brython.html">https://mde.tw/wcm2023/content/Brython.html</a> 是如何建立的? 有甚麼<a href="https://mde.tw/wcm2023/content/Brython%20demo.html">用處</a>? (兼學 <a href="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists">Github Gist</a>?)</li>
