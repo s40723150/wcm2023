@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,68 +141,31 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">四技 << <a href='四技.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume<br /><h1>行前準備</h1>
-<h4>帳號申請</h4>
-<p>申請 Onedrive 帳號:</p>
+    <div id="tipue_search_content">Motivation << <a href='Motivation.html'>Previous</a> <a href='Stud.html'>Next</a> >> Stud<br /><h1>PPython</h1>
+<p>Portable Python 製作流程:</p>
 <ol>
-<li>先從 <a href="https://mail.nfu.edu.tw">https://mail.nfu.edu.tw</a> 以學號登入 (收取帳號申請確認信).</li>
-<li>請各學員至 <a href="https://www.microsoft.com/zh-tw/education/products/office">https://www.microsoft.com/zh-tw/education/products/office</a>, 以 @nfu 帳號申請 OneDrive 帳號.</li>
-<li>登入 Teams, 以 sblk6ao Team code 進入 wcm2023 Teams 課程.</li>
+<li>先利用一款舊版的 Python 環境, 在命令列執行 gen_portable_python.py, 可以在 c:\tmp\python311 中建立基本的可攜 Python 檔案.</li>
+<li>在 c:\tmp\python311 目錄中加入 <a href="./../downloads/start_stop_batch_files.7z">start_ipv6.bat 與 stop.bat 檔案</a>.</li>
+<li>接著從 <a href="https://www.scintilla.org/SciTEDownload.html">https://www.scintilla.org/SciTEDownload.html</a> 下載 SciTE 編輯器, 放入 c:\tmp\python311\data 目錄中, 並且 wscite 編輯器的目錄是否與 start_ipv6.bat 中的 set path_scite=%Disk%:\wscite521; 互相對應.</li>
+<li>在 c:\tmp\python311\data 目錄中建立 tmp 目錄.</li>
+<li>以 start_ipv6.bat 測試可攜 Python 程式系統能否開啟, 並測試能否以 stop.bat 關閉.</li>
+<li>再次啟動 start_ipv6.bat, 且下載 get-pip.py 檔案後, 在命令列進入 get-pip.py 檔案所在目錄, 執行 python get-pip.py, 以便安裝 pip 套件.</li>
+<li>假如要執行 openai API 相關程式, 在可攜系統中的命令列中, 以 pip install openai 安裝模組.</li>
+<li>假如要執行 cmsimde 動態網站, 以 pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl 安裝所需模組.</li>
 </ol>
-<p>申請 github 帳號:</p>
-<ol>
-<li>先從 <a href="https://mail.nfu.edu.tw">https://mail.nfu.edu.tw</a> 以學號登入 (收取帳號申請確認信).</li>
-<li>從 <a href="https://github.com/join">https://github.com/join</a> 申請帳號, 可以使用英文姓名(或加上特定數字)作為帳號.</li>
-</ol>
-<p>下載可攜套件:</p>
-<ol>
-<li>準備一個 USB 3.0 隨身碟.</li>
-<li>自行製作 Python 可攜程式環境.</li>
-<li><a href="https://steam.oxxostudio.tw/category/python/example/openai.html">安裝 OpenAPI 套件</a>, 並且<a href="https://beta.openai.com/account/api-keys">申請 api key,</a> 練習執行下列範例後, 就可以準備轉系了:-)</li>
-<li><a href="https://en.wikipedia.org/wiki/Sundar_Pichai">修但幾勒</a>！</li>
-</ol>
-<p>OpenAI Python API 程式範例:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 openai
-import openai
-
-# 輸入 api_key
-openai.api_key = "your_key"
-
-# 三個月內有 $18 可以進行測試 Davinci 0.02/1k token
-
-
-# 利用 create 建立問答
-response = openai.Completion.create(
-model="text-davinci-003",
-prompt="請列出不要讀機械設計系的 5 個理由",
-max_tokens=256,
-temperature=0,
-top_p=1,
-frequency_penalty=0,
-presence_penalty=0
-)
-
-# 傳回的 dict 中的 text
-output = response["choices"][0]["text"]
-print(output)
-
-"""
-1. 機械設計系的課程複雜，學習負擔大。
-2. 機械設計系的就業前景不明朗。
-3. 機械設計系的課程需要花費大量時間在實驗室中。
-4. 機械設計系的課程需要掌握大量的專業知識。
-5. 機械設計系的課程需要掌握大量的計算機軟件。
-"""</pre>
-<p>我們已經知道 Google 目前的 CEO 大學並非唸電腦系, 而是<a href="https://www.britannica.com/biography/Sundar-Pichai">唸材料科學系</a>, 於是故意問 ChatGPT:</p>
-<p style="padding-left: 30px;">詢問 ChatGPT:</p>
-<p style="padding-left: 60px;">Google 現在的 CEO 為什麼大學不是念電腦系</p>
-<p style="padding-left: 30px;">ChatGPT 的回答:</p>
-<p style="padding-left: 60px;">Google 的 CEO 目前是 Sundar Pichai，他沒有念電腦系，而是念了工程學系。他的學歷是在印度的 IIT Kharagpur 大學，主修<span style="background-color: #ffff00;">電機工程學</span>。他的學術背景使他能夠對科技和工程有深入的了解，也使他能夠更好地管理 Google 的技術團隊。</p>
-<p style="padding-left: 30px;">結論: AI 跟人一樣, 即使遍讀全球資訊網路上的所有資訊, 加上孜孜不倦地強化學習與回授篩選運算, 有時還是會犯錯. 難怪孟子會說: <a href="https://dict.revised.moe.edu.tw/dictView.jsp?ID=94978">盡信書, 不如無書</a>!</p>
+<p>flask 為 web-based 程式開發框架</p>
+<p>flask_cors 為允許跨網域擷取資料模組</p>
+<p>bs4 與 lxml 主要用於動態網站檔案分頁</p>
+<p>pelican, markdown 與 Leo 為建立網誌所需模組</p>
+<p>pyopenssl 為在近端啟動時自動產生網站數位簽章所需模組</p>
+<p>Git client: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 放進 data 目錄</p>
+<p>Putty: <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a> 放進 data 目錄</p>
+<p>其他工具: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer">Process Explorer</a>, <a href="https://www.debugmode.com/wink/">Wink</a>, <a href="https://getsharex.com/">ShareX</a>, <a href="https://portableapps.com/apps/internet/filezilla_portable">filezilla</a>, <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">zoomit</a>, <a href="https://sourceforge.net/projects/kdiff3/">kdiff3</a>,</p>
+<hr/>
 <p>gen_portable_python.py</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
 import os
-
+ 
 # basic files for Python installation
 py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
 # Python version
@@ -226,65 +189,7 @@ for i in py_list:
     os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
     # delete msi file
     os.remove(path + "\\" + i + ".msi")</pre>
-<p>start_ipv6.bat</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
-set Disk=y
-subst %Disk%: "data"
-
-%Disk%:
-
-set HomePath=%Disk%:\home_ipv6
-set HomeDrive=%Disk%:\home_ipv6
-set Home=%Disk%:\home_ipv6
-set USERPROFILE=%Disk%:\home_ipv6
-
-REM 將系統 Python 程式的 io 設為 utf-8
-set PYTHONIOENCODING="utf-8"
-
-set PYTHONPATH=%Disk%:\Python311\DLLs;%Disk%:\Python311\Lib;%Disk%:\Python311\Lib\site-packages;
-set PYTHONHOME=%Disk%:\Python311
-
-REM for putty
-set GIT_SSH=%Disk%:\putty\plink.exe
-
-REM 設定跟 Python 有關的命令搜尋路徑
-set path_python=%Disk%:\Python311;%Disk%:\Python311\Scripts;
-REM 設定跟Git 有關的命令搜尋路徑
-set path_git=%Disk%:\portablegit_2.31.1\bin;
-set path_tcc=%Disk%:\tcc;
-set path_gnuplot=%Disk%:\gnuplot\bin;
-REM for execute scite directly
-set path_scite=%Disk%:\wscite521;
-
-path=%Disk%:;%path_python%;%path_git%;%path_tcc%;%path_gnuplot%;%path_scite%;%path%;
-
-start /MIN cmd.exe
-start /MIN cmd.exe
-start /MIN cmd.exe
-start /MIN cmd.exe
-
-start /MIN %Disk%:\wscite521\SciTE.exe
-start /MIN %Disk%:\wscite521\SciTE.exe
-
-
-Exit
-</pre>
-<p>stop.bat</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
-set Disk=y
-path=%PATH%;
-
-taskkill /IM python.exe /F
-taskkill /IM pythonw.exe /F
-taskkill /IM scite.exe /F
-
-REM 終止虛擬硬碟與目錄的對應
-subst %Disk%: /D
-REM 關閉 cmd 指令視窗
-taskkill /IM cmd.exe /F
-
-EXIT</pre>
-<p></p><br />四技 << <a href='四技.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume</div>
+<p></p><br />Motivation << <a href='Motivation.html'>Previous</a> <a href='Stud.html'>Next</a> >> Stud</div>
         
     <!-- footer -->
       <div class="container">

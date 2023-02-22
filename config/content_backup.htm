@@ -33,15 +33,62 @@
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZzE7rKRQ3ZIvSoavwvZB6gBmupyVpzqRuvH7yO1i0Yj1w?e=h5SBg0">2023 Cloud Computing Technology</a> (for @nfu users only)</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZpULDm6GfNCsuTiqfloxnYBV1GzC1lG39SjU6ooqLWbyA?e=vuIlOV">2021 Cloud Computing Basics</a> (for @nfu users only)</p>
 <p></p>
-<h2>Stud</h2>
+<h2>PPython</h2>
+<p>Portable Python 製作流程:</p>
+<ol>
+<li>先利用一款舊版的 Python 環境, 在命令列執行 gen_portable_python.py, 可以在 c:\tmp\python311 中建立基本的可攜 Python 檔案.</li>
+<li>在 c:\tmp\python311 目錄中加入 <a href="/downloads/start_stop_batch_files.7z">start_ipv6.bat 與 stop.bat 檔案</a>.</li>
+<li>接著從 <a href="https://www.scintilla.org/SciTEDownload.html">https://www.scintilla.org/SciTEDownload.html</a> 下載 SciTE 編輯器, 放入 c:\tmp\python311\data 目錄中, 並且 wscite 編輯器的目錄是否與 start_ipv6.bat 中的 set path_scite=%Disk%:\wscite521; 互相對應.</li>
+<li>在 c:\tmp\python311\data 目錄中建立 tmp 目錄.</li>
+<li>以 start_ipv6.bat 測試可攜 Python 程式系統能否開啟, 並測試能否以 stop.bat 關閉.</li>
+<li>再次啟動 start_ipv6.bat, 且下載 get-pip.py 檔案後, 在命令列進入 get-pip.py 檔案所在目錄, 執行 python get-pip.py, 以便安裝 pip 套件.</li>
+<li>假如要執行 openai API 相關程式, 在可攜系統中的命令列中, 以 pip install openai 安裝模組.</li>
+<li>假如要執行 cmsimde 動態網站, 以 pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl 安裝所需模組.</li>
+</ol>
+<p>flask 為 web-based 程式開發框架</p>
+<p>flask_cors 為允許跨網域擷取資料模組</p>
+<p>bs4 與 lxml 主要用於動態網站檔案分頁</p>
+<p>pelican, markdown 與 Leo 為建立網誌所需模組</p>
+<p>pyopenssl 為在近端啟動時自動產生網站數位簽章所需模組</p>
+<p>Git client: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 放進 data 目錄</p>
+<p>Putty: <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a> 放進 data 目錄</p>
+<p>其他工具: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer">Process Explorer</a>, <a href="https://www.debugmode.com/wink/">Wink</a>, <a href="https://getsharex.com/">ShareX</a>, <a href="https://portableapps.com/apps/internet/filezilla_portable">filezilla</a>, <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">zoomit</a></p>
+<hr/>
+<p>gen_portable_python.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
+import os
+ 
+# basic files for Python installation
+py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
+# Python version
+version = "3.11.2"
+# Python msi download URL
+ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
+# location for Portable Python
+path = "C:\\tmp\\python311\\data\\Python311"
+# create directory
+try:
+    os.mkdir(path)
+except:
+    # path exists
+    pass
+# get Python installation msi files and extract into target dir
+for i in py_list:
+    filename = i + ".msi"
+    url = ftp + filename
+    # download basic python msi file
+    urllib.request.urlretrieve(url, filename)
+    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
+    # delete msi file
+    os.remove(path + "\\" + i + ".msi")</pre>
+<p></p><h2>Stud</h2>
 <p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
 <p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
 <p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
 <p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
 <p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
 <p>lsof: list open files</p>
-<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
-<h2>Ref</h2>
+<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p><h2>Ref</h2>
 <p>2015</p>
 <p style="padding-left: 30px;"><a href="https://github.com/coursemdetw/2015wcm">https://github.com/coursemdetw/2015wcm</a></p>
 <p>2016</p>
@@ -208,6 +255,10 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZzE7rKRQ3ZIvSoavwvZB6gBmupyVpzqRuvH7yO1i0Yj1w?e=h5SBg0">2023 Cloud Computing Technology</a> (for @nfu users only)</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZpULDm6GfNCsuTiqfloxnYBV1GzC1lG39SjU6ooqLWbyA?e=vuIlOV">2021 Cloud Computing Basics</a> (for @nfu users only)</p>
 <h3>ChatGPT</h3>
+<p>我們替台灣廣大的國中畢業生問 ChatGPT 大神:</p>
+<p style="padding-left: 30px;">虎尾科大的五專精密機械科好不好, 建議讓國中畢業生去唸嗎?</p>
+<p>ChatGPT 的回答:</p>
+<p style="padding-left: 30px;">五專精密機械科在虎尾科大是一個很有前途的學門，但因其課業要求相當高，所以不太適合讓國中畢業生去修。如想走上此行业之旅，可考量初階工作或者申請升學都是可行的方式。</p>
 <p><a href="https://en.wikipedia.org/wiki/ChatGPT">https://en.wikipedia.org/wiki/ChatGPT</a></p>
 <p>Chat Generative Pre-trained Transformer</p>
 <p>Generative: 有生成能力的</p>
