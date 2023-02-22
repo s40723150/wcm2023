@@ -88,7 +88,32 @@ for i in py_list:
 <p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
 <p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
 <p>lsof: list open files</p>
-<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p><h2>Ref</h2>
+<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
+<hr/>
+<p>Ununtu <a href="https://manpages.ubuntu.com/manpages/xenial/man8/newusers.8.html">newusers</a> command to create user account in batch</p>
+<p>Ubuntu <a href="https://manpages.ubuntu.com/manpages/jammy/en/man8/userdel.8.html">userdel</a> command to delete user account and directory</p>
+<p>delete_user.py (<a href="https://www.geeksforgeeks.org/deleting-a-user-in-linux-using-python-script/">source</a>)</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
+import subprocess
+import sys
+import getpass
+  
+  
+def delete_user():
+     username = input("Enter Username : ")
+  
+     try:
+         output = subprocess.run(['userdel', username ])
+         if output.returncode == 0:
+             print("User successfully deleted with given credentials")
+  
+     except:
+         print(f"Failed to delete user.")
+         sys.exit(1)
+  
+delete_user()</pre>
+<p>stud template server in vdi</p>
+<p></p><h2>Ref</h2>
 <p>2015</p>
 <p style="padding-left: 30px;"><a href="https://github.com/coursemdetw/2015wcm">https://github.com/coursemdetw/2015wcm</a></p>
 <p>2016</p>
