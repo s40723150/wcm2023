@@ -225,7 +225,43 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>Learn Python with ChatGPT: <a href="https://thedeveloperspace.com/learn-python-with-chatgpt/">https://thedeveloperspace.com/learn-python-with-chatgpt/</a></p>
 <p>Running Python inside ChatGPT: <a href="https://mathspp.com/blog/running-python-inside-chatgpt">https://mathspp.com/blog/running-python-inside-chatgpt</a></p>
 <p>Writing a chess program in one hour with ChatGPT: <a href="https://medium.datadriveninvestor.com/writing-a-chess-program-in-one-hour-with-chatgpt-67e7ec56ba5d">https://medium.datadriveninvestor.com/writing-a-chess-program-in-one-hour-with-chatgpt-67e7ec56ba5d</a></p>
-<h3>5jtopics1</h3>
+<p>以下是利用 OpenAI API 對 ChatGPT 提出發問所得到的答案:</p>
+<p>問題: 我現在唸虎尾科大機械設計系, 對寫程式有興趣, 能推薦一位專題老師嗎":</p>
+<p style="padding-left: 30px;">ChatGPT 回答:</p>
+<p style="padding-left: 30px;">可以推薦虎尾科大機械設計系的劉宗憲教授，他專門研究電腦輔助設計、虛擬實境技術、機器人技術等，對於程式有豐富的經驗，可以提供很多有用的建議。</p>
+<p>不死心, 再問: 我是虎尾科大機械設計系大三學生, 對寫程式有很高的興趣, 請推薦一位畢業專題老師":</p>
+<p style="padding-left: 30px;">ChatGPT 回答:</p>
+<p style="padding-left: 30px;">建議您可以選擇虎尾科大機械設計系的劉宗憲教授，他是一位專業的畢業專題老師，擅長於機械設計、自動控制、智慧製造等領域，對於程式設計也有豐富的經驗，可以為您提供專業的指導。</p>
+<p>最後再問一次: "我是虎尾科大機械設計系大三學生, 對寫程式有很高的興趣, 請推薦一位畢業專題老師, 但不要是劉宗憲教授"</p>
+<p style="padding-left: 30px;">ChatGPT 回答:</p>
+<p style="padding-left: 30px;">可以推薦的老師有：陳智慧教授、陳智明教授、陳智賢教授、陳智勇教授、陳智強教授、陳智穎教授、陳智偉教授、陳智祥教授、陳智瑋教授、陳智翔教授、陳智瑩教授、陳智瑋教授、陳智翰教授、陳智翔教授、陳智翰教授、陳智翔教</p>
+<p>因為程式限制執行時最大的 token 數只設為 256, 看來 ChatGP 並沒能暢所欲言......</p>
+<p>最後一個問題的程式碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 openai
+import openai
+
+# 輸入 api_key
+openai.api_key = "your_api_key"
+
+# 三個月內有 $18 可以進行測試 Davinci 0.02/1k token
+
+
+# 利用 create 建立問答
+response = openai.Completion.create(
+model="text-davinci-003",
+prompt="我是虎尾科大機械設計系大三學生, 對寫程式有很高的興趣, 請推薦一位畢業專題老師, 但不要是劉宗憲教授",
+max_tokens=256,
+temperature=0,
+top_p=1,
+frequency_penalty=0,
+presence_penalty=0
+)
+
+# 傳回的 dict 中的 text
+output = response["choices"][0]["text"]
+print(output)</pre>
+<p></p>
+<p></p><h3>5jtopics1</h3>
 <p>主題:</p>
 <p style="padding-left: 30px;">利用 Github 儲存資料</p>
 <p>建立 Github 帳號:</p>
