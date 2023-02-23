@@ -141,39 +141,9 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">nfulist << <a href='nfulist.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref<br /><h1>Stud</h1>
-<p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
-<p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
-<p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
-<p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
-<p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
-<p>lsof: list open files</p>
-<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
-<hr/>
-<p>Ununtu <a href="https://manpages.ubuntu.com/manpages/xenial/man8/newusers.8.html">newusers</a> command to create user account in batch</p>
-<p>Ubuntu <a href="https://manpages.ubuntu.com/manpages/jammy/en/man8/userdel.8.html">userdel</a> command to delete user account and directory</p>
-<p>delete_user.py (<a href="https://www.geeksforgeeks.org/deleting-a-user-in-linux-using-python-script/">source</a>)</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
-import subprocess
-import sys
-import getpass
-  
-  
-def delete_user():
-     username = input("Enter Username : ")
-  
-     try:
-         output = subprocess.run(['userdel', username ])
-         if output.returncode == 0:
-             print("User successfully deleted with given credentials")
-  
-     except:
-         print(f"Failed to delete user.")
-         sys.exit(1)
-  
-delete_user()</pre>
-<p>stud template server in vdi</p>
-<p></p><br />nfulist << <a href='nfulist.html'>Previous</a> <a href='Ref.html'>Next</a> >> Ref</div>
+    <div id="tipue_search_content">PPython << <a href='PPython.html'>Previous</a> <a href='Stud.html'>Next</a> >> Stud<br /><h1>nfulist</h1>
+<p><a href="./../downloads/nfulist_nfu_cycu.7z">nfulist_nfu_cycu.7z</a></p>
+<br />PPython << <a href='PPython.html'>Previous</a> <a href='Stud.html'>Next</a> >> Stud</div>
         
     <!-- footer -->
       <div class="container">
