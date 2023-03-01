@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='Motivation.html'>Motivation</a><li><a href='PPython.html'>PPython</a><li><a href='nfulist.html'>nfulist</a><li><a href='Stud.html'>Stud</a><li><a href='Ref.html'>Ref</a><li><a href='Git.html'>Git</a><li><a href='Trends.html'>Trends</a></li></ul><li class='has-children'><a href='WCM.html'>WCM</a><ul class='dropdown'><li class='has-children'><a href='五專.html'>五專</a><ul class='dropdown'><li><a href='ChatGPT.html'>ChatGPT</a><li><a href='5jtopics1.html'>5jtopics1</a></li></ul><li class='has-children'><a href='四技.html'>四技</a><ul class='dropdown'><li><a href='行前準備.html'>行前準備</a><li><a href='Resume.html'>Resume</a><li><a href='topics1.html'>topics1</a><li><a href='Brython demo.html'>Brython demo</a></li></ul><li><a href='Ubuntu.html'>Ubuntu</a><li><a href='Windows.html'>Windows</a><li><a href='History.html'>History</a></li></ul><li><a href='Website.html'>Website</a><li><a href='Reeborg.html'>Reeborg</a><li class='has-children'><a href='cmsimde.html'>cmsimde</a><ul class='dropdown'><li><a href='Resize image.html'>Resize image</a></li></ul><li><a href='Python.html'>Python</a></li>
+                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='Motivation.html'>Motivation</a><li><a href='PPython.html'>PPython</a><li><a href='nfulist.html'>nfulist</a><li class='has-children'><a href='Stud.html'>Stud</a><ul class='dropdown'><li><a href='建立 stud.html'>建立 stud</a></li></ul><li><a href='Ref.html'>Ref</a><li><a href='Git.html'>Git</a><li><a href='Trends.html'>Trends</a></li></ul><li class='has-children'><a href='WCM.html'>WCM</a><ul class='dropdown'><li class='has-children'><a href='五專.html'>五專</a><ul class='dropdown'><li><a href='ChatGPT.html'>ChatGPT</a><li><a href='5jtopics1.html'>5jtopics1</a></li></ul><li class='has-children'><a href='四技.html'>四技</a><ul class='dropdown'><li><a href='行前準備.html'>行前準備</a><li><a href='Resume.html'>Resume</a><li><a href='topics1.html'>topics1</a><li><a href='Brython demo.html'>Brython demo</a></li></ul><li><a href='Ubuntu.html'>Ubuntu</a><li><a href='Windows.html'>Windows</a><li><a href='History.html'>History</a></li></ul><li><a href='Website.html'>Website</a><li><a href='Reeborg.html'>Reeborg</a><li class='has-children'><a href='cmsimde.html'>cmsimde</a><ul class='dropdown'><li><a href='Resize image.html'>Resize image</a></li></ul><li><a href='Python.html'>Python</a></li>
                       </ul>
                 </nav>
               </div>
@@ -143,12 +143,19 @@ img.add_border {
         </header>
     <div id="tipue_search_content">Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image<br /><h1>cmsimde</h1>
 <p><a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a></p>
+<p>執行 cmsimde 動態網站需要下列 Python 模組:</p>
+<p style="padding-left: 30px;">For Windows:</p>
+<p style="padding-left: 60px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
+<p style="padding-left: 30px;">For Ubuntu:</p>
+<p style="padding-left: 60px;">先安裝 pip3:</p>
+<p style="padding-left: 90px;">sudo apt install python3-pip</p>
+<p style="padding-left: 60px;">接著利用 pip3 安裝執行 cmsimde 所需模組:</p>
+<p style="padding-left: 60px;">pip3 install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
 <p>本課程第三部分在說明 <a href="https://github.com/mdecycu/cmsite">https://github.com/mdecycu/cmsite</a> 與 <a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 如何搭建, 程式架構與應用的發展如何從個人電腦導向手機.</p>
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol>
-<br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image</div>
+</ol><br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image</div>
         
     <!-- footer -->
       <div class="container">

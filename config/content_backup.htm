@@ -115,6 +115,67 @@ def delete_user():
   
 delete_user()</pre>
 <p>stud template server in vdi</p>
+<h3>建立 stud</h3>
+<p>使用 Ubuntu server 22.04 LTS v2.</p>
+<hr/>
+<p>Python3 必須能夠執行動態 cmsimde, 因此必須安裝下列 modules:</p>
+<p>執行 cmsimde 動態網站需要下列 Python 模組:</p>
+<p style="padding-left: 30px;">For Windows:</p>
+<p style="padding-left: 60px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
+<p style="padding-left: 30px;">For Ubuntu:</p>
+<p style="padding-left: 60px;">先安裝 pip3:</p>
+<p style="padding-left: 90px;">sudo apt install python3-pip</p>
+<p style="padding-left: 60px;">接著利用 pip3 安裝執行 cmsimde 所需模組:</p>
+<p style="padding-left: 60px;">pip3 install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
+<hr/>
+<p>安裝 stunnel:</p>
+<p style="padding-left: 30px;">sudo apt install stunnel</p>
+<p>stunnel 設定檔案 /etc/stunnel/stunnel.conf:</p>
+<p>對外 443, 資料由內部伺服器 9443 提供:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">[https]
+accept = stud.cycu.org:443
+connect = 127.0.0.1:9443
+cert = /etc/letsencrypt/live/stud.cycu.org/fullchain.pem
+key = /etc/letsencrypt/live/stud.cycu.org/privkey.pem
+TIMEOUTclose = 0</pre>
+<p>stunnel 服務重新啟動:</p>
+<p style="padding-left: 30px;">sudo /etc/init.d/stunnel4 restart</p>
+<p>以系統服務設定 stunnel4:</p>
+<p style="padding-left: 30px;">sudo systemctl enable stunnel4.service</p>
+<hr/>
+<p>git clone 倉儲:</p>
+<p>因為網路只提供 IPv6, 因此若採 https 進行 git clone, 需要先設定 git config --global http.proxy</p>
+<p>接著若要使用 https 執行 git push, 則需要使用 token, 若使用 SSH, 則需要先設定 id_rsa 與 config 代理.</p>
+<p>以指令 ssh_keygen 建立 .ssh/id_rsa 與 .ssh/id_rsa.pub</p>
+<p>使用下列 ssh 協定中的 config, 必須先安裝 nat:</p>
+<p style="padding-left: 30px;">sudo apt install nat</p>
+<p>建立 .ssh/config:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Host github.com
+User git
+Hostname github.com
+ProxyCommand /usr/bin/ncat --proxy p42.cycu.org:3128 --proxy-type http %h %p</pre>
+<hr/>
+<p>設定 Letsencrypt:</p>
+<p style="padding-left: 30px;">sudo snap install core; sudo snap refresh core</p>
+<p>snap proxy setup:</p>
+<p style="padding-left: 30px;">sudo vi /etc/environment and add the following proxy settings:</p>
+<p style="padding-left: 30px;">http_proxy=http://127.0.0.1:3128</p>
+<p style="padding-left: 30px;">https_proxy=http://127.0.0.1:3128</p>
+<p style="padding-left: 30px;">然後以 sudo systemctl restart snapd 重新啟動 snapd 讓 proxy 設定生效</p>
+<p>Install certbot:</p>
+<p style="padding-left: 30px;">sudo snap install --classic certbot</p>
+<p>Prepare certbot command:</p>
+<p style="padding-left: 30px;">sudo ln -s /snap/bin/certbot /usr/bin/certbot</p>
+<p>Get certificate:</p>
+<p style="padding-left: 30px;">sudo certbot certonly --standalone</p>
+<hr/>
+<p>install waitress:</p>
+<p style="padding-left: 30px;">pip3 install waitress</p>
+<p>server.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from waitress import serve
+from cmsimde import flaskapp
+
+serve(flaskapp.app, listen='127.0.0.1:9443', thread=8)</pre>
 <p></p><h2>Ref</h2>
 <p>2015</p>
 <p style="padding-left: 30px;"><a href="https://github.com/coursemdetw/2015wcm">https://github.com/coursemdetw/2015wcm</a></p>
@@ -653,6 +714,7 @@ print(output)
 <p style="padding-left: 30px;">瞭解業界常用的操作系統除了 Windows, 還有 <a href="https://zh.wikipedia.org/zh-tw/linux">Linux</a> (<a href="https://zh.wikipedia.org/zh-tw/UNIX">Unix</a>) 以及 <a href="https://zh.wikipedia.org/wiki/%E9%BA%A6%E9%87%91%E5%A1%94%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">Mac OS</a>: <a href="https://link.springer.com/book/10.1007/978-1-4842-3000-8">2017 Beginning Ubuntu for Windows and Mac Users 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">便於涉入 Robotics 機器人領域: <a href="https://link.springer.com/book/10.1007/978-1-4842-7750-8">2022 Robot Operating System (ROS) for Absolute Beginners 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">想要跨操作系統進行程式開發: <a href="https://link.springer.com/book/10.1007/978-1-4842-6873-5">2021 Pro Windows Subsystem for Linux (WSL) 電子書</a> (可在學校網路下載)</p>
+<hr/>
 <p>若要讓虛擬主機作為 Server 直接連外, 虛擬網路卡可設為 Bridged, 以橋接從宿主電腦的實體網路卡對外連線.</p>
 <p style="padding-left: 30px;">Network 設為橋接 (Bridged):</p>
 <p style="padding-left: 60px;">disable IPv4</p>
@@ -793,6 +855,12 @@ wcmuser2:password2:1003:1003:wcmuser2:/home/wcmuser2:/bin/bash
 wcmuser3:password3:1004:1004:wcmuser3:/home/wcmuser3:/bin/bash</pre>
 <p>新增上列三名新用戶指令:</p>
 <p>sudo newusers users.txt</p>
+<p>Add super user account:</p>
+<p style="padding-left: 30px;">新增 username 帳號, 並授予管理者權限.<br/><br/>sudo adduser username<br/><br/>sudo usermod -aG sudo username</p>
+<p>Delete user account:</p>
+<p style="padding-left: 30px;">sudo deluser --remove-home account_name</p>
+<p>列出 user id:</p>
+<p style="padding-left: 30px;">列出現有帳號 uid 的指令為: cut -d: -f1,3 /etc/passwd<br/><br/>表示要從 /etc/passwd 檔案, 以 : 符號分割檔案, 然後只取出第一與第三欄位的資料.</p>
 <p></p><h2>Windows</h2>
 <p>利用 Virtualbox 設定 Windows 10 虛擬主機.</p>
 <p>下載 <a href="https://software.nfu.edu.tw/Windows/tw/Win10_21H2.9_64BIT_CH.ISO">Win10_21H2.9_64BIT_CH.ISO</a> (5.5GB for @nfu users only) (<a href="https://software.nfu.edu.tw/KMS/windows_kms.bat">KMS</a>)</p>
@@ -847,12 +915,19 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 </ol>
 <h1>cmsimde</h1>
 <p><a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a></p>
+<p>執行 cmsimde 動態網站需要下列 Python 模組:</p>
+<p style="padding-left: 30px;">For Windows:</p>
+<p style="padding-left: 60px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
+<p style="padding-left: 30px;">For Ubuntu:</p>
+<p style="padding-left: 60px;">先安裝 pip3:</p>
+<p style="padding-left: 90px;">sudo apt install python3-pip</p>
+<p style="padding-left: 60px;">接著利用 pip3 安裝執行 cmsimde 所需模組:</p>
+<p style="padding-left: 60px;">pip3 install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
 <p>本課程第三部分在說明 <a href="https://github.com/mdecycu/cmsite">https://github.com/mdecycu/cmsite</a> 與 <a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 如何搭建, 程式架構與應用的發展如何從個人電腦導向手機.</p>
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol>
-<h2>Resize image</h2>
+</ol><h2>Resize image</h2>
 <p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
 &lt;input id="input" type="file" onchange="handleFiles()"&gt;
