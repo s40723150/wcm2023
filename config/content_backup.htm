@@ -351,7 +351,7 @@ print(output)</pre>
 <p style="padding-left: 30px;"><a href="https://ubuntu.com/download">下載 Ubuntu</a> ISO (Desktop and Server)</p>
 <p style="padding-left: 30px;"><a href="https://mde.tw/wcm2023/content/%E4%BA%94%E5%B0%88.html">五專網際內容管理 PC 相關主題</a></p>
 <p>討論:</p>
-<p style="padding-left: 30px;">Why Github?</p>
+<p style="padding-left: 30px;"><a href="https://codeburst.io/why-you-should-start-using-github-right-now-e817d213c6ff">Why Github</a>?</p>
 <p style="padding-left: 30px;">Why Virtualbox?</p>
 <p style="padding-left: 60px;"><a href="https://cadlab.mde.tw/post/virtualbox-de-ying-yong-yu-wang-lu-she-ding-er.html">Virtualbox 的應用與網路設定</a> (一台虛擬電腦可支援安裝 36 片虛擬網路卡)</p>
 <p style="padding-left: 30px;">Why assignment repository from <a href="https://classroom.github.com">Github Classroom</a>?</p>
@@ -648,6 +648,27 @@ print(output)
 <p>利用 Google 搜尋 <a href="https://www.google.com/search?q=pure+python+solve+differential+equations">Pure Python solve differential equations</a></p>
 <p style="padding-left: 30px;">了解<a href="https://integratedmlai.com/system-of-equations-solution/">如何以純 Python 解聯立方程式</a>後, 將程式碼<a href="https://gist.github.com/mdecycu/940b020e24168c541fd3cf69b9a5619e#file-solve_system_of_eqn-py">存入 Gist</a> 後: <a href="https://mde.tw/wcm2023/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/940b020e24168c541fd3cf69b9a5619e/raw/cf4367ec2ea6b22c013a14d7d7a42aa89ef336f6/solve_system_of_eqn.py">Solved with Brython</a></p>
 <h2>Ubuntu</h2>
+<p><a href="https://ubuntu.com/download/server">https://ubuntu.com/download/server</a> (<a href="https://ubuntu.com/about/release-cycle">各版本生命週期</a>)</p>
+<p>若要讓虛擬主機作為 Server 直接連外, 虛擬網路卡可設為 Bridged, 以橋接從宿主電腦的實體網路卡對外連線.</p>
+<p style="padding-left: 30px;">Network 設為橋接 (Bridged):</p>
+<p style="padding-left: 60px;">disable IPv4</p>
+<p style="padding-left: 60px;">manual IPv6</p>
+<p style="padding-left: 90px;">2001:288:6004:17:2023:X:課號:學號末四碼</p>
+<p style="padding-left: 90px;">五專 wcm 課號: 2464</p>
+<p style="padding-left: 90px;">四技 wcm 課號: 0739</p>
+<p style="padding-left: 90px;">五專: X = 0</p>
+<p style="padding-left: 90px;">四技一: X = 1</p>
+<p style="padding-left: 90px;">四技二: X = 2 依此類推</p>
+<p style="padding-left: 90px;">DNS server: 2001:b000:168::1</p>
+<p style="padding-left: 90px;">Gateway: 2001:288:6004:17::254</p>
+<p style="padding-left: 60px;">Install OpenSSH server</p>
+<p>若虛擬主機只是要先能夠上網, 隨後再設法透過 Port mapping 成為 Server, 則虛擬網路卡可設為 Default 的 NAT, 表示要將宿主電腦視為 NAT, 虛擬主機的網路卡使用內部 IP.</p>
+<p style="padding-left: 30px;">Network 設為 NAT (Network Address Transfer):</p>
+<p style="padding-left: 60px;">若要使用 IPv4 或 IPv6 網路協定上網, 可視宿主所提供的網路協定, 將虛擬網路卡以 DHCP 取得網路位址與 DNS 設定.</p>
+<p>若虛擬主機並不上網, 而是要在宿主中設定多台互相連線的虛擬主機, 則可將虛擬網路卡設為 Host only, 各虛擬主機則使用自訂的內部網路位址區段進行設定.</p>
+<p style="padding-left: 30px;">Network 設為 Host only:</p>
+<p style="padding-left: 60px;">虛擬主機可經由內部網路區段與宿主電腦連接.</p>
+<hr/>
 <p>學習 Ubuntu 最好的方式之一是採用虛擬主機, 無論在網路修改設定或相關套件安裝測試, 都能採用與實體主機相同的方式進行.</p>
 <p>安裝 Ubuntu 操作系統最重要的步驟, 應該是網路設定:</p>
 <p>當 Ubuntu 操作系統網路設定完成後, 通常會進行系統更新:</p>
@@ -723,7 +744,7 @@ TIMEOUTclose = 0</pre>
 <li>waitress and all cmsimde modules is installed</li>
 <li>ncat is installed</li>
 </ol>
-<p>假如採用 Virtualbox 虛擬主機, 則可以透過 <a href="https://nssm.cc/download">nssm</a> 設定服務:</p>
+<p>假如採用 Virtualbox Windows 虛擬主機, 則可以透過 <a href="https://nssm.cc/download">nssm</a> 設定服務:</p>
 <p style="padding-left: 30px;">nssm install ubuntu_for_project</p>
 <p style="padding-left: 30px;">VBoxHeadless.exe --startvm "Ubuntu_2204_for_project"</p>
 <p style="padding-left: 30px;">並且以管理者身分設定 log on 啟動</p>
@@ -768,8 +789,18 @@ wcmuser2:password2:1003:1003:wcmuser2:/home/wcmuser2:/bin/bash
 wcmuser3:password3:1004:1004:wcmuser3:/home/wcmuser3:/bin/bash</pre>
 <p>新增上列三名新用戶指令:</p>
 <p>sudo newusers users.txt</p>
-<p></p>
-<h2>History</h2>
+<p></p><h2>Windows</h2>
+<p>利用 Virtualbox 設定 Windows 10 虛擬主機.</p>
+<p>下載 <a href="https://software.nfu.edu.tw/Windows/tw/Win10_21H2.9_64BIT_CH.ISO">Win10_21H2.9_64BIT_CH.ISO</a> (5.5GB for @nfu users only) (<a href="https://software.nfu.edu.tw/KMS/windows_kms.bat">KMS</a>)</p>
+<p>Windows 10 目前也提供 OpenSSH client (內建) 與 server 的<a href="https://learn.microsoft.com/zh-tw/windows-server/administration/openssh/openssh_install_firstuse">安裝服務</a>, 並可在 Windows 操作系統中<a href="https://learn.microsoft.com/zh-tw/windows/wsl/install">安裝 WSL</a> (Windows Subsystem for Linux)</p>
+<p><a href="https://learn.microsoft.com/en-us/windows/wsl/about">What is WSL</a>?</p>
+<p><a href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">WSL 推出歷史</a></p>
+<p><a href="https://www.whitewaterfoundry.com/what-is-wsl">其他 WSL 說明</a></p>
+<p><a href="https://learn.microsoft.com/en-us/windows/wsl/faq">WSL faq</a></p>
+<p><a href="https://blogs.windows.com/windowsdeveloper/2016/07/22/fun-with-the-windows-subsystem-for-linux/">Fun with WSL</a></p>
+<p><a href="https://www.howtogeek.com/devops/what-is-windows-subsystem-for-linux-wsl-and-how-do-you-use-it/">如何運用 WSL</a></p>
+<p><a href="https://www.makeuseof.com/pros-cons-windows-subsystem-for-linux/">WSL 的優缺點</a></p>
+<p></p><h2>History</h2>
 <p>當我們利用 template 建立個人的作業網站之後, 假如原始的 template 倉儲改版, 而學員的作業倉儲也改版, 學員的倉儲應該要如何納入原始 template 倉儲中的改版資料? 即便在上學期末, 各分組學員已經用過 fork 與 pull requests, 但是針對上述所提出來的資料合併議題, 其實並不簡單. 有興趣處理這項問題, 大家可以<a href="https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository">參考一下網友們如何處理這個 template 改版與合併的問題</a>.</p>
 <p>利用 <a href="https://forms.microsoft.com/">Microsoft Forms</a> 建立各組互評表單</p>
 <p><a href="https://zen1976.com/homework/">https://zen1976.com/homework/</a></p>
@@ -786,8 +817,7 @@ os.environ['http_proxy'] = proxy
 os.environ['HTTP_PROXY'] = proxy
 os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy</pre>
-<p></p>
-<h1>Website</h1>
+<p></p><h1>Website</h1>
 <p>Website 指的是全球資訊網協定下的網站, 而全球資訊網協定是依附在 TCP/IP 與 HTTP 網路協定下的客戶端 (瀏覽器) 與伺服器端.</p>
 <p>若利用 <a href="https://pages.github.com/">Github Pages</a> 建立個人網站, 則伺服器端就是 github.io 網址中的伺服器,</p>
 <p>Github Pages Docs: <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server</a> </p>
