@@ -1,5 +1,6 @@
 Web-based Content Management
 網際內容管理 (全球資訊網路上的內容管理系統) 建置 (配置), 使用, 管理
+
 client 客戶端
 server 伺服器
 
@@ -7,35 +8,51 @@ server 伺服器
 配置 - setup
 使用 - use, usage
 管理 - management
+
 PC - Personal Computer
 Hardware (硬) , Firmware (韌), Software (軟)
 
 Compact Disc (CD)
 Sampling 取樣 
+
 虛擬主機 (Virtual Host)
 Multitasking (多工)
 
 Internet (Inter-network), TCP/IP
 Transmission Control Protocol/ Internet Protocol
 Internet Address (網際位址)
+
 IPv4 (共有四個區, 以逗點隔開)
+
 Port (埠號, 港口)
 140.130.17.1:80
 每個區段用 8 個 bit 表示 0~255
 IPv4 總共可以表示幾個 addresses: 2^32
+NAT (Network Address Transfer)
+
 IPv6 (共有八個區, 以冒號隔開)
 [2001:288:6004:17:0:0:0:1]:80
 [FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF]:80
-IPv6 總共可以表示幾個 addresses: 2^(128)
+IPv6 總共可以表示幾個 addresses: 2^(128) = 340282366920938463463374607431768211456
 可以有一個區段全部為 0 以 :: 省略表示
 [2001:288:6004:17::1]:80
-NAT
+
 Proxy
-DNS
+DNS (Domain Name Server 符號名稱伺服器)
+dns.mde.nfu.edu.tw 為符號名稱, 其 IPv4 address 為 140.130.17.3, IPv6 address 為 2001:288:6004:17::3
+nslooup 為查詢 name server looup 指令
+
 Computer Network setup
+
 Programming Language - compiled (編譯 -> machine codes 速度較 interpreted 快)
 C (1970's 為 Unix 操作系統而生), C++ (C with classes, 1980's), Java (1990's), C# (C sharp 2000's), 
+
 interpreted (解譯, 好像可以直接執行 .py -> byte codes - > machine codes)
 Python (1989, 荷蘭人發明) , Lua (巴西, 1980's), Javascript (1990's), 
+
 Just in time (即時)編譯
+
+Physical (實體端) <-> Virtual (虛擬端)
+
+虛實整合 (Cyber-Physical)
 
