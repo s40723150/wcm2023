@@ -348,7 +348,10 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p><a href="https://en.wikipedia.org/wiki/ChatGPT">https://en.wikipedia.org/wiki/ChatGPT</a></p>
 <p>Chat Generative Pre-trained Transformer</p>
 <p>Generative: 有生成能力的</p>
+<p style="padding-left: 30px;">與生成有關的所謂 <a href="https://solidedge.siemens.com/en/tag/generative-design/">Generative Design</a> 可參考 Solid Edge Community Edition 中的模組功能:</p>
+<p style="padding-left: 30px;"><a href="https://www.plm.automation.siemens.com/plmapp/education/solid-edge/zh_tw/free-software/community">https://www.plm.automation.siemens.com/plmapp/education/solid-edge/zh_tw/free-software/community</a> (下載約 4GB, 安裝後佔約 8GB, 授權使用時段: 06-jul-2021 至 31-dec-2025)</p>
 <p>Pre-trained: 事先訓練過的</p>
+<p style="padding-left: 30px;"><a href="https://blogs.nvidia.com/blog/2022/12/08/what-is-a-pretrained-ai-model/">Pre-trained AI model</a></p>
 <p>Transformer: 轉換器 - 指具備自注意機制能力 (<a href="https://medium.com/@ZH_Shen/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A9%9F%E5%88%B6-self-attention-%E6%9D%8E%E5%BC%98%E6%AF%85-ml2021-5-6fb61c4bc320">self-attention</a>), 常用於自然語言處理與影像辨識的深度學習模型</p>
 <ol>
 <li>is a chatbot</li>
@@ -375,8 +378,8 @@ openai.api_key = "your_api_key"
 # 利用 create 建立問答
 response = openai.Completion.create(
 model="text-davinci-003",
-prompt="Write me a Python program by using Runge-Kutta method to solve an mass-spring-damper ordinary differential equation",
-max_tokens=2560,
+prompt="Write me a short introduction for a precision mechanical engineering major student try to get a job",
+max_tokens=512,
 temperature=0,
 top_p=1,
 frequency_penalty=0,
