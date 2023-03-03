@@ -54,5 +54,31 @@ Just in time (即時)編譯
 
 Physical (實體端) <-> Virtual (虛擬端)
 
-虛實整合 (Cyber-Physical)
+虛實整合 (Cyber-Physical Integration)
+
+指定作業, 名稱為 site, 目的是將個人的作業倉儲轉為網站:
+
+1. 登入 github
+2. 連結 https://classroom.github.com/a/JReQZv6g
+3. 可取得一個空白倉儲: https://github.com/mdewcm2023
+4. 利用 Github Pages 將倉儲內容設定轉為網站內容 (Settings->Pages)
+5. 個人 site 作業的空倉儲網址: https://github.com/mdewcm2023/site-github_帳號
+6. 將倉儲的主分支 (main branch) 設為網站的根目錄 (root) 可以得到一個網站: https://mdewcm2023.github.io/site-scrum-1/
+organization: mdewcm2023 加上 .github.io 作為網站名稱, 
+
+Repository 倉儲
+Branch 分支
+Commit 提交 (將改版資料與改版者進行綁定)
+root 根目錄 (index.html 為內建根目錄優先取用)
+html (hypertext markup language)
+anchor (錨) <a> </a> anchor 標註
+Default 內定或內建
+Deploy 部署
+
+如何將電腦設為僅使用 IPv6 上網, 且透過 Proxy (代理) 主機, 讓網路的封包可以從 IPv6 轉接到 IPv4 網路協定
+
+1. 在乙太網路中關閉 IPv4, 僅啟動 IPv6, 且已經設定 DNS 伺服器
+系上 IPv6 協定的 DNS: 2001:288:6004:1::2
+學校 IPv6 協定的 DNS: 2001:288:6004:17::3
+中華電信 IPv6 協定的 DNS: 2001:b000:168::1
 
