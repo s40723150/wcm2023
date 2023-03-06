@@ -141,10 +141,38 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">topics1 << <a href='topics1.html'>Previous</a> <a href='Ubuntu.html'>Next</a> >> Ubuntu<br /><h1>Brython demo</h1>
-<p>利用 Google 搜尋 <a href="https://www.google.com/search?q=pure+python+solve+differential+equations">Pure Python solve differential equations</a></p>
-<p style="padding-left: 30px;">了解<a href="https://integratedmlai.com/system-of-equations-solution/">如何以純 Python 解聯立方程式</a>後, 將程式碼<a href="https://gist.github.com/mdecycu/940b020e24168c541fd3cf69b9a5619e#file-solve_system_of_eqn-py">存入 Gist</a> 後: <a href="https://mde.tw/wcm2023/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/940b020e24168c541fd3cf69b9a5619e/raw/cf4367ec2ea6b22c013a14d7d7a42aa89ef336f6/solve_system_of_eqn.py">Solved with Brython</a></p>
-<br />topics1 << <a href='topics1.html'>Previous</a> <a href='Ubuntu.html'>Next</a> >> Ubuntu</div>
+    <div id="tipue_search_content">行前準備 << <a href='行前準備.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume<br /><h1>w2-w3</h1>
+<p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EVdigN-bvp9BoLQnMBJHW_QBvYjTxSiiAF4FYvenXUYtUQ?e=Tcj4rN">說明如何建立可攜 Python 第一步.mp4</a> (Python, SciTE, pip)</p>
+<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EaCCYSDwemdEgl_YUiwNglEByPmHyHFW9CboFFS7ao1hLw?e=seZeSo">wcm_portable_w2-1.7z</a></p>
+<p>為了執行 cmsimde, 需要安裝以下模組:</p>
+<p style="padding-left: 30px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
+<p>為了使用 git, 必須下載 portablegit:</p>
+<p style="padding-left: 30px;"><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>  (取得 portable)</p>
+<p style="padding-left: 30px;"><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a> (中文版 git book)</p>
+<p>Windows 命令列中的常用指令:</p>
+<p>cd - change directory</p>
+<p>dir - show directory content</p>
+<p>y:\&gt; 代表目前位於 Y 槽根目錄, 以 &gt; 作為 prompt (回應), 等待使用者輸入指令</p>
+<p><span>y:\&gt;c: 表示要從 Y 切換到 C</span></p>
+<p><span>cd \ 因為 "\" 代表根目錄.</span></p>
+<hr/>
+<p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EZNog084xGJEuyfPk_zQchEBzyGhwXRAs5cuWsAScLMDFQ?e=85DhLj">說明如何利用 pip 安裝 cmimse 所需模組.mp4</a>, 並下載 <a href="https://git-scm.com/download/win">portablegit</a> 以及指定 <a href="https://github.com/mdewcm2023">site</a> 作業 (取得作業連結請參考 Team 中的連結)</p>
+<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXQljJw1yE9At9MDkIklVFAB9Ef3q59sTJnbRiVWOSSGdw?e=AtNFlJ">wcm_portable_w2-2.7z</a></p>
+<p>w3 筆記</p>
+<p>Windows 利用 Ctrl + Shift + Esc 帶出工作管理員中的效能, 可以檢視電腦硬體與網路的運作狀況.</p>
+<p>檢查電腦 services, 開始 -&gt; 滑鼠右鍵帶出電腦管理 -&gt; 服務與應用程式 可以查看電腦目前所設定或啟動的 services</p>
+<p>從上述第二版可攜 Python 轉進第三版:</p>
+<p>進行下列修改:</p>
+<ol>
+<li>建立 home_ipv6 目錄下的 DeskTop 目錄 (與 AppData 接受程式執行時的暫存檔案)</li>
+<li>編輯 python.properties 將 line 153 改為: python.command=pythonw</li>
+<li>編輯 SciTEGlobal.properties 將 line 162 改為: load.on.activate=1 (若編輯中的檔案在其他應用程式修 改後, 可直接在 SciTE 中自動 load.</li>
+<li>編輯 SciTEGlobal.properties 將 line 204 改為: tabsize=4</li>
+<li>編輯 SciTEGlobal.properties 將 line 205 改為: indent.size=4</li>
+<li>編輯 SciTEGlobal.properties 將 line 335 # 拿掉 (code.page=65001, 表示編輯區使用 UTF-8 編碼)</li>
+<li>編輯 SciTEGlobal.properties 將 line 336 以 # 蓋掉 (code.page=0, 表示要用系統的中文編碼, 也就是 big-5)</li>
+</ol>
+<p>修改之後的可攜 Python: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/ESbmgwyK-5xGj9A18njOsXoBOmk8gsB0317yaUD3jnK2wQ?e=oOsAnr">wcm_portable_w2-3.7z</a></p><br />行前準備 << <a href='行前準備.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume</div>
         
     <!-- footer -->
       <div class="container">
