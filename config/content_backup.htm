@@ -690,8 +690,55 @@ for i in data[1:-1]:
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
-</script><h3>Brython_src</h3>
-<h3>Resume</h3>
+</script><h3>Pull_requests</h3>
+<p>github pull requests 運用時機: 當 github 用戶對特定倉儲無直接存取權, 但仍希望:</p>
+<ol>
+<li>保留該特定倉儲的所有資料 - 登入個人 github 帳號, 直接 fork (叉出), 將該倉儲放入自己的帳號</li>
+<li>修改該倉儲的資料 (找到倉儲內的錯誤 (功能提升), 更改後希望請原始倉儲擁有者可以修改內容合併), fork 後可以在自己的帳號下改版, 然後送出 pull requests (拉回請求, 請求原始倉儲作者可以 review 後, 決定是否合併)</li>
+</ol><h3>Brython_src</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">&lt;p&gt;以下則為 wcm2023 各學員的網頁與倉儲:&lt;/p&gt;
+&lt;script src="/static/brython.js"&gt;&lt;/script&gt;
+&lt;script src="/static/brython_stdlib.js"&gt;&lt;/script&gt;
+&lt;script&gt;// &lt;![CDATA[
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/']});
+}
+// ]]&gt;&lt;/script&gt;
+&lt;p id="brython_div1"&gt;&lt;/p&gt;
+&lt;script type="text/python3"&gt;// &lt;![CDATA[
+# 從 Brython 的 browser 模組導入 document 與 html 程式庫
+from browser import document, html
+
+brython_div1 = document["brython_div1"]
+try:
+    c = document.query["c"]
+except:
+    c = "1a"
+url = "https://mde.tw/studlist/2023spring/" + c + ".txt"
+data = open(url).read().split("\n")
+url_template = "https://mdewcm2023.github.io/site-"
+repo_template = "https://github.com/mdewcm2023/site-"
+for i in data[1:-1]:
+    num_github = i.split("\t")
+    num =  num_github[0]
+    try:
+        github = num_github[1]
+    except:
+        github = str(num)
+    #print(num, github)
+    try:
+        #print(num, github)
+        url_link = html.A(str(num), href=url_template + str(github))
+        repo_link = html.A("repo", href=repo_template + str(github))
+    except:
+        # no github added yet
+        url_link = html.A(str(num), href=url_template + str(num))
+        repo_link = html.A("repo", href=repo_template + str(num))
+    brython_div1 &lt;= url_link
+    brython_div1 &lt;= " (" + repo_link + ")"
+    brython_div1 &lt;= html.BR()
+// ]]&gt;&lt;/script&gt;</pre>
+<p></p><h3>Resume</h3>
 <p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Resume-Automation-using-ChatGPT">https://github.com/mdecycu/Resume-Automation-using-ChatGPT</a></p>
 <p>利用 Github Classroom 建立個人作業, 以 Python、LaTeX 與 ChatGPT 協助建立個人 resume, <span style="background-color: #ffff00;">最終希望能用來協助建立個人網頁或分組專題報告</span>.</p>

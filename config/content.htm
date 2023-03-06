@@ -681,8 +681,8 @@ for i in data[1:-1]:
     #print(num, github)
     try:
         #print(num, github)
-        url_link = html.A(str(num), href=url_template + str(github))
-        repo_link = html.A("repo", href=repo_template + str(github))
+        url_link = html.A(str(num), href=url_template + str(num))
+        repo_link = html.A("repo", href=repo_template + str(num))
     except:
         # no github added yet
         url_link = html.A(str(num), href=url_template + str(num))
@@ -690,7 +690,12 @@ for i in data[1:-1]:
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
-</script><h3>Brython_src</h3>
+</script><h3>Pull_requests</h3>
+<p>github pull requests 運用時機: 當 github 用戶對特定倉儲無直接存取權, 但仍希望:</p>
+<ol>
+<li>保留該特定倉儲的所有資料 - 登入個人 github 帳號, 直接 fork (叉出), 將該倉儲放入自己的帳號</li>
+<li>修改該倉儲的資料 (找到倉儲內的錯誤 (功能提升), 更改後希望請原始倉儲擁有者可以修改內容合併), fork 後可以在自己的帳號下改版, 然後送出 pull requests (拉回請求, 請求原始倉儲作者可以 review 後, 決定是否合併)</li>
+</ol><h3>Brython_src</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">&lt;p&gt;以下則為 wcm2023 各學員的網頁與倉儲:&lt;/p&gt;
 &lt;script src="/static/brython.js"&gt;&lt;/script&gt;
 &lt;script src="/static/brython_stdlib.js"&gt;&lt;/script&gt;
