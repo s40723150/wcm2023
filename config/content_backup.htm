@@ -638,8 +638,8 @@ EXIT</pre>
 <li>編輯 SciTEGlobal.properties 將 line 162 改為: load.on.activate=1 (若編輯中的檔案在其他應用程式修 改後, 可直接在 SciTE 中自動 load.</li>
 <li>編輯 SciTEGlobal.properties 將 line 204 改為: tabsize=4</li>
 <li>編輯 SciTEGlobal.properties 將 line 205 改為: indent.size=4</li>
-<li>編輯 SciTEGlobal.properties 將 line 335 # 拿掉</li>
-<li>編輯 SciTEGlobal.properties 將 line 336 以 # 蓋掉</li>
+<li>編輯 SciTEGlobal.properties 將 line 335 # 拿掉 (code.page=65001, 表示編輯區使用 UTF-8 編碼)</li>
+<li>編輯 SciTEGlobal.properties 將 line 336 以 # 蓋掉 (code.page=0, 表示要用系統的中文編碼, 也就是 big-5)</li>
 </ol>
 <p>修改之後的可攜 Python: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/ESbmgwyK-5xGj9A18njOsXoBOmk8gsB0317yaUD3jnK2wQ?e=oOsAnr">wcm_portable_w2-3.7z</a></p><h3>Resume</h3>
 <p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
@@ -780,7 +780,7 @@ print(output)
 <p>若虛擬主機並不上網, 而是要在宿主中設定多台互相連線的虛擬主機, 則可將虛擬網路卡設為 Host only, 各虛擬主機則使用自訂的內部網路位址區段進行設定.</p>
 <p style="padding-left: 30px;">Network 設為 Host only:</p>
 <p style="padding-left: 60px;">虛擬主機可經由內部網路區段與宿主電腦連接.</p>
-<hr>
+<hr/>
 <p>學習 Ubuntu 最好的方式之一是採用虛擬主機, 無論在網路修改設定或相關套件安裝測試, 都能採用與實體主機相同的方式進行.</p>
 <p>安裝 Ubuntu 操作系統最重要的步驟, 應該是網路設定:</p>
 <p>當 Ubuntu 操作系統網路設定完成後, 通常會進行系統更新:</p>
@@ -1121,4 +1121,4 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <ol>
 <li><a href="http://wcm.cycu.org:88/compile_copsim_cd2022.7z">compile_copsim_cd2022.7z</a> (file size: 5 GB, extracted size: 17.3 GB, 包含除了 NX1980 之外的所有課程相關可攜程式套件, 是專門為 <a href="https://mde.tw/cd2022">cd2022</a> 課程學員打造的套件).</li>
 <li><a href="http://wcm.cycu.org:88/portable_python_wcm2022.7z">portable_python_wcm2022.7z</a> (file size: 513 MB, extracted size: 2.3 G, 這是專門為 <a href="https://mde.tw/wcm2022">wcm2022</a> 課程打造的可攜程式套件, 適合選修學員下載後在任何 Windows 10 中以隨身碟啟動後操作)</li>
-</ol></hr>
+</ol>
