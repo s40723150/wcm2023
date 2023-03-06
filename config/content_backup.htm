@@ -627,7 +627,7 @@ EXIT</pre>
 <hr/>
 <p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EZNog084xGJEuyfPk_zQchEBzyGhwXRAs5cuWsAScLMDFQ?e=85DhLj">說明如何利用 pip 安裝 cmimse 所需模組.mp4</a>, 並下載 <a href="https://git-scm.com/download/win">portablegit</a> 以及指定 <a href="https://github.com/mdewcm2023">site</a> 作業 (取得作業連結請參考 Team 中的連結)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXQljJw1yE9At9MDkIklVFAB9Ef3q59sTJnbRiVWOSSGdw?e=AtNFlJ">wcm_portable_w2-2.7z</a></p>
-<p>w3 筆記</p>
+<h4>w3 筆記</h4>
 <p>Windows 利用 Ctrl + Shift + Esc 帶出工作管理員中的效能, 可以檢視電腦硬體與網路的運作狀況.</p>
 <p>檢查電腦 services, 開始 -&gt; 滑鼠右鍵帶出電腦管理 -&gt; 服務與應用程式 可以查看電腦目前所設定或啟動的 services</p>
 <p>從上述第二版可攜 Python 轉進第三版:</p>
@@ -641,7 +641,57 @@ EXIT</pre>
 <li>編輯 SciTEGlobal.properties 將 line 335 # 拿掉 (code.page=65001, 表示編輯區使用 UTF-8 編碼)</li>
 <li>編輯 SciTEGlobal.properties 將 line 336 以 # 蓋掉 (code.page=0, 表示要用系統的中文編碼, 也就是 big-5)</li>
 </ol>
-<p>修改之後的可攜 Python: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/ESbmgwyK-5xGj9A18njOsXoBOmk8gsB0317yaUD3jnK2wQ?e=oOsAnr">wcm_portable_w2-3.7z</a></p><h3>Resume</h3>
+<p>修改之後的可攜 Python: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/ESbmgwyK-5xGj9A18njOsXoBOmk8gsB0317yaUD3jnK2wQ?e=oOsAnr">wcm_portable_w2-3.7z</a></p>
+<hr/>
+<p>學號@gm.nfu.edu.tw 為 Gmail 系統, 目前學校已經將此電子郵箱落日, 新生已經不再發送此 @gm 的郵箱.</p>
+<p>學號@nfu.edu.tw 為 Mail 2000 系統,  可以從 <a href="https://mail.nfu.edu.tw">https://mail.nfu.edu.tw</a> 以個人學號及自行設定的密碼登入.</p>
+<p>上述兩種教育版的電子信箱 (都有 nfu.edu.tw 符號名稱), 都可以從 <a href="https://www.microsoft.com/zh-tw/education/products/office">https://www.microsoft.com/zh-tw/education/products/office</a> 登記 onedrive 帳號, 個取得 5T 雲端容量.</p>
+<p>但 wcm2023 Teams 只支援 @nfu 帳號登入, 且登入後, 可以透過 MS Teams: sblk6ao (for @nfu users only) 進入網際內容管理團隊上課.</p>
+<hr/>
+<p>有關學員學號與 github 帳號的對應資料存入 <a href="https://github.com/mdecycu/studlist">https://github.com/mdecycu/studlist</a>, 網頁位於: <a href="https://mde.tw/studlist/2023spring/1a.txt">https://mde.tw/studlist/2023spring/1a.txt</a></p>
+<p>以下則為 wcm2023 各學員的網頁與倉儲:</p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/']});
+}
+</script>
+<p id="brython_div1"></p>
+<script type="text/python3">
+# 從 Brython 的 browser 模組導入 document 與 html 程式庫
+from browser import document, html
+
+brython_div1 = document["brython_div1"]
+try:
+    c = document.query["c"]
+except:
+    c = "1a"
+url = "https://mde.tw/studlist/2023spring/" + c + ".txt"
+data = open(url).read().split("\n")
+url_template = "https://mdewcm2023.github.io/site-"
+repo_template = "https://github.com/mdewcm2023/site-"
+for i in data[1:-1]:
+    num_github = i.split("\t")
+    num =  num_github[0]
+    try:
+        github = num_github[1]
+    except:
+        github = str(num)
+    #print(num, github)
+    try:
+        #print(num, github)
+        url_link = html.A(str(num), href=url_template + str(github))
+        repo_link = html.A("repo", href=repo_template + str(github))
+    except:
+        # no github added yet
+        url_link = html.A(str(num), href=url_template + str(num))
+        repo_link = html.A("repo", href=repo_template + str(num))
+    brython_div1 <= url_link
+    brython_div1 <= " (" + repo_link + ")"
+    brython_div1 <= html.BR()
+</script><h3>Brython_src</h3>
+<h3>Resume</h3>
 <p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Resume-Automation-using-ChatGPT">https://github.com/mdecycu/Resume-Automation-using-ChatGPT</a></p>
 <p>利用 Github Classroom 建立個人作業, 以 Python、LaTeX 與 ChatGPT 協助建立個人 resume, <span style="background-color: #ffff00;">最終希望能用來協助建立個人網頁或分組專題報告</span>.</p>
@@ -714,8 +764,7 @@ print(output)
 4. 機械設計系的課程需要掌握大量的專業知識。
 5. 機械設計系的課程需要掌握大量的計算機軟件。
 """</pre>
-<p></p>
-<h3>topics1</h3>
+<p></p><h3>topics1</h3>
 <p>課程議題:</p>
 <ol>
 <li><a href="https://mde.tw/wcm2023/content/Brython.html">https://mde.tw/wcm2023/content/Brython.html</a> 是如何建立的? 有甚麼<a href="https://mde.tw/wcm2023/content/Brython%20demo.html">用處</a>? (兼學 <a href="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists">Github Gist</a>?)</li>

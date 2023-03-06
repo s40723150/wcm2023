@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,39 +141,50 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">nfulist << <a href='nfulist.html'>Previous</a> <a href='建立 stud.html'>Next</a> >> 建立 stud<br /><h1>Stud</h1>
-<p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
-<p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
-<p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
-<p>又由於 8 開頭的外部 port 統一由管理者以 Stunnel 啟動並加以管控, 因此一般用戶產生誤用的情況只會發生在內部以 9 開頭的 port.</p>
-<p>列出 Ubuntu 中 port 使用相關資訊: lsof -i :9123</p>
-<p>lsof: list open files</p>
-<p>-i: selects the listing of files any of whose Internet address matches the address specified in i.  If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files.</p>
-<hr/>
-<p>Ununtu <a href="https://manpages.ubuntu.com/manpages/xenial/man8/newusers.8.html">newusers</a> command to create user account in batch</p>
-<p>Ubuntu <a href="https://manpages.ubuntu.com/manpages/jammy/en/man8/userdel.8.html">userdel</a> command to delete user account and directory</p>
-<p>delete_user.py (<a href="https://www.geeksforgeeks.org/deleting-a-user-in-linux-using-python-script/">source</a>)</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import os
-import subprocess
-import sys
-import getpass
-  
-  
-def delete_user():
-     username = input("Enter Username : ")
-  
-     try:
-         output = subprocess.run(['userdel', username ])
-         if output.returncode == 0:
-             print("User successfully deleted with given credentials")
-  
-     except:
-         print(f"Failed to delete user.")
-         sys.exit(1)
-  
-delete_user()</pre>
-<p>stud template server in vdi</p>
-<br />nfulist << <a href='nfulist.html'>Previous</a> <a href='建立 stud.html'>Next</a> >> 建立 stud</div>
+    <div id="tipue_search_content">w2-w3 << <a href='w2-w3.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume<br /><h1>Brython_src</h1>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">&lt;p&gt;以下則為 wcm2023 各學員的網頁與倉儲:&lt;/p&gt;
+&lt;script src="./../cmsimde/static/brython.js"&gt;&lt;/script&gt;
+&lt;script src="./../cmsimde/static/brython_stdlib.js"&gt;&lt;/script&gt;
+&lt;script&gt;// &lt;![CDATA[
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/']});
+}
+// ]]&gt;&lt;/script&gt;
+&lt;p id="brython_div1"&gt;&lt;/p&gt;
+&lt;script type="text/python3"&gt;// &lt;![CDATA[
+# 從 Brython 的 browser 模組導入 document 與 html 程式庫
+from browser import document, html
+
+brython_div1 = document["brython_div1"]
+try:
+    c = document.query["c"]
+except:
+    c = "1a"
+url = "https://mde.tw/studlist/2023spring/" + c + ".txt"
+data = open(url).read().split("\n")
+url_template = "https://mdewcm2023.github.io/site-"
+repo_template = "https://github.com/mdewcm2023/site-"
+for i in data[1:-1]:
+    num_github = i.split("\t")
+    num =  num_github[0]
+    try:
+        github = num_github[1]
+    except:
+        github = str(num)
+    #print(num, github)
+    try:
+        #print(num, github)
+        url_link = html.A(str(num), href=url_template + str(github))
+        repo_link = html.A("repo", href=repo_template + str(github))
+    except:
+        # no github added yet
+        url_link = html.A(str(num), href=url_template + str(num))
+        repo_link = html.A("repo", href=repo_template + str(num))
+    brython_div1 &lt;= url_link
+    brython_div1 &lt;= " (" + repo_link + ")"
+    brython_div1 &lt;= html.BR()
+// ]]&gt;&lt;/script&gt;</pre>
+<p></p><br />w2-w3 << <a href='w2-w3.html'>Previous</a> <a href='Resume.html'>Next</a> >> Resume</div>
         
     <!-- footer -->
       <div class="container">
