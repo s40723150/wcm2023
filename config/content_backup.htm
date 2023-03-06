@@ -681,8 +681,8 @@ for i in data[1:-1]:
     #print(num, github)
     try:
         #print(num, github)
-        url_link = html.A(str(num), href=url_template + str(github))
-        repo_link = html.A("repo", href=repo_template + str(github))
+        url_link = html.A(str(num), href=url_template + str(num))
+        repo_link = html.A("repo", href=repo_template + str(num))
     except:
         # no github added yet
         url_link = html.A(str(num), href=url_template + str(num))
@@ -690,7 +690,18 @@ for i in data[1:-1]:
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
-</script><h3>Pull_requests</h3>
+</script><h3>建網頁</h3>
+<p>demo 倉儲: <a href="https://github.com/mdewcm2023/site-scrum-1">https://github.com/mdewcm2023/site-scrum-1</a></p>
+<p>近端必須能夠執行 git: git version 會回應版本</p>
+<p>利用 site-scrum-1 倉儲建立網頁的方法:</p>
+<ol>
+<li>設定 github pages - 進入倉儲 settings -&gt; Pages 將 main 分支設為網站的根目錄</li>
+<li>利用 git clone 將倉儲內容取下 - git clone https://github.com/mdewcm2023/site-scrum-1.git</li>
+<li>也就是 git clone 加上倉儲網址, 假如希望將倉儲除入一個較短的目錄, 可以輸入:</li>
+<li> git clone <a href="https://github.com/mdewcm2023/site-scrum-1.git">https://github.com/mdewcm2023/site-scrum-1.git </a> s</li>
+<li>將倉儲內容存入近端 s 目錄</li>
+</ol>
+<p>利用 cmsimde 網際內容管理程式, 作為倉儲的 cmsimde 目錄, 然後配置網站資料內容.</p><h3>Pull_requests</h3>
 <p>github pull requests 運用時機: 當 github 用戶對特定倉儲無直接存取權, 但仍希望:</p>
 <ol>
 <li>保留該特定倉儲的所有資料 - 登入個人 github 帳號, 直接 fork (叉出), 將該倉儲放入自己的帳號</li>
