@@ -84,7 +84,82 @@ for i in py_list:
 <p></p>
 <h2>nfulist</h2>
 <p><a href="/downloads/nfulist_nfu_cycu.7z">nfulist_nfu_cycu.7z</a></p>
-<h2>Stud</h2>
+<p>1a 網際內容管理修課學員學號名單: <a href="https://nfu.cycu.org?semester=1112&amp;courseno=0739&amp;column=True">1a wcm nfulist (0739)</a></p>
+<p>2a cd nfulist</p>
+<p>2b cd nfulist</p>
+<p>5j wcm nfulist</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request 
+from flask_cors import CORS
+  
+import requests
+import bs4
+#import ssl
+  
+'''
+1a - 2b
+?semester=1111&amp;courseno=0747&amp;column=True 
+
+?semester=1111&amp;courseno=0761&amp;column=True 
+
+?semester=1111&amp;courseno=0773&amp;column=True 
+
+?semester=1111&amp;courseno=0786&amp;column=True 
+
+if 17.8 as nfu.cycu.org, no proxy needed
+'''
+proxies ={
+'http': 'http://kmolag:kmolab@[2001:288:6004:17::4]:3128',
+'https': 'http://kmolab:kmolab@[2001:288:6004:17::4]:3128'
+}
+
+app = Flask(__name__)
+CORS(app)
+  
+@app.route('/studlist')
+@app.route('/')
+def studlist():
+    semester = request.args.get('semester')
+    courseno = request.args.get('courseno')
+    column = request.args.get('column')
+
+    if semester == None:
+        semester = '1091'
+    if courseno == None:
+        courseno = '0762'
+    
+    headers = {'X-Requested-With': 'XMLHttpRequest'}
+
+    url = 'https://qry.nfu.edu.tw/studlist_ajax.php'
+    post_var = {'pselyr': semester, 'pseqno': courseno}
+  
+    #result = requests.post(url, data = post_var, headers = headers, proxies = proxies)
+    result = requests.post(url, data = post_var, headers = headers)
+    soup = bs4.BeautifulSoup(result.content, 'lxml')
+    table = soup.find('table', {'class': 'tbcls'})
+    data = []
+    rows = table.find_all('tr')
+    for row in rows:
+        cols = row.find_all('td')
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele]) # Get rid of empty values
+    output = ""
+    for i in data[2:]:
+        #print(i[0])
+        if column == "True":
+            output +=i[0] + "&lt;/br&gt;"
+        else:
+            output +=i[0] + "\n"
+        
+    return output
+    #return  str(pselyr) + " + " +str(pseqno)
+  
+# 即使在近端仍希望以 https 模式下執行
+#context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+#context.load_cert_chain('localhost.crt', 'localhost.key')
+  
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)</pre>
+<p></p><h2>Stud</h2>
 <p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
 <p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
 <p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
