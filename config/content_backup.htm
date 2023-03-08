@@ -98,6 +98,31 @@ data = open(url).read()
 all_stud = data.split("\r\n")[:-1]
 print("總共有 " + str(len(all_stud)) + "名學員")</pre>
 <p>如何判讀上述學號檔案是否有重複名單(一人修兩門以上課程)?</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+url = "https://mde.tw/wcm2023/downloads/2023spring_all_stud_num.txt"
+data = open(url).read()
+#print(data)
+# 去掉最後的空白行資料 (必須確認跳行符號為 \r\n 或 \n
+all_stud = data.split("\r\n")[:-1]
+print("總共有 " + str(len(all_stud)) + "名學員")
+all_set = set(all_stud)
+print(len(all_set))
+# 若上述兩個數字相同, 
+# 表示並無同一學員選兩門課的情形, 
+# 但是要設法列出重複資料
+
+# 設定 uniq_list 為資料沒有重複出現的內容
+uniq_list = []
+# dup_list 則為重複出現的數列
+dup_list = []
+for i in all_stud:
+    # 將沒有重複的內容放入 uniq_list
+    if i not in uniq_list:
+        uniq_list.append(i)
+    else:
+        dup_list.append(i)
+print("重複的資料數列總數: ", len(dup_list))
+print("沒有重複的資料數列總數: ", len(uniq_list))</pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request 
 from flask_cors import CORS
   
