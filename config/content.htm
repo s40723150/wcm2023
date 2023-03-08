@@ -89,7 +89,40 @@ for i in py_list:
 <p>2b 協同產品設計實習學員學號名單: <a href="https://nfu.cycu.org/?semester=1112&amp;courseno=0774&amp;column=True">2b cd nfulist (0774)</a></p>
 <p>5j 網際內容管理修課學員學號名單: <a href="https://nfu.cycu.org/?semester=1112&amp;courseno=2464&amp;column=True">5j wcm nfulist (2464)</a></p>
 <p>2023.03.08 所有修課學員學號檔案: <a href="/downloads/2023spring_all_stud_num.txt">2023spring_all_stud_num.txt</a></p>
+<p>直接以 Brython 讀取上列所有學員學號檔案後, 計算共有多少學員修課:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+url = "https://mde.tw/wcm2023/downloads/2023spring_all_stud_num.txt"
+data = open(url).read()
+#print(data)
+# 去掉最後的空白行資料 (必須確認跳行符號為 \r\n 或 \n
+all_stud = data.split("\r\n")[:-1]
+print("總共有 " + str(len(all_stud)) + "名學員")</pre>
 <p>如何判讀上述學號檔案是否有重複名單(一人修兩門以上課程)?</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+url = "https://mde.tw/wcm2023/downloads/2023spring_all_stud_num.txt"
+data = open(url).read()
+#print(data)
+# 去掉最後的空白行資料 (必須確認跳行符號為 \r\n 或 \n
+all_stud = data.split("\r\n")[:-1]
+print("總共有 " + str(len(all_stud)) + "名學員")
+all_set = set(all_stud)
+print(len(all_set))
+# 若上述兩個數字相同, 
+# 表示並無同一學員選兩門課的情形, 
+# 但是要設法列出重複資料
+
+# 設定 uniq_list 為資料沒有重複出現的內容
+uniq_list = []
+# dup_list 則為重複出現的數列
+dup_list = []
+for i in all_stud:
+    # 將沒有重複的內容放入 uniq_list
+    if i not in uniq_list:
+        uniq_list.append(i)
+    else:
+        dup_list.append(i)
+print("重複的資料數列總數: ", len(dup_list))
+print("沒有重複的資料數列總數: ", len(uniq_list))</pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request 
 from flask_cors import CORS
   
@@ -161,8 +194,7 @@ def studlist():
   
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)</pre>
-<p></p>
-<h2>Stud</h2>
+<p></p><h2>Stud</h2>
 <p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
 <p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
 <p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
