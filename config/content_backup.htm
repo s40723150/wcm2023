@@ -98,6 +98,7 @@ data = open(url).read()
 all_stud = data.split("\r\n")[:-1]
 print("總共有 " + str(len(all_stud)) + "名學員")</pre>
 <p>如何判讀上述學號檔案是否有重複名單(一人修兩門以上課程)?</p>
+<p><a href="https://mde.tw/wcm2023/content/Brython?src=https://gist.githubusercontent.com/mdecycu/77790f970bc35119f155fa97d0f26151/raw/5409ff3b69ae198618b5ffddef2557168cbacc51/check_duplicate_stud.py">在線上執行下列程式</a>.</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 url = "https://mde.tw/wcm2023/downloads/2023spring_all_stud_num.txt"
 data = open(url).read()
