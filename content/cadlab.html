@@ -142,14 +142,26 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">ChatGPT << <a href='ChatGPT.html'>Previous</a> <a href='5jtopics1.html'>Next</a> >> 5jtopics1<br /><h1>cadlab</h1>
+<p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>上網設定:</p>
 <p>確定目前使用 IPv4 或 IPv6 上網</p>
 <p>若在 IPv4 網路協定下, 可設代理主機多一條網路通道選擇:</p>
-<p>p4.cycu.org (允許從校外連線, 但需要帳號密碼)</p>
-<p>p42.cycu.org</p>
-<p>p69.cycu.org</p>
-<p>p53.cycu.org</p>
-<p></p><br />ChatGPT << <a href='ChatGPT.html'>Previous</a> <a href='5jtopics1.html'>Next</a> >> 5jtopics1</div>
+<p style="padding-left: 30px;">p4.cycu.org (允許從校外連線, 但需要帳號密碼)</p>
+<p style="padding-left: 30px;">p42.cycu.org</p>
+<p style="padding-left: 30px;">p69.cycu.org</p>
+<p style="padding-left: 30px;">p53.cycu.org</p>
+<p>假如 IPv4 網路不穩定或受到蠕蟲攻擊導致網路被防毒軟體強制關閉 (避開攻擊), 則可以嘗試將網路設定為 IPv6 only</p>
+<p style="padding-left: 30px;">由於部分網站與網路服務主機, 截至 2023.03.10 仍只支援 IPv4, 這時若希望從純 IPv6 網路連線擷取這些只支援 IPv4 的網站或服務 (例如: <a href="http://www.ntu.edu.tw">http://www.ntu.edu.tw</a> 或 <a href="https://github.com">https://github.com</a>), 則必須設定同時支援 IPv4/IPv6 網路協定的代理主機 (Proxy server 與上述主機符號名稱相同)</p>
+<p style="padding-left: 30px;">git 工具使用 https 網路協定時的代理主機設定位於可攜環境啟動後的 home_ipv6, 設定檔案為 .gitconfig, 設定指令為:</p>
+<p style="padding-left: 30px;">git config --global http.proxy "http://p4.cycu.org:3128"</p>
+<p style="padding-left: 30px;">git 工具使用 ssh 網路協定時的代理主機設定, 在 Windows 可以使用 putty, 透過 session 設定 (可包含欲連線主機, 如 github.com, session 名稱, proxy 與 private key 位置等資訊). 若使用可攜程式, 則需要將 putty 完成的 session 匯出為 .reg 檔案, 以便在隨後可以透過執行該 reg 檔案, 完成所需的 session 設定.</p>
+<p style="padding-left: 30px;">git 工具使用 ssh 網路協定時, 若在 Ubuntu, 則必須設置於 .ssh 目錄中的 config 檔案, 其格式如下:</p>
+<p></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">Host github.com
+User git
+Hostname github.com
+ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre>
+<p><br/><br/></p><br />ChatGPT << <a href='ChatGPT.html'>Previous</a> <a href='5jtopics1.html'>Next</a> >> 5jtopics1</div>
         
     <!-- footer -->
       <div class="container">
