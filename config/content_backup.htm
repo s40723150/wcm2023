@@ -771,7 +771,7 @@ subst %Disk%: /D
 REM 關閉 cmd 指令視窗
 taskkill /IM cmd.exe /F
 
-EXIT</pre><h3>w2-w3</h3>
+EXIT</pre><h3>w2-w4</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EVdigN-bvp9BoLQnMBJHW_QBvYjTxSiiAF4FYvenXUYtUQ?e=Tcj4rN">說明如何建立可攜 Python 第一步.mp4</a> (Python, SciTE, pip)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EaCCYSDwemdEgl_YUiwNglEByPmHyHFW9CboFFS7ao1hLw?e=seZeSo">wcm_portable_w2-1.7z</a></p>
@@ -811,6 +811,7 @@ EXIT</pre><h3>w2-w3</h3>
 <p>但 wcm2023 Teams 只支援 @nfu 帳號登入, 且登入後, 可以透過 MS Teams: sblk6ao (for @nfu users only) 進入網際內容管理團隊上課.</p>
 <hr/>
 <p>有關學員學號與 github 帳號的對應資料存入 <a href="https://github.com/mdecycu/studlist">https://github.com/mdecycu/studlist</a>, 網頁位於: <a href="https://mde.tw/studlist/2023spring/1a.txt">https://mde.tw/studlist/2023spring/1a.txt</a></p>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/Ef5iQXdMRuBKgLDfRVO_SZUB5fFBsycGgl8hNX9yZf5pAQ?e=FaAGir">四技第四週進度提醒.mp4</a></p>
 <p>以下則為 wcm2023 各學員的網頁與倉儲:</p>
 <p>
 <script src="/static/brython.js"></script>
@@ -839,19 +840,13 @@ repo_template = "https://github.com/mdewcm2023/site-"
 for i in data[1:-1]:
     num_github = i.split("\t")
     num =  num_github[0]
-    try:
-        github = num_github[1]
-    except:
+    if num_github[1] == "":
         github = str(num)
+    else:
+        github = num_github[1]
     #print(num, github)
-    try:
-        #print(num, github)
-        url_link = html.A(str(num), href=url_template + str(num))
-        repo_link = html.A("repo", href=repo_template + str(num))
-    except:
-        # no github added yet
-        url_link = html.A(str(num), href=url_template + str(num))
-        repo_link = html.A("repo", href=repo_template + str(num))
+    url_link = html.A(str(num), href=url_template + str(num))
+    repo_link = html.A("repo", href=repo_template + str(num))
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()

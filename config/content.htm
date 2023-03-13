@@ -840,19 +840,13 @@ repo_template = "https://github.com/mdewcm2023/site-"
 for i in data[1:-1]:
     num_github = i.split("\t")
     num =  num_github[0]
-    try:
-        github = num_github[1]
-    except:
+    if num_github[1] == "":
         github = str(num)
+    else:
+        github = num_github[1]
     #print(num, github)
-    try:
-        #print(num, github)
-        url_link = html.A(str(num), href=url_template + str(num))
-        repo_link = html.A("repo", href=repo_template + str(num))
-    except:
-        # no github added yet
-        url_link = html.A(str(num), href=url_template + str(num))
-        repo_link = html.A("repo", href=repo_template + str(num))
+    url_link = html.A(str(num), href=url_template + str(github))
+    repo_link = html.A("repo", href=repo_template + str(github))
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
