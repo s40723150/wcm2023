@@ -845,8 +845,8 @@ for i in data[1:-1]:
     else:
         github = num_github[1]
     #print(num, github)
-    url_link = html.A(str(num), href=url_template + str(num))
-    repo_link = html.A("repo", href=repo_template + str(num))
+    url_link = html.A(str(num), href=url_template + str(github))
+    repo_link = html.A("repo", href=repo_template + str(github))
     brython_div1 <= url_link
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
