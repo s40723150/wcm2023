@@ -853,9 +853,10 @@ for i in data[1:-1]:
     brython_div1 <= html.BR()
 </script>
 </p><h3>建網頁</h3>
+<p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>可利用上面的 MikTeX 將個人 resume 倉儲中的 .tex 進行轉檔, 詳細操作可參考:</p>
-<p style="padding-left: 30px;"><a href="https://mde.tw/cd2023/content/Personal.html">https://mde.tw/cd2023/content/Personal.html</a> </p>
+<p style="padding-left: 30px;"><a href="https://mde.tw/cd2023/content/Personal.html">https://mde.tw/cd2023/content/Personal.html</a></p>
 <p>demo 倉儲: <a href="https://github.com/mdewcm2023/site-scrum-1">https://github.com/mdewcm2023/site-scrum-1</a></p>
 <p>近端必須能夠執行 git: git version 會回應版本</p>
 <p>利用 site-scrum-1 倉儲建立網頁的方法:</p>
@@ -929,6 +930,8 @@ for i in data[1:-1]:
 <p></p>
 <h3>Resume</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
+<p>將 .tex 轉為 .pdf 的指令:</p>
+<p style="padding-left: 30px;">pdflatex -interaction=nonstopmode Result.tex</p>
 <p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Resume-Automation-using-ChatGPT">https://github.com/mdecycu/Resume-Automation-using-ChatGPT</a></p>
 <p>利用 Github Classroom 建立個人作業, 以 Python、LaTeX 與 ChatGPT 協助建立個人 resume, <span style="background-color: #ffff00;">最終希望能用來協助建立個人網頁或分組專題報告</span>.</p>
@@ -1001,7 +1004,9 @@ print(output)
 4. 機械設計系的課程需要掌握大量的專業知識。
 5. 機械設計系的課程需要掌握大量的計算機軟件。
 """</pre>
-<p></p><h3>topics1</h3>
+<h4>利用 Github 與 LaTeX 協同編寫專題報告:</h4>
+<p style="padding-left: 30px;">在 <a href="https://github.com/mdecd2023/resume-scrum-1">https://github.com/mdecd2023/resume-scrum-1</a> 倉儲中, 以 <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> 作為子模組後, 利用 <a href="https://github.com/features/actions">Github Actions </a>納入 LaTeX 畢業專題的轉檔架構, 明定若使用者對倉儲的 pdf 進行改版, 則 <a href="https://github.com/features/actions">Github Action</a> 將會透過導引程式 (<a href="https://raw.githubusercontent.com/mdecd2023/resume-scrum-1/main/.github/workflows/main.yml">main.yml</a>), 分別安裝 Ubuntu, TeXLive 以及所需字形及模組, 最終對 latex 中的 .tex 檔案轉檔, 結合 <a href="https://github.com/mdecd2023/resume-scrum-1/tree/main/images">images 目錄</a>中的圖檔, 完成 .pdf 專題論文建立後, 以 release 的方式釋出專題報告(<a href="https://github.com/mdecd2023/resume-scrum-1/releases">4072pj1.pdf</a>).</p>
+<p style="padding-left: 30px;">而參與協同的組員只需要分別或同步編寫 latex 目錄中的相關章節, 並在各改版階段處理衝突與合併, 就可以在適當時間直接在 web-based 環境中製作專題論文.</p><h3>topics1</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>課程議題:</p>
 <ol>
