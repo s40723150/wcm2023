@@ -149,7 +149,7 @@ img.add_border {
 <li>接著從 <a href="https://www.scintilla.org/SciTEDownload.html">https://www.scintilla.org/SciTEDownload.html</a> 下載 SciTE 編輯器, 放入 c:\tmp\python311\data 目錄中, 並且 wscite 編輯器的目錄是否與 start_ipv6.bat 中的 set path_scite=%Disk%:\wscite521; 互相對應.</li>
 <li>在 c:\tmp\python311\data 目錄中建立 tmp 目錄.</li>
 <li>以 start_ipv6.bat 測試可攜 Python 程式系統能否開啟, 並測試能否以 stop.bat 關閉.</li>
-<li>再次啟動 start_ipv6.bat, 且下載 get-pip.py 檔案後, 在命令列進入 get-pip.py 檔案所在目錄, 執行 python get-pip.py, 以便安裝 pip 套件.</li>
+<li>再次啟動 start_ipv6.bat, 且<a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjEt8eus9_9AhVjRmwGHfnOCdcQFnoECAwQAQ&amp;url=https%3A%2F%2Fbootstrap.pypa.io%2Fget-pip.py&amp;usg=AOvVaw0zKVO_zW0nkF7s0zdjWFNj">下載 get-pip.py 檔案</a>後, 在命令列進入 get-pip.py 檔案所在目錄, 執行 python get-pip.py, 以便安裝 pip 套件. (之所以要使用可攜路徑中的 python.exe 執行 get-pip.py, 是因為 scripts/pip.exe 會將執行的 python.exe 絕對路徑存入二位元檔案中)</li>
 <li>假如要執行 openai API 相關程式, 在可攜系統中的命令列中, 以 pip install openai 安裝模組.</li>
 <li>假如要執行 cmsimde 動態網站, 以 pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl 安裝所需模組.</li>
 </ol>
@@ -160,7 +160,7 @@ img.add_border {
 <p>pyopenssl 為在近端啟動時自動產生網站數位簽章所需模組</p>
 <p>Git client: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 放進 data 目錄</p>
 <p>Putty: <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a> 放進 data 目錄</p>
-<p>其他工具: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer">Process Explorer</a>, <a href="https://www.debugmode.com/wink/">Wink</a>, <a href="https://getsharex.com/">ShareX</a>, <a href="https://portableapps.com/apps/internet/filezilla_portable">filezilla</a>, <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">zoomit</a>, <a href="https://sourceforge.net/projects/kdiff3/">kdiff3</a>,</p>
+<p>其他工具: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer">Process Explorer</a>, <a href="https://www.debugmode.com/wink/">Wink</a>, <a href="https://getsharex.com/">ShareX</a>, <a href="https://portableapps.com/apps/internet/filezilla_portable">filezilla</a>, <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">zoomit</a>, <a href="https://sourceforge.net/projects/kdiff3/">kdiff3</a>, <a href="https://tools.stefankueng.com/grepWin.html">grepwin</a>,</p>
 <hr/>
 <p>gen_portable_python.py</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
@@ -189,8 +189,7 @@ for i in py_list:
     os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
     # delete msi file
     os.remove(path + "\\" + i + ".msi")</pre>
-<p></p>
-<br />Motivation << <a href='Motivation.html'>Previous</a> <a href='nfulist.html'>Next</a> >> nfulist</div>
+<p></p><br />Motivation << <a href='Motivation.html'>Previous</a> <a href='nfulist.html'>Next</a> >> nfulist</div>
         
     <!-- footer -->
       <div class="container">
