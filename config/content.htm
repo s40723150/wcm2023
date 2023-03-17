@@ -584,6 +584,10 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p style="padding-left: 30px;"><a href="https://youtu.be/Zd5jSDRjWfA">Learn Git and Github in 15 分鐘</a></p>
 <p style="padding-left: 30px;"><a href="https://git-scm.com/book/zh-tw/v2">Pro Git 電子書繁體中文版</a></p>
 <p style="padding-left: 30px;"><a href="https://backlog.com/git-tutorial/tw/">連猴子都能懂的 Git 入門指南</a></p><h3>建立網站</h3>
+<p>原理說明:</p>
+<p style="padding-left: 30px;">這裡主要是利用 Github 所提供的 Pages 服務, <span style="background-color: #ffff00;">將倉儲的內容轉為全球資訊網站</span>, 由於 WWW 網站的內容主要由 html (超文件), Javascript, css, 文件檔案(.pdf, .txt, .7z 等)與多媒體檔案(jpg, png, gif, mp4 等)所組成. 因此所謂建立網站, 就是在倉儲中設法放入能夠直接由瀏覽器擷取的超文件內容, 其中包含如何導入各種文字, 圖檔與連結.</p>
+<p style="padding-left: 30px;">Github 倉儲的擁有者, 若採用手動方式直接在倉儲中建立網站的 html, 並設定該倉儲的 Pages 頁面, 選擇特定分支(branch)作為網站的根目錄(root directory), 當 Github 擁有者對倉儲內容改版後, Github 就會透過 Actions 中的內建轉檔程式, 檢查倉儲內容是否能夠轉為網站, 若轉檔成功, 就會部署到特定的虛擬主機, 直接啟動網站(靜態).</p>
+<p style="padding-left: 30px;">為了提升網站內容管理效率, 本課程利用 cmsimde 協助利用 Github 倉儲建立網站.</p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>在 <a href="https://github.com/mdewcm2023/site-wu51133118">https://github.com/mdewcm2023/site-wu51133118</a> 納入 <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a>, 並利用 Github Pages 建立網站.</p>
 <ol>
@@ -606,8 +610,7 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p>http 是採用廣播(Broadcasting)方式傳訊, 但 https 是編碼 (public/private keys) 後進行傳輸.</p>
 <p>SSH - Secure Shell 協定 - 可 remote login (遠端登入)</p>
 <p>Putty - 一種可以執行 ssh 協定的工具 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EdlmK0apQEpNgJqgYRbpce4BOgfxfgY95mHLlMy21HB5FQ?e=5fu2rL">下載 0.78 版的 putty.7z</a>)</p>
-<p>維護倉儲, 希望採用 SSH 的協定進行維護, 需要</p>
-<h3>PGP</h3>
+<p>維護倉儲, 希望採用 SSH 的協定進行維護, 需要</p><h3>PGP</h3>
 <p><a href="https://zh.wikipedia.org/zh-tw/PGP">https://zh.wikipedia.org/zh-tw/PGP</a> </p>
 <p><a href="https://gnupg.org/download/index.html">https://gnupg.org/download/index.html</a> </p><h2>jw2</h2>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
