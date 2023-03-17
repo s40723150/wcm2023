@@ -190,7 +190,76 @@ img.add_border {
 <ol>
 <li><a href="http://wcm.cycu.org:88/compile_copsim_cd2022.7z">compile_copsim_cd2022.7z</a> (file size: 5 GB, extracted size: 17.3 GB, 包含除了 NX1980 之外的所有課程相關可攜程式套件, 是專門為 <a href="https://mde.tw/cd2022">cd2022</a> 課程學員打造的套件).</li>
 <li><a href="http://wcm.cycu.org:88/portable_python_wcm2022.7z">portable_python_wcm2022.7z</a> (file size: 513 MB, extracted size: 2.3 G, 這是專門為 <a href="https://mde.tw/wcm2022">wcm2022</a> 課程打造的可攜程式套件, 適合選修學員下載後在任何 Windows 10 中以隨身碟啟動後操作)</li>
-</ol><br />LaTeX << <a href='LaTeX.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+</ol>
+<p>Web-based camera:</p>
+<p>將 Webcam 接到電腦, 設定電腦可連外的 IP address, pip install flask flask_cors opencv-python 後, 執行下列程式, 就可以透過 <a href="https://your_computer_ip_address/showimage">https://your_computer_ip_address/showimage</a> 看到 webcam 畫面.</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#pip install flask flask_cors opencv-python
+# https://your_computer_ip_address/showimage
+from flask import Flask, send_from_directory, request, redirect, \
+    render_template, session, make_response, url_for, flash, Response
+from flask_cors import CORS
+import sys
+import os
+import cv2
+import socket
+
+app = Flask(__name__)
+CORS(app, support_credentials=False)
+
+@app.route('/')
+def index():
+    return "index"
+
+@app.route("/video_feed")
+def video_feed():
+    return Response(getimage(), mimetype="multipart/x-mixed-replace; boundary=frame")
+
+@app.route("/showimage")
+def showimage():
+    return '''
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Stream&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Video Stream&lt;/h1&gt;
+        &lt;img src="/video_feed" width="720" height="540"&gt;&lt;/img&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+'''
+
+def getimage():
+    cap = cv2.VideoCapture(0)
+
+    '''
+        #Check whether user selected camera is opened successfully.
+        if not (cap.isOpened()):
+            print('Could not open video device')
+        else:
+            print('Video device opened')
+        '''
+
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    while True:
+        ret, frame = cap.read()
+        # 將圖片轉為灰階
+        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #cv2.imwrite('test.jpg', frame)
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        #jpeg.tobytes()
+        yield (b'--frame\r\n'
+        b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
+    return "getimage"
+
+if __name__ == "__main__":
+    #ipv6_address = socket.getaddrinfo("domain.name", 0, socket.AF_INET6)[0][4][0]
+    ip = "your_computer_ip_address"
+    port = 443
+    app.run(host=ip, port=port, debug=True, ssl_context="adhoc")
+    #app.run()</pre>
+<p></p><br />LaTeX << <a href='LaTeX.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
         
     <!-- footer -->
       <div class="container">
