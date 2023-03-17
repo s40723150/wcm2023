@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,82 +141,9 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">cmsimde << <a href='cmsimde.html'>Previous</a> <a href='LaTeX.html'>Next</a> >> LaTeX<br /><h1>Resize image</h1>
-<p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
-<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
-&lt;input id="input" type="file" onchange="handleFiles()"&gt;
-
-&lt;script&gt;
-    function handleFiles()
-    {
-        var dataurl = null;
-        var filesToUpload = document.getElementById('input').files;
-        var file = filesToUpload[0];
-
-        // Create an image
-        var img = document.createElement("img");
-        // Create a file reader
-        var reader = new FileReader();
-        // Set the image once loaded into file reader
-        reader.onload = function(e)
-        {
-            img.src = e.target.result;
-
-            img.onload = function () {
-                var canvas = document.createElement("canvas");
-                var ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0);
-
-                var MAX_WIDTH = 300;
-                var MAX_HEIGHT = 400;
-                var width = img.width;
-                var height = img.height;
-
-                if (width &gt; height) {
-                  if (width &gt; MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                  }
-                } else {
-                  if (height &gt; MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                  }
-                }
-                canvas.width = width;
-                canvas.height = height;
-                var ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, width, height);
-
-                dataurl = canvas.toDataURL("image/jpeg");
-
-                document.getElementById('image').src = dataurl;
-
-                // Post the data
-                var fd = new FormData();
-                fd.append("name", "some_filename.jpg");
-                fd.append("image", dataurl);
-                fd.append("info", "lah_de_dah");
-                $.ajax({
-                    url: '/ajax_photo',
-                    data: fd,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    success: function(data){
-                        $('#form_photo')[0].reset();
-                        location.reload();
-                    }
-                });
-            } // img.onload
-        }
-        // Load files into file reader
-        reader.readAsDataURL(file);
-    }
-&lt;/script&gt;</pre>
-<p></p>
-<br />cmsimde << <a href='cmsimde.html'>Previous</a> <a href='LaTeX.html'>Next</a> >> LaTeX</div>
+    <div id="tipue_search_content">建立網站 << <a href='建立網站.html'>Previous</a> <a href='jw2.html'>Next</a> >> jw2<br /><h1>PGP</h1>
+<p><a href="https://zh.wikipedia.org/zh-tw/PGP">https://zh.wikipedia.org/zh-tw/PGP</a> </p>
+<p><a href="https://gnupg.org/download/index.html">https://gnupg.org/download/index.html</a> </p><br />建立網站 << <a href='建立網站.html'>Previous</a> <a href='jw2.html'>Next</a> >> jw2</div>
         
     <!-- footer -->
       <div class="container">
