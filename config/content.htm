@@ -339,6 +339,9 @@ serve(flaskapp.app, listen='127.0.0.1:9443', thread=8)</pre>
 <h2>jitsi</h2>
 <p><a href="https://jitsi.org/">https://jitsi.org/</a> </p>
 <h2>Git</h2>
+<p>git 是一種<span style="background-color: #ffff00;">分散式版次管理系統工具</span>, 可讓使用者在多人協同執行專案的過程中, <span style="background-color: #ffff00;">追蹤儲存在倉儲中特定文件的改版歷程</span>. 此外, 採用 git 在團隊間執行專案文件管理, 可協助各成員以<span style="background-color: #ffff00;">同步方式執行專案</span>. 任一成員可以在<span style="background-color: #ffff00;">各自的改版分支</span>中<span style="background-color: #ffff00;">進行各種測試</span>後, 再決定是否要將改版內容<span style="background-color: #ffff00;">合併到主要的團隊版本分支</span>中.</p>
+<p>前述所謂分散式的意思是, 各參與協同人員可以在近端(git server 以外的電腦上)直接進行改版, 而不需要像所謂集中式版次管理系統, 所有成員都必須登入到集中伺服器才能對專案文件進行改版, 因此分散式版次管理系統的改版流程不僅速度快, 且各成員在對資料進行改版提交(commit)時並不需要上網, 只有在推送(push)時才需要從 git client 端聯網到 git server 端(Github 即為一台 web-based git server).</p>
+<p>有關 Head detached:</p>
 <p>當切到某先前的提交點後, 進行數次的內容改版, 就會出現 HEAD detached 的註記, 表示目前的版本並非指向 main 分支.</p>
 <p>這時可以將改版內容進行提交之後, 以 "git branch 分支名稱 版次號" 建立分支, 然後 checkout 至 main 分支後, 再利用 git merge 該分支名稱, 就可以將先前 HEAD detached 之後變更的內容合併至 main 主分支.</p>
 <p>合併內容後, 若要刪除位於近端的分支, 可以執行 git branch --delete 分支名稱.</p>
@@ -380,7 +383,9 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>提交 (commit) 之前, 希望取消 git add .:</p>
 <p style="padding-left: 30px;">git restore --staged .</p>
 <p>推送 (push) 之前, 希望取消上一個提交 (commit):</p>
-<p style="padding-left: 30px;">git reset HEAD~</p><h2>Trends</h2>
+<p style="padding-left: 30px;">git reset HEAD~</p>
+<p>References:</p>
+<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a> </p><h2>Trends</h2>
 <p><a href="https://asmedigitalcollection.asme.org/mechanicaldesign">https://asmedigitalcollection.asme.org/mechanicaldesign</a> </p>
 <p><a href="https://asmedigitalcollection.asme.org/mechanicaldesign/article/145/4/040301/1156296/Special-Issue-Emerging-Technologies-and-Methods">https://asmedigitalcollection.asme.org/mechanicaldesign/article/145/4/040301/1156296/Special-Issue-Emerging-Technologies-and-Methods</a> </p>
 <p>Remote work:</p>
@@ -610,7 +615,11 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p>http 是採用廣播(Broadcasting)方式傳訊, 但 https 是編碼 (public/private keys) 後進行傳輸.</p>
 <p>SSH - Secure Shell 協定 - 可 remote login (遠端登入)</p>
 <p>Putty - 一種可以執行 ssh 協定的工具 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EdlmK0apQEpNgJqgYRbpce4BOgfxfgY95mHLlMy21HB5FQ?e=5fu2rL">下載 0.78 版的 putty.7z</a>)</p>
-<p>維護倉儲, 希望採用 SSH 的協定進行維護, 需要</p><h3>PGP</h3>
+<p>維護倉儲, 希望採用 SSH 的協定進行維護, 在 Windows 操作系統可以利用 Putty 工具中的 puttygen.exe 建立 OpenSSH 格式的 public key (可視為鎖頭), 必須要登錄到 Github 個人帳號設定中的 SSH and GPG keys 頁面中. 並將 Putty 格式的 private key(副檔名為 .ppk, 表示為 putty 格式的 private key).</p>
+<h4>參考資料:</h4>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/github-pages/">https://kinsta.com/blog/github-pages/</a> </p>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/generate-ssh-key/">https://kinsta.com/blog/generate-ssh-key/</a> </p>
+<p style="padding-left: 30px;"><a href="https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf">https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf</a> </p><h3>PGP</h3>
 <p><a href="https://zh.wikipedia.org/zh-tw/PGP">https://zh.wikipedia.org/zh-tw/PGP</a> </p>
 <p><a href="https://gnupg.org/download/index.html">https://gnupg.org/download/index.html</a> </p><h2>jw2</h2>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
