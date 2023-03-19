@@ -232,6 +232,7 @@ def delete_user():
 delete_user()</pre>
 <p>stud template server in vdi</p>
 <h3>建立 stud</h3>
+<p><a href="https://geekrewind.com/configure-nginx-userdir-feature-on-ubuntu-16-04-lts-servers/">Nginx per user web directories</a> 可以伺服各用戶的靜態網站. 而 stunnel 加上 waitress 則可以伺服各用戶的動態網站.</p>
 <p>使用 Ubuntu server 22.04 LTS v2.</p>
 <hr/>
 <p>Python3 必須能夠執行動態 cmsimde, 因此必須安裝下列 modules:</p>
@@ -295,8 +296,7 @@ serve(flaskapp.app, listen='127.0.0.1:9443', thread=8)</pre>
 <p>執行 server.py:</p>
 <p style="padding-left: 30px;">python3 server.py</p>
 <p style="padding-left: 30px;">or</p>
-<p style="padding-left: 30px;">python3 server.py &amp;</p>
-<h2>Ref</h2>
+<p style="padding-left: 30px;">python3 server.py &amp;</p><h2>Ref</h2>
 <p>2015</p>
 <p style="padding-left: 30px;"><a href="https://github.com/coursemdetw/2015wcm">https://github.com/coursemdetw/2015wcm</a></p>
 <p>2016</p>
