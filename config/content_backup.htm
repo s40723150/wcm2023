@@ -391,7 +391,14 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <h2>TCExam</h2>
 <p>設定是否讓用戶自行註冊帳號:</p>
 <p>tcexam\shared\config\tce_user_registration.php</p>
-<p> /* kmol1*/<br/>define('K_USRREG_ENABLED', false);</p><h2>Trends</h2>
+<p> /* kmol1*/<br/>define('K_USRREG_ENABLED', false);</p>
+<hr/>
+<p>Bugs:</p>
+<p>ATTENTION: [8192] stripos(): Passing null to parameter #1 ($haystack) of type string is deprecated | LINE: 333 | FILE: C:\tcexam\tcexam\shared\code\tce_functions_test_stats.php<br/>ATTENTION: [8192] stripos(): Passing null to parameter #1 ($haystack) of type string is deprecated | LINE: 333 | FILE: C:\tcexam\tcexam\shared\code\tce_functions_test_stats.php</p>
+<hr/>
+<p>考試結果(json):</p>
+<p><a href="/downloads/1a_w5_exam_json.7z">1a_w5_exam_json.7z</a> (嘗試使用 Python 或 Brython 讀取各學員的考試成績)</p>
+<p><a href="/downloads/1a_w5_test.7z">1a_w5_test.7z</a> (嘗試利用 Leo Editor 處理 xml 格式, 以工具或程式協助出題) - 相關技術可以用來處理 CoppeliaSim 場景檔案. (Solid Edge 建立零件檔案, 以 STL 轉入 CoppeliaSim)</p><h2>Trends</h2>
 <p><a href="https://asmedigitalcollection.asme.org/mechanicaldesign">https://asmedigitalcollection.asme.org/mechanicaldesign</a> </p>
 <p><a href="https://asmedigitalcollection.asme.org/mechanicaldesign/article/145/4/040301/1156296/Special-Issue-Emerging-Technologies-and-Methods">https://asmedigitalcollection.asme.org/mechanicaldesign/article/145/4/040301/1156296/Special-Issue-Emerging-Technologies-and-Methods</a> </p>
 <p>Remote work:</p>
@@ -824,6 +831,7 @@ taskkill /IM cmd.exe /F
 
 EXIT</pre><h3>w2-w5</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
+<p>電腦輔助機械設計套件 - <a href="https://solidedge.siemens.com/en/solutions/users/hobbyists-and-makers/">community 版 Siemens Solid Edge</a> - <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a> (建議在有還原卡或虛擬主機中使用, for @nfu users only)</p>
 <p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EVdigN-bvp9BoLQnMBJHW_QBvYjTxSiiAF4FYvenXUYtUQ?e=Tcj4rN">說明如何建立可攜 Python 第一步.mp4</a> (Python, SciTE, pip)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EaCCYSDwemdEgl_YUiwNglEByPmHyHFW9CboFFS7ao1hLw?e=seZeSo">wcm_portable_w2-1.7z</a></p>
 <p>為了執行 cmsimde, 需要安裝以下模組:</p>
@@ -903,7 +911,16 @@ for i in data[1:-1]:
     brython_div1 <= " (" + repo_link + ")"
     brython_div1 <= html.BR()
 </script>
-</p><h3>建網頁</h3>
+</p>
+<hr/>
+<p>w5 進度</p>
+<ol>
+<li>建立 1a 學員 <a href="https://exam.cycu.org">https://exam.cycu.org</a> 考試帳號</li>
+<li>提供 Solid Edge 2023 <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a><span><span> (for @nfu users only)</span></span></li>
+<li>在個人 site-github帳號 網頁中寫 Brython 程式</li>
+<li>如何在 stud2.cycu.org 中配置個人的動態網站</li>
+</ol>
+<p>可以使用電腦輔助設計室中 C:\2021_cadlab_portable 的程式系統, 雙點擊 start_ipv6.bat, 啟動後, 檢查是否符合執行 cmsimde 網站.</p><h3>建網頁</h3>
 <p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>可利用上面的 MikTeX 將個人 resume 倉儲中的 .tex 進行轉檔, 詳細操作可參考:</p>
