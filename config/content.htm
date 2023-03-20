@@ -922,7 +922,11 @@ for i in data[1:-1]:
 </ol>
 <p>可以使用電腦輔助設計室中 C:\2021_cadlab_portable 的程式系統, 雙點擊 start_ipv6.bat, 啟動後, 檢查是否符合執行 cmsimde 網站.</p>
 <p>cmsimde 倉儲網址: <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> </p>
-<p>原先電腦輔助設計室的 Wifi: 801WIFI 並沒有將 IPv4 與 IPv6 協定同時啟用, 目前已經修改, 因此只要在 Wifi 連線後, 將其對應的雙協定啟用後, 將可取得 192.168.50.X 與 2001:288:6004:17:: 等兩組 IP, 同時以 IPv4 與 IPv6 網路協定上網.</p><h3>建網頁</h3>
+<p>原先電腦輔助設計室的 Wifi: 801WIFI 並沒有將 IPv4 與 IPv6 協定同時啟用, 目前已經修改, 因此只要在 Wifi 連線後, 將其對應的雙協定啟用後, 將可取得 192.168.50.X 與 2001:288:6004:17:: 等兩組 IP, 同時以 IPv4 與 IPv6 網路協定上網.</p>
+<p>利用 cmsimde 將個人的倉儲轉為可動態啟動網站, 也可將動態網站內容轉為靜態網站的步驟:</p>
+<p>github 上的倉儲必須先設定 Github Pages, 將主倉儲設為網站的根目錄.</p>
+<p>將倉儲 git clone 到近端後, 必須將 cmsimde 倉儲內容放入個人倉儲中, 且目錄名稱必須為 cmsimde, 同時將 cmsimde 中 up_dir 的目錄內容複製到個人倉儲的根目錄.</p>
+<p>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰.</p><h3>建網頁</h3>
 <p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p>可利用上面的 MikTeX 將個人 resume 倉儲中的 .tex 進行轉檔, 詳細操作可參考:</p>
