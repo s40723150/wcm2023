@@ -236,9 +236,13 @@ for i in data[1:-1]:
 <p>cmsimde 倉儲網址: <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> </p>
 <p>原先電腦輔助設計室的 Wifi: 801WIFI 並沒有將 IPv4 與 IPv6 協定同時啟用, 目前已經修改, 因此只要在 Wifi 連線後, 將其對應的雙協定啟用後, 將可取得 192.168.50.X 與 2001:288:6004:17:: 等兩組 IP, 同時以 IPv4 與 IPv6 網路協定上網.</p>
 <p>利用 cmsimde 將個人的倉儲轉為可動態啟動網站, 也可將動態網站內容轉為靜態網站的步驟:</p>
-<p>github 上的倉儲必須先設定 Github Pages, 將主倉儲設為網站的根目錄.</p>
-<p>將倉儲 git clone 到近端後, 必須將 cmsimde 倉儲內容放入個人倉儲中, 且目錄名稱必須為 cmsimde, 同時將 cmsimde 中 up_dir 的目錄內容複製到個人倉儲的根目錄.</p>
-<p>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰.</p><br />行前準備 << <a href='行前準備.html'>Previous</a> <a href='建網頁.html'>Next</a> >> 建網頁</div>
+<ol>
+<li>github 上的倉儲必須先設定 Github Pages, 將主倉儲設為網站的根目錄.</li>
+<li>將倉儲 git clone 到近端後, 必須將 cmsimde 倉儲內容放入個人倉儲中, 且目錄名稱必須為 cmsimde, 同時將 cmsimde 中 up_dir 的目錄內容複製到個人倉儲的根目錄.</li>
+<li>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰. token 取得後, 必須放到倉儲 .git 目錄中 config 檔案裡的 url 連結, 也就是放在 https:// 之後, github.com 之前, 且在 token 與 github.com 中間加上 @ 符號.</li>
+<li>當個人倉儲中的 cmsimde 放入, 且 up_dir 目錄取出到倉儲根目錄後, 使用者在可攜程式環境中的命令列, 就可以 cd 進入個人倉儲目錄後, 執行 cms.bat 執行動態網站, 之後用瀏覽器連結, 以 admin 共用密碼登入管理.</li>
+<li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
+</ol><br />行前準備 << <a href='行前準備.html'>Previous</a> <a href='建網頁.html'>Next</a> >> 建網頁</div>
         
     <!-- footer -->
       <div class="container">
