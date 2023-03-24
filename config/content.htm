@@ -339,7 +339,7 @@ serve(flaskapp.app, listen='127.0.0.1:9443', thread=8)</pre>
 <h2>jitsi</h2>
 <p><a href="https://jitsi.org/">https://jitsi.org/</a> </p>
 <h2>Git</h2>
-<p><a href="https://www.atlassian.com/git/tutorials/what-is-version-control">https://www.atlassian.com/git/tutorials/what-is-version-control</a> </p>
+<p><a href="https://www.atlassian.com/git/tutorials/what-is-version-control">https://www.atlassian.com/git/tutorials/what-is-version-control</a></p>
 <p>git 是一種<span style="background-color: #ffff00;">分散式版次管理系統工具</span>, 可讓使用者在多人協同執行專案的過程中, <span style="background-color: #ffff00;">追蹤儲存在倉儲中特定文件的改版歷程</span>. 此外, 採用 git 在團隊間執行專案文件管理, 可協助各成員以<span style="background-color: #ffff00;">同步方式執行專案</span>. 任一成員可以在<span style="background-color: #ffff00;">各自的改版分支</span>中<span style="background-color: #ffff00;">進行各種測試</span>後, 再決定是否要將改版內容<span style="background-color: #ffff00;">合併到主要的團隊版本分支</span>中.</p>
 <p>前述所謂分散式的意思是, 各參與協同人員可以在近端(git server 以外的電腦上)直接進行改版, 而不需要像所謂集中式版次管理系統, 所有成員都必須登入到集中伺服器才能對專案文件進行改版, 因此分散式版次管理系統的改版流程不僅速度快, 且各成員在對資料進行改版提交(commit)時並不需要上網, 只有在推送(push)時才需要從 git client 端聯網到 git server 端(Github 即為一台 web-based git server).</p>
 <p>有關 Head detached:</p>
@@ -385,6 +385,9 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p style="padding-left: 30px;">git restore --staged .</p>
 <p>推送 (push) 之前, 希望取消上一個提交 (commit):</p>
 <p style="padding-left: 30px;">git reset HEAD~</p>
+<hr/>
+<p>有關使用 Putty ssh 執行 git clone 時出現 WARNING - POTENTIAL SECURITY BREACH! 原因是所建立的 session 尚未從連線 server 接收 public key, 導致 git 透過 putty 進行 ssh 遠端登入時採用先前所使用的其他 key pair 的 public key, 因此造成 git 發出所謂 POTENTIAL SECURITY BREACH 的警告.</p>
+<p>這時只要從 Putty 帶出要連線的 session, 然後以 Open 進行連線, 這時 github 就會在被要求遠端登入的情況下, 更新 public key cache 內容.</p>
 <p>References:</p>
 <p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p><h2>Replit</h2>
 <p><a href="https://replit.com/">https://replit.com/</a> (use wcms)</p>
