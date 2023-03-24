@@ -929,7 +929,7 @@ for i in data[1:-1]:
 <li>將倉儲 git clone 到近端後, 必須將 cmsimde 倉儲內容放入個人倉儲中, 且目錄名稱必須為 cmsimde, 同時將 cmsimde 中 up_dir 的目錄內容複製到個人倉儲的根目錄.</li>
 <li>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰. token 取得後, 必須放到倉儲 .git 目錄中 config 檔案裡的 url 連結, 也就是放在 https:// 之後, github.com 之前, 且在 token 與 github.com 中間加上 @ 符號.</li>
 <li>當個人倉儲中的 cmsimde 放入, 且 up_dir 目錄取出到倉儲根目錄後, 使用者在可攜程式環境中的命令列, 就可以 cd 進入個人倉儲目錄後, 執行 cms.bat 執行動態網站, 之後用瀏覽器連結, 以 admin 共用密碼登入管理.</li>
-<li></li>
+<li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
 </ol><h3>建網頁</h3>
 <p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
@@ -1355,6 +1355,8 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <li>初學程式者如何透過 Reeborg 學習 Python (Brython and CPython) 與 Javascript</li>
 </ol>
 <h1>cmsimde</h1>
+<p>有關 cmsimde 與 github pages:</p>
+<p></p>
 <p><a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a></p>
 <p>執行 cmsimde 動態網站需要下列 Python 模組:</p>
 <p style="padding-left: 30px;">For Windows:</p>
@@ -1368,8 +1370,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol>
-<h2>Resize image</h2>
+</ol><h2>Resize image</h2>
 <p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
 &lt;input id="input" type="file" onchange="handleFiles()"&gt;
