@@ -2024,7 +2024,7 @@ window.Plotly.newPlot('brython_div', data)
 </script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </p>
-<p>Brython environment and Plotly.js:</p>
+<p>Brython environment and <a href="https://plotly.com/javascript/">Plotly.js</a>:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script src="/static/brython.js"&gt;&lt;/script&gt;
 &lt;script src="/static/brython_stdlib.js"&gt;&lt;/script&gt;
 &lt;script&gt;// &lt;![CDATA[
@@ -2058,7 +2058,41 @@ plot_div = document["brython_div"]
 # Plot the solution using plotly.js
 data = [{'x': x, 'y': y}]
 window.Plotly.newPlot('brython_div', data)</pre>
-<p></p><h2>ANSIC</h2>
+<p id="mass-spring-damper"></p>
+<script type="text/python3">
+from browser import document, window
+
+m = 1.0  # mass
+k = 1.0  # spring constant
+c = 0.1  # damping coefficient
+
+def dy_dx(y, x):
+    y1, y2 = y
+    return [y2, -(k/m)*y1 - (c/m)*y2]
+
+x_start = 0
+x_end = 20
+n_points = 1000
+x = [x_start + i * (x_end - x_start) / (n_points - 1) for i in range(n_points)]
+y0 = [1.0, 0.0]
+h = x[1] - x[0]
+y = [y0]
+for i in range(1, len(x)):
+    y_new = [y[-1][j] + h * dy_dx(y[-1], x[i-1])[j] for j in range(2)]
+    y.append(y_new)
+
+# Create a new div element to hold the plot
+'''
+plot_div = document.createElement('div')
+plot_div.id = 'plot'
+document.body.appendChild(plot_div)
+'''
+
+# Plot the solution using plotly.js
+data = [{'x': x, 'y': [y[i][0] for i in range(len(y))]}]
+layout = {'title': 'Mass-Spring-Damper System', 'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Displacement'}}
+window.Plotly.newPlot('mass-spring-damper', data, layout)
+</script><h2>ANSIC</h2>
 <p>Based on <a href="https://study.com/academy/lesson/ansi-c-history-formation-structure.html">study.com</a>: The C programming language was developed in the <a href="https://en.wikipedia.org/wiki/Bell_Labs">Bell Labs</a> of AT&amp;T by an employee called <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Dennis Ritchie</a> between 1969 and 1973 while working on Unix operating system. He created this language using <a href="https://en.wikipedia.org/wiki/ALGOL">ALGOL</a>, <a href="https://en.wikipedia.org/wiki/BCPL">BCPL</a>, and <a href="https://en.wikipedia.org/wiki/B_(programming_language)">B</a> the languages that were used before C was created. He added many powerful features to C and used it to further develop the <a href="https://en.wikipedia.org/wiki/Unix">UNIX</a> operating system. <a href="https://en.wikipedia.org/wiki/American_National_Standards_Institute">American National Standards Institute</a> (ANSI) in 1983, formed a committee to provide a comprehensive definition to the C language and thus came into existence the new ANSI C language with better features.</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4612-1484-7">C Programming</a> (1999)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-3-030-50750-3">Computer Programming in C for Beginners</a> (2020)</p>

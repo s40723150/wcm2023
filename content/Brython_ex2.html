@@ -203,7 +203,7 @@ window.Plotly.newPlot('brython_div', data)
 </script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </p>
-<p>Brython environment and Plotly.js:</p>
+<p>Brython environment and <a href="https://plotly.com/javascript/">Plotly.js</a>:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script src="./../cmsimde/static/brython.js"&gt;&lt;/script&gt;
 &lt;script src="./../cmsimde/static/brython_stdlib.js"&gt;&lt;/script&gt;
 &lt;script&gt;// &lt;![CDATA[
@@ -237,7 +237,41 @@ plot_div = document["brython_div"]
 # Plot the solution using plotly.js
 data = [{'x': x, 'y': y}]
 window.Plotly.newPlot('brython_div', data)</pre>
-<p></p><br />Brython << <a href='Brython.html'>Previous</a> <a href='ANSIC.html'>Next</a> >> ANSIC</div>
+<p id="mass-spring-damper"></p>
+<script type="text/python3">
+from browser import document, window
+
+m = 1.0  # mass
+k = 1.0  # spring constant
+c = 0.1  # damping coefficient
+
+def dy_dx(y, x):
+    y1, y2 = y
+    return [y2, -(k/m)*y1 - (c/m)*y2]
+
+x_start = 0
+x_end = 20
+n_points = 1000
+x = [x_start + i * (x_end - x_start) / (n_points - 1) for i in range(n_points)]
+y0 = [1.0, 0.0]
+h = x[1] - x[0]
+y = [y0]
+for i in range(1, len(x)):
+    y_new = [y[-1][j] + h * dy_dx(y[-1], x[i-1])[j] for j in range(2)]
+    y.append(y_new)
+
+# Create a new div element to hold the plot
+'''
+plot_div = document.createElement('div')
+plot_div.id = 'plot'
+document.body.appendChild(plot_div)
+'''
+
+# Plot the solution using plotly.js
+data = [{'x': x, 'y': [y[i][0] for i in range(len(y))]}]
+layout = {'title': 'Mass-Spring-Damper System', 'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Displacement'}}
+window.Plotly.newPlot('mass-spring-damper', data, layout)
+</script><br />Brython << <a href='Brython.html'>Previous</a> <a href='ANSIC.html'>Next</a> >> ANSIC</div>
         
     <!-- footer -->
       <div class="container">
