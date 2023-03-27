@@ -843,8 +843,8 @@ REM 關閉 cmd 指令視窗
 taskkill /IM cmd.exe /F
 
 EXIT</pre><h3>w2-w6</h3>
-<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EWHmUoI6S_lGt9l6lr1rAigB7OyGECvBqca2XvF9fxymZw?e=1OC1YL">w6 利用下列第五版可攜程式從倉儲建立網站.mp4</a> (最後一檔)</p>
-<p></p>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EWHmUoI6S_lGt9l6lr1rAigB7OyGECvBqca2XvF9fxymZw?e=1OC1YL">w6 利用下列第五版可攜程式從倉儲建立網站.mp4</a></p>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EegNjb-jkRFNoKJf2dD3MQEBkrJplqtKK9g0er-DktDODg?e=IetGT3">w6 利用 token 進行改版 git push.mp4</a></p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EV5lw40RXvNFue1Cr2sivioBuOj_QA5KzAxDMU0Mkf7z8w?e=NtOJeN">wcm_portable_w2-5.7z</a> (下載 220MB 解開後 880MB)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EfxPBN4umu1JlOhrosRe32wBbB5g3jUPZUaoRS3PFv7ARA?e=OWe7en">miktex_portable.7z</a> (下載 314MB 解開後 964MB)</p>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
@@ -976,7 +976,58 @@ for i in data[1:-1]:
 	email = scrum1@mde.tw</pre>
 <p>git config --global http.proxy "<a href='http://p4.cycu.org:3128"'>http://p4.cycu.org:3128"</a></p>
 <p>git config --global user.name "scrum-1"</p>
-<p>git config --global user.email "scrum1@mde.tw"</p><h3>Pull_requests</h3>
+<p>git config --global user.email "scrum1@mde.tw"</p>
+<h3>newbing</h3>
+<p>提問: write me a python program to solve ordinary differential equation</p>
+<p>回答:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import numpy as np
+from scipy.integrate import odeint
+
+def model(y, t):
+    k = 0.3
+    dydt = -k * y
+    return dydt
+
+y0 = 5
+t = np.linspace(0, 20)
+
+y = odeint(model, y0, t)
+
+print(y)</pre>
+<p>執行上列程式, 需要 numpy 與 scipy 等兩個 modules, 以 pip install numpy scipy 進行安裝執行. 執行結果如下:</p>
+<p><img caption="false" height="359" src="/images/python_solve_ode1.png" width="400"/></p>
+<p>提問: write me a python program to solve second order ordinary differential equations and plot the result by using matplotlib</p>
+<p>回答:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+# define the function that represents the second-order ODE
+def dy_dx(y, x):
+    # unpack the input vector
+    y1, y2 = y
+    # define the system of first-order ODEs
+    dy1dx = y2
+    dy2dx = -y1  # example: simple harmonic oscillator
+    return [dy1dx, dy2dx]
+
+# initial conditions
+y0 = [1.0, 0.0]  # [y(0), y'(0)]
+
+# x values for which we want to evaluate the solution
+x = np.linspace(0, 10, 100)
+
+# solve the ODE
+y = odeint(dy_dx, y0, x)
+
+# plot the result
+plt.plot(x, y[:, 0])
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()</pre>
+<p>執行結果如下:</p>
+<p></p>
+<p></p><h3>Pull_requests</h3>
 <p>github pull requests 運用時機: 當 github 用戶對特定倉儲無直接存取權, 但仍希望:</p>
 <ol>
 <li>保留該特定倉儲的所有資料 - 登入個人 github 帳號, 直接 fork (叉出), 將該倉儲放入自己的帳號</li>
