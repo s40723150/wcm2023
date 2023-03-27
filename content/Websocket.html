@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,11 +141,160 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Website << <a href='Website.html'>Previous</a> <a href='JQuery.html'>Next</a> >> JQuery<br /><h1>Javascript</h1>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
-<br />Website << <a href='Website.html'>Previous</a> <a href='JQuery.html'>Next</a> >> JQuery</div>
+    <div id="tipue_search_content">Brython_ex2 << <a href='Brython_ex2.html'>Previous</a> <a href='ANSIC.html'>Next</a> >> ANSIC<br /><h1>Websocket</h1>
+<p>pip install flask-socketio</p>
+<p>back-end flask</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))
+    emit('my response', {'data': 'got it!'})
+
+if __name__ == '__main__':
+    socketio.run(app)</pre>
+<p>front-end Brython</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="https://cdn.brython.info/brython.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;script type="text/python"&gt;
+from browser import window
+
+# Create a WebSocket connection to the server
+socket = window.io.connect()
+
+# Define a callback function for when a message is received from the server
+def on_message(message):
+    print('Received message:', message)
+
+# Register the callback function
+socket.on('my response', on_message)
+
+# Send a message to the server
+socket.emit('my event', {'data': 'Hello, server!'})
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr/>
+<p>use mobile phone take picture by Brython and send to flask to save and process</p>
+<p>front-end Brython</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.brython.info/brython.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input type="file" accept="image/*" capture="camera" id="cameraInput"&gt;
+&lt;img id="preview"&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, ajax
+
+def on_camera_change(event):
+    # Get the file object from the input element
+    file = document['cameraInput'].files[0]
+    
+    # Create a FileReader to read the image data
+    reader = window.FileReader.new()
+    reader.readAsDataURL(file)
+    
+    # Define a callback function for when the image data is loaded
+    def on_load(event):
+        # Set the preview image source to the image data
+        document['preview'].src = reader.result
+        
+        # Send the image data to the server
+        req = ajax.ajax()
+        req.open('POST', '/upload', True)
+        req.set_header('Content-Type', 'application/x-www-form-urlencoded')
+        req.send({'image': reader.result})
+    
+    # Register the callback function
+    reader.bind('load', on_load)
+
+# Register the change event handler for the camera input
+document['cameraInput'].bind('change', on_camera_change)
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>server side flask</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import base64
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the image data from the request
+    image_data = request.form['image']
+    
+    # Decode the base64 image data
+    image_data = base64.b64decode(image_data.split(',')[1])
+    
+    # Save or process the image data here
+    # ...
+    
+    return 'Image uploaded!'
+
+if __name__ == '__main__':
+    app.run()</pre>
+<p>server-side use opencv to recognize the bright spot</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import base64
+import cv2
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the image data from the request
+    image_data = request.form['image']
+    
+    # Decode the base64 image data
+    image_data = base64.b64decode(image_data.split(',')[1])
+    
+    # Convert the image data to a NumPy array
+    nparr = np.fromstring(image_data, np.uint8)
+    
+    # Decode the image data using OpenCV
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    
+    # Convert the image to grayscale using OpenCV
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    # Use OpenCV to find the brightest spot in the image
+    (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+    
+    # Draw a circle around the brightest spot
+    cv2.circle(img, maxLoc, 5, (255, 0, 0), 2)
+    
+    # Save or process the image here
+    # ...
+    
+    return 'Image processed!'
+
+if __name__ == '__main__':
+    app.run()
+</pre>
+<p></p><br />Brython_ex2 << <a href='Brython_ex2.html'>Previous</a> <a href='ANSIC.html'>Next</a> >> ANSIC</div>
         
     <!-- footer -->
       <div class="container">

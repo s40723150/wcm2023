@@ -2024,7 +2024,7 @@ window.Plotly.newPlot('brython_div', data)
 </script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </p>
-<p>Brython environment and Plotly.js:</p>
+<p>Brython environment and <a href="https://plotly.com/javascript/">Plotly.js</a>:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script src="/static/brython.js"&gt;&lt;/script&gt;
 &lt;script src="/static/brython_stdlib.js"&gt;&lt;/script&gt;
 &lt;script&gt;// &lt;![CDATA[
@@ -2058,6 +2058,7 @@ plot_div = document["brython_div"]
 # Plot the solution using plotly.js
 data = [{'x': x, 'y': y}]
 window.Plotly.newPlot('brython_div', data)</pre>
+<p>This code defines a function dy_dx that represents the mass-spring-damper ordinary differential equation. The Euler method is used to solve this equation for a range of x values from 0 to 20 with initial conditions of y0 = [1.0, 0.0]. The solution is then plotted on the webpage using <a href="https://plotly.com/javascript/">plotly.js</a>.</p>
 <p id="mass-spring-damper"></p>
 <script type="text/python3">
 from browser import document, window
@@ -2092,7 +2093,165 @@ document.body.appendChild(plot_div)
 data = [{'x': x, 'y': [y[i][0] for i in range(len(y))]}]
 layout = {'title': 'Mass-Spring-Damper System', 'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Displacement'}}
 window.Plotly.newPlot('mass-spring-damper', data, layout)
-</script><h2>ANSIC</h2>
+</script>
+<p>This code defines a function dy_dx that represents the mass-spring-damper system with a PID controller. The gains of the PID controller are set to Kp = 10.0, Ki = 1.0, and Kd = 0.5. The Euler method is used to solve this system of equations for a range of x values from 0 to 20 with initial conditions of y0 = [0.0, 0.0, 0.0, 0.0]. The response of the system is then plotted on the webpage using <a href="https://plotly.com/javascript/">plotly.js</a>.</p>
+<p id="pid-control"></p>
+<script type="text/python3">
+from browser import document, window
+
+m = 1.0  # mass
+k = 1.0  # spring constant
+c = 0.1  # damping coefficient
+
+Kp = 10.0  # proportional gain
+Ki = 1.0   # integral gain
+Kd = 0.5   # derivative gain
+
+def dy_dx(y, x):
+    y1, y2, e_int, e_prev = y
+    e = 1 - y1
+    de_dt = -y2
+    u = Kp * e + Ki * e_int + Kd * de_dt
+    return [y2, (u - k*y1 - c*y2)/m, e, e]
+
+x_start = 0
+x_end = 20
+n_points = 1000
+x = [x_start + i * (x_end - x_start) / (n_points - 1) for i in range(n_points)]
+y0 = [0.0, 0.0, 0.0, 0.0]
+h = x[1] - x[0]
+y = [y0]
+for i in range(1, len(x)):
+    y_new = [y[-1][j] + h * dy_dx(y[-1], x[i-1])[j] for j in range(4)]
+    y.append(y_new)
+
+'''
+# Create a new div element to hold the plot
+plot_div = document.createElement('div')
+plot_div.id = 'plot'
+document.body.appendChild(plot_div)
+'''
+
+# Plot the solution using plotly.js
+data = [{'x': x, 'y': [y[i][0] for i in range(len(y))], 'name': 'Output'},
+        {'x': x, 'y': [1 for _ in range(len(y))], 'name': 'Setpoint'}]
+layout = {'title': 'Mass-Spring-Damper System with PID Control', 'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Displacement'}}
+window.Plotly.newPlot('pid-control', data, layout)
+</script><h3>Websocket</h3>
+<p>pip install flask-socketio</p>
+<p>back-end flask</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))
+    emit('my response', {'data': 'got it!'})
+
+if __name__ == '__main__':
+    socketio.run(app)</pre>
+<p>front-end Brython</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="https://cdn.brython.info/brython.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;script type="text/python"&gt;
+from browser import window
+
+# Create a WebSocket connection to the server
+socket = window.io.connect()
+
+# Define a callback function for when a message is received from the server
+def on_message(message):
+    print('Received message:', message)
+
+# Register the callback function
+socket.on('my response', on_message)
+
+# Send a message to the server
+socket.emit('my event', {'data': 'Hello, server!'})
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr/>
+<p>use mobile phone take picture by Brython and send to flask to save and process</p>
+<p>front-end Brython</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.brython.info/brython.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input type="file" accept="image/*" capture="camera" id="cameraInput"&gt;
+&lt;img id="preview"&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, ajax
+
+def on_camera_change(event):
+    # Get the file object from the input element
+    file = document['cameraInput'].files[0]
+    
+    # Create a FileReader to read the image data
+    reader = window.FileReader.new()
+    reader.readAsDataURL(file)
+    
+    # Define a callback function for when the image data is loaded
+    def on_load(event):
+        # Set the preview image source to the image data
+        document['preview'].src = reader.result
+        
+        # Send the image data to the server
+        req = ajax.ajax()
+        req.open('POST', '/upload', True)
+        req.set_header('Content-Type', 'application/x-www-form-urlencoded')
+        req.send({'image': reader.result})
+    
+    # Register the callback function
+    reader.bind('load', on_load)
+
+# Register the change event handler for the camera input
+document['cameraInput'].bind('change', on_camera_change)
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>server side flask</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import base64
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the image data from the request
+    image_data = request.form['image']
+    
+    # Decode the base64 image data
+    image_data = base64.b64decode(image_data.split(',')[1])
+    
+    # Save or process the image data here
+    # ...
+    
+    return 'Image uploaded!'
+
+if __name__ == '__main__':
+    app.run()</pre>
+<p></p><h2>ANSIC</h2>
 <p>Based on <a href="https://study.com/academy/lesson/ansi-c-history-formation-structure.html">study.com</a>: The C programming language was developed in the <a href="https://en.wikipedia.org/wiki/Bell_Labs">Bell Labs</a> of AT&amp;T by an employee called <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Dennis Ritchie</a> between 1969 and 1973 while working on Unix operating system. He created this language using <a href="https://en.wikipedia.org/wiki/ALGOL">ALGOL</a>, <a href="https://en.wikipedia.org/wiki/BCPL">BCPL</a>, and <a href="https://en.wikipedia.org/wiki/B_(programming_language)">B</a> the languages that were used before C was created. He added many powerful features to C and used it to further develop the <a href="https://en.wikipedia.org/wiki/Unix">UNIX</a> operating system. <a href="https://en.wikipedia.org/wiki/American_National_Standards_Institute">American National Standards Institute</a> (ANSI) in 1983, formed a committee to provide a comprehensive definition to the C language and thus came into existence the new ANSI C language with better features.</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4612-1484-7">C Programming</a> (1999)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-3-030-50750-3">Computer Programming in C for Beginners</a> (2020)</p>
