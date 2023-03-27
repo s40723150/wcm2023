@@ -2137,6 +2137,104 @@ data = [{'x': x, 'y': [y[i][0] for i in range(len(y))], 'name': 'Output'},
         {'x': x, 'y': [1 for _ in range(len(y))], 'name': 'Setpoint'}]
 layout = {'title': 'Mass-Spring-Damper System with PID Control', 'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Displacement'}}
 window.Plotly.newPlot('pid-control', data, layout)
+</script>
+<p height="480" id="container" width="640"></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" type="text/javascript"></script>
+<script type="text/python">
+from browser import document, window
+
+# Set up the Three.js scene
+container = document['container']
+scene = window.THREE.Scene.new()
+camera = window.THREE.PerspectiveCamera.new(75, 640 / 480, 0.1, 1000)
+renderer = window.THREE.WebGLRenderer.new()
+renderer.setSize(640, 480)
+container <= renderer.domElement
+
+# Create a cube
+geometry = window.THREE.BoxGeometry.new(1, 1, 1)
+material = window.THREE.MeshBasicMaterial.new({'color': 0x00ff00})
+cube = window.THREE.Mesh.new(geometry, material)
+scene.add(cube)
+
+# Move the camera back so we can see the cube
+camera.position.z = 5
+
+# Define the animation loop
+def animate(timestamp):
+    # Rotate the cube
+    cube.rotation.x += 0.01
+    cube.rotation.y += 0.01
+    
+    # Render the scene
+    renderer.render(scene, camera)
+    
+    # Request the next frame
+    window.requestAnimationFrame(animate)
+
+# Start the animation loop
+window.requestAnimationFrame(animate)
+</script>
+<p height="480" id="container2" width="640"></p>
+<script type="text/python">
+from browser import document, window
+
+# Set up the Three.js scene
+container = document['container2']
+scene = window.THREE.Scene.new()
+camera = window.THREE.PerspectiveCamera.new(75, 640 /480, 0.1, 1000)
+renderer = window.THREE.WebGLRenderer.new()
+renderer.setSize(640, 480)
+container <= renderer.domElement
+
+# Create a cube
+geometry = window.THREE.BoxGeometry.new(1, 1, 1)
+material = window.THREE.MeshBasicMaterial.new({'color': 0x00ff00})
+cube = window.THREE.Mesh.new(geometry, material)
+scene.add(cube)
+
+# Move the camera back so we can see the cube
+camera.position.z = 5
+
+# Set up a Raycaster for mouse interaction
+raycaster = window.THREE.Raycaster.new()
+mouse = window.THREE.Vector2.new()
+
+# Define a function to handle mouse move events
+def on_mouse_move(event):
+    # Calculate the mouse position in normalized device coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+# Register the mouse move event handler
+document.bind('mousemove', on_mouse_move)
+
+# Define the animation loop
+def animate(timestamp):
+    # Update the Raycaster with the current mouse position
+    raycaster.setFromCamera(mouse, camera)
+    
+    # Check if the Raycaster intersects with the cube
+    intersects = raycaster.intersectObject(cube)
+    
+    # Change the cube color if it is intersected
+    if len(intersects) > 0:
+        cube.material.color.set(0xff0000)
+    else:
+        cube.material.color.set(0x00ff00)
+    
+    # Rotate the cube
+    cube.rotation.x += 0.01
+    cube.rotation.y += 0.01
+    
+    # Render the scene
+    renderer.render(scene, camera)
+    
+    # Request the next frame
+    window.requestAnimationFrame(animate)
+
+# Start the animation loop
+window.requestAnimationFrame(animate)
 </script><h3>Websocket</h3>
 <p>pip install flask-socketio</p>
 <p>back-end flask</p>
@@ -2251,6 +2349,45 @@ def upload():
 
 if __name__ == '__main__':
     app.run()</pre>
+<p>server-side use opencv to recognize the bright spot</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import base64
+import cv2
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the image data from the request
+    image_data = request.form['image']
+    
+    # Decode the base64 image data
+    image_data = base64.b64decode(image_data.split(',')[1])
+    
+    # Convert the image data to a NumPy array
+    nparr = np.fromstring(image_data, np.uint8)
+    
+    # Decode the image data using OpenCV
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    
+    # Convert the image to grayscale using OpenCV
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    # Use OpenCV to find the brightest spot in the image
+    (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+    
+    # Draw a circle around the brightest spot
+    cv2.circle(img, maxLoc, 5, (255, 0, 0), 2)
+    
+    # Save or process the image here
+    # ...
+    
+    return 'Image processed!'
+
+if __name__ == '__main__':
+    app.run()
+</pre>
 <p></p><h2>ANSIC</h2>
 <p>Based on <a href="https://study.com/academy/lesson/ansi-c-history-formation-structure.html">study.com</a>: The C programming language was developed in the <a href="https://en.wikipedia.org/wiki/Bell_Labs">Bell Labs</a> of AT&amp;T by an employee called <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Dennis Ritchie</a> between 1969 and 1973 while working on Unix operating system. He created this language using <a href="https://en.wikipedia.org/wiki/ALGOL">ALGOL</a>, <a href="https://en.wikipedia.org/wiki/BCPL">BCPL</a>, and <a href="https://en.wikipedia.org/wiki/B_(programming_language)">B</a> the languages that were used before C was created. He added many powerful features to C and used it to further develop the <a href="https://en.wikipedia.org/wiki/Unix">UNIX</a> operating system. <a href="https://en.wikipedia.org/wiki/American_National_Standards_Institute">American National Standards Institute</a> (ANSI) in 1983, formed a committee to provide a comprehensive definition to the C language and thus came into existence the new ANSI C language with better features.</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4612-1484-7">C Programming</a> (1999)</p>
