@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,85 +141,52 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Brython_src << <a href='Brython_src.html'>Previous</a> <a href='topics1.html'>Next</a> >> topics1<br /><h1>Resume</h1>
-<p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
-<p>將 .tex 轉為 .pdf 的指令:</p>
-<p style="padding-left: 30px;">pdflatex -interaction=nonstopmode Result.tex</p>
-<p>個人作業名稱為 resume, 以下列倉儲作為 Template:</p>
-<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Resume-Automation-using-ChatGPT">https://github.com/mdecycu/Resume-Automation-using-ChatGPT</a></p>
-<p>利用 Github Classroom 建立個人作業, 以 Python、LaTeX 與 ChatGPT 協助建立個人 resume, <span style="background-color: #ffff00;">最終希望能用來協助建立個人網頁或分組專題報告</span>.</p>
-<p>Resume-Automation-using-ChatGPT 倉儲:</p>
-<ol>
-<li>所提供的 Template 只支援英文, 可嘗試<a href="https://ithelp.ithome.com.tw/m/articles/10293080">利用 LaTeX 程式語法修改為中文</a></li>
-<li>OpenAI 的使用, 可以利用 Gmail 帳號<a href="https://beta.openai.com/account/api-keys">申請 API key</a></li>
-<li>Resume 內容整理使用 Davinci 模型, 可在<a href="https://openai.com/api/pricing/">免費額度</a>內進行測試 (<a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them">token</a> 與<a href="https://neoteric.eu/blog/how-much-does-it-cost-to-use-gpt-models-gpt-3-pricing-explained/">費用計算</a>)</li>
-<li>必須要在可攜程式環境中以 <a href="https://miktex.org/howto/portable-edition">MikTeX</a> (約 800MB) 或 <a href="https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#tlportable">TeXLive</a> (約 2GB) 進行編譯</li>
-<li>Python 必須<a href="https://steam.oxxostudio.tw/category/python/example/openai.html">安裝 openai module</a></li>
-<li>利用 <a href="https://ithelp.ithome.com.tw/articles/10278264">tkinter</a> 建立的 GUI 介面表單輸入 Resume 欄位資料後, 交由 OpenAI</li>
-</ol>
-<p>個人作業倉儲名稱: mdecd2023/resume-github_帳號, 例如: <a href="https://github.com/mdecd2023/resume-scrum-1">https://github.com/mdecd2023/resume-scrum-1</a> 就是帳號為 scrum-1 用戶所取得的 resume 作業倉儲.</p>
-<p>作業討論:</p>
-<p>採 <a href="https://www.bing.com/translator/?mkt=zh-TW">Bing Microsoft Translator</a> 直接將 <a href="https://math.mit.edu/~sswatson/whylatex.html">Why LaTeX</a>? 翻譯如下:</p>
-<p>為什麼選擇 LaTeX？</p>
-<p>對於包含多個或兩個數學表達式的文檔，LaTeX 為教師提供了比 Microsoft Word 等編輯器更多的優勢。</p>
-<ol>
-<li>在 LaTeX 中包含數學運算式涉及鍵入一些適當的字元。相比之下，在 Word 中包含數學需要公式編輯器，這是一個繁瑣且緩慢的圖形用戶介面。</li>
-<li>由於內容是在純文本檔中指定的，因此通常可以使用搜索和替換或其他節省時間的機制有效地處理在 Word 中費力的任務。</li>
-<li>由於上述原因，LaTeX 可節省大量長期運行時間。</li>
-<li>許多用戶發現，隨著時間的推移，LaTeX 中的排版變得越來越有趣和方便。相比之下，經驗表明，即使對於專家用戶來說，Word的挫敗感在很大程度上仍然存在。</li>
-<li>由於 LaTeX 是開源的，因此您可以輕鬆地與其他教師共用您的內容，而不會出現版本相容性或許可問題。</li>
-<li>由於 LaTeX 已經適應了數學和科學研究社區的需求，因此您不太可能希望在 LaTeX 中無法實現的符號。</li>
-<li>重複性任務可以更容易地自動化。例如，通過適當的設置，可以為學習時程表的學生<a href="https://math.mit.edu/~sswatson/pdfs/times.pdf">製作練習表</a>幾秒鐘。</li>
-<li>LaTeX 足夠受歡迎，論壇和其他互聯網資源為那些對高級功能感興趣的人提供了良好的支援。</li>
-</ol>
-<p>值得一提的是幾個缺點:</p>
-<ol>
-<li>LaTeX 有一個學習曲線。這是放棄圖形使用者介面（如 Word 的公式編輯器）所帶來的效率的代價，起初成本肯定很大。</li>
-<li>如果您在代碼中犯了足夠重要的錯誤，LaTeX 將為您提供錯誤訊息而不是輸出檔。但是，調試時間會隨著經驗的增加而迅速減少。</li>
-</ol>
-<p>參考資料:</p>
-<ol>
-<li><a href="http://www.study-area.org/tips/latex/chpdf.html">由 TeX/LaTeX 製作 PDF 中文檔</a></li>
-<li><a href="https://math.ntnu.edu.tw/~pwtsai/quicklatex.pdf">LaTeX 的快速入門</a></li>
-<li><a href="https://raw.githubusercontent.com/mdecycu/4072pj1/master/LaTeX%E5%A0%B1%E5%91%8A/4072pj1.pdf">4072pj1 專題報告</a></li>
-<li><a href="https://raw.githubusercontent.com/mdecycu/4072pj3/master/project3/latex/4072pj3.pdf">4072pj3 專題報告</a></li>
-<li><a href="https://raw.githubusercontent.com/mdecycu/pj4082/main/LaTeX%E5%A0%B1%E5%91%8A/4082pj1-1.pdf">pj4082 專題報告</a></li>
-</ol>
-<p>OpenAI Python API 程式範例:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 openai
-import openai
+    <div id="tipue_search_content">upload images << <a href='upload images.html'>Previous</a> <a href='LaTeX.html'>Next</a> >> LaTeX<br /><h1>3D Parts</h1>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/']});
+}
+</script>
+<p height="480" id="threejs" width="640"></p>
+<script type="text/python">
+from browser import document, window
 
-# 輸入 api_key
-openai.api_key = "your_key"
+threejs = document["threejs"]
+# Create a Three.js scene
+scene = window.THREE.Scene.new()
+camera = window.THREE.PerspectiveCamera.new(75, 640 / 480, 0.1, 1000)
+renderer = window.THREE.WebGLRenderer.new()
+renderer.setSize(640, 480)
+threejs <= renderer.domElement
 
-# 三個月內有 $18 可以進行測試 Davinci 0.02/1k token
+# Add a light to the scene
+light = window.THREE.DirectionalLight.new(0xffffff, 1)
+light.position.set(1, 1, 1).normalize()
+scene.add(light)
 
+# Create a Three.js STLLoader
+loader = window.THREE.STLLoader.new()
 
-# 利用 create 建立問答
-response = openai.Completion.create(
-model="text-davinci-003",
-prompt="請列出不要讀機械設計系的 5 個理由",
-max_tokens=256,
-temperature=0,
-top_p=1,
-frequency_penalty=0,
-presence_penalty=0
-)
+def on_load(bufferGeometry):
+    # This function is called when the STL file is loaded
+    material = window.THREE.MeshPhongMaterial.new({"color": 0xff5533, "specular": 0x111111, "shininess": 200})
+    mesh = window.THREE.Mesh.new(bufferGeometry, material)
+    scene.add(mesh)
 
-# 傳回的 dict 中的 text
-output = response["choices"][0]["text"]
-print(output)
+    # Render the scene
+    def animate(timestamp):
+        renderer.render(scene, camera)
+        window.requestAnimationFrame(animate)
 
-"""
-1. 機械設計系的課程複雜，學習負擔大。
-2. 機械設計系的就業前景不明朗。
-3. 機械設計系的課程需要花費大量時間在實驗室中。
-4. 機械設計系的課程需要掌握大量的專業知識。
-5. 機械設計系的課程需要掌握大量的計算機軟件。
-"""</pre>
-<h4>利用 Github 與 LaTeX 協同編寫專題報告:</h4>
-<p style="padding-left: 30px;">在 <a href="https://github.com/mdecd2023/resume-scrum-1">https://github.com/mdecd2023/resume-scrum-1</a> 倉儲中, 以 <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> 作為子模組後, 利用 <a href="https://github.com/features/actions">Github Actions </a>納入 LaTeX 畢業專題的轉檔架構, 明定若使用者對倉儲的 pdf 進行改版, 則 <a href="https://github.com/features/actions">Github Action</a> 將會透過導引程式 (<a href="https://raw.githubusercontent.com/mdecd2023/resume-scrum-1/main/.github/workflows/main.yml">main.yml</a>), 分別安裝 Ubuntu, TeXLive 以及所需字形及模組, 最終對 latex 中的 .tex 檔案轉檔, 結合 <a href="https://github.com/mdecd2023/resume-scrum-1/tree/main/images">images 目錄</a>中的圖檔, 完成 .pdf 專題論文建立後, 以 release 的方式釋出專題報告(<a href="https://github.com/mdecd2023/resume-scrum-1/releases">4072pj1.pdf</a>).</p>
-<p style="padding-left: 30px;">而參與協同的組員只需要分別或同步編寫 latex 目錄中的相關章節, 並在各改版階段處理衝突與合併, 就可以在適當時間直接在 web-based 環境中製作專題論文.</p><br />Brython_src << <a href='Brython_src.html'>Previous</a> <a href='topics1.html'>Next</a> >> topics1</div>
+    animate(None)
+
+# Load the STL file
+loader.load("/downloads/block100.stl", on_load)
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/stl-loader@1.0.0/STLLoader.min.js"></script><br />upload images << <a href='upload images.html'>Previous</a> <a href='LaTeX.html'>Next</a> >> LaTeX</div>
         
     <!-- footer -->
       <div class="container">

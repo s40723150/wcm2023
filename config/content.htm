@@ -1708,7 +1708,52 @@ input.accept = "image/*"
 input.capture = "camera"
 input.bind("change", handle_files)
 document &lt;= input</pre>
-<p></p><h1>LaTeX</h1>
+<h2>3D Parts</h2>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/']});
+}
+</script>
+<p height="480" id="threejs" width="640"></p>
+<script type="text/python">
+from browser import document, window
+
+threejs = document["threejs"]
+# Create a Three.js scene
+scene = window.THREE.Scene.new()
+camera = window.THREE.PerspectiveCamera.new(75, 640 / 480, 0.1, 1000)
+renderer = window.THREE.WebGLRenderer.new()
+renderer.setSize(640, 480)
+threejs <= renderer.domElement
+
+# Add a light to the scene
+light = window.THREE.DirectionalLight.new(0xffffff, 1)
+light.position.set(1, 1, 1).normalize()
+scene.add(light)
+
+# Create a Three.js STLLoader
+loader = window.THREE.STLLoader.new()
+
+def on_load(bufferGeometry):
+    # This function is called when the STL file is loaded
+    material = window.THREE.MeshPhongMaterial.new({"color": 0xff5533, "specular": 0x111111, "shininess": 200})
+    mesh = window.THREE.Mesh.new(bufferGeometry, material)
+    scene.add(mesh)
+
+    # Render the scene
+    def animate(timestamp):
+        renderer.render(scene, camera)
+        window.requestAnimationFrame(animate)
+
+    animate(None)
+
+# Load the STL file
+loader.load("/downloads/block100.stl", on_load)
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/stl-loader@1.0.0/STLLoader.min.js"></script><h1>LaTeX</h1>
 <p>LaTeX 是一種基於 TeX(<a href="https://ctan.org/tex-archive/systems/knuth/dist/tex">https://ctan.org/tex-archive/systems/knuth/dist/tex</a>) 的 macro-package: <a href="https://github.com/latex3/">https://github.com/latex3/</a></p>
 <p>TeX book 的原始碼: <a href="http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex">http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex</a></p>
 <p>新手入門 LaTeX:</p>
@@ -2397,6 +2442,27 @@ def animate(timestamp):
 
 # Start the animation loop
 window.requestAnimationFrame(animate)
+</script>
+<p>STL part viewer</p>
+<p height="480" id="stl" width="640"></p>
+<script type="text/python">
+from browser import document, html
+
+# Create a container for the STL viewer
+stl_container = html.DIV(id="stl_cont")
+stl = document["stl"]
+stl <= stl_container
+
+# Load the Stl Viewer Javascript Plugin
+stl_viewer_script = html.SCRIPT(src="https://www.viewstl.com/plugin/stl_viewer.min.js")
+stl <= stl_viewer_script
+
+def init_stl_viewer():
+    # Create a new instance of Stl Viewer
+    stl_viewer = window.StlViewer.new(document.getElementById("stl_cont"), {"models": [{"id": 0, "filename": "/downloads/block100.stl"}]})
+
+# Wait for the Stl Viewer Javascript Plugin to load before initializing the viewer
+document.bind("readystatechange", lambda: init_stl_viewer() if document.readyState == "complete" else None)
 </script><h3>Websocket</h3>
 <p>pip install flask-socketio</p>
 <p>back-end flask</p>
