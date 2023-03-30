@@ -1709,6 +1709,7 @@ input.capture = "camera"
 input.bind("change", handle_files)
 document &lt;= input</pre>
 <h2>3D Parts</h2>
+<p>use Brython with <a href="https://github.com/omrips/viewstl">https://github.com/omrips/viewstl</a> to view 3D parts in STL format</p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 <script>
@@ -1753,7 +1754,223 @@ def on_load(bufferGeometry):
 loader.load("/downloads/block100.stl", on_load)
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/stl-loader@1.0.0/STLLoader.min.js"></script><h1>LaTeX</h1>
+<script src="https://cdn.jsdelivr.net/npm/stl-loader@1.0.0/STLLoader.min.js"></script>
+<h2>Brython_Flask</h2>
+<p>An example of a Brython front-end and Flask back-end that allows you to retrieve GitHub collaborators by knowing the public repository URL.</p>
+<p>Flask side:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+# pip install PyGithub
+from github import Github
+
+app = Flask(__name__)
+
+@app.route('/collaborators')
+def collaborators():
+    repo_url = request.args.get('repo_url')
+    if not repo_url:
+        return 'Error: missing repo_url parameter', 400
+
+    # Extract the owner and repo name from the URL
+    owner, repo = repo_url.rstrip('/').split('/')[-2:]
+
+    # Authenticate with the GitHub API (optional)
+    g = Github('&lt;your access token here&gt;')
+
+    # Get the repository
+    repo = g.get_repo(f'{owner}/{repo}')
+
+    # Get the collaborators
+    collaborators = [c.login for c in repo.get_collaborators()]
+
+    return {'collaborators': collaborators}
+
+if __name__ == '__main__':
+    app.run()</pre>
+<p>Brython side:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython_stdlib"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input id="repo-url" type="text" placeholder="Enter repository URL"&gt;
+&lt;button id="get-collaborators"&gt;Get Collaborators&lt;/button&gt;
+&lt;ul id="collaborators"&gt;&lt;/ul&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, ajax
+
+def on_complete(req):
+    if req.status == 200 or req.status == 0:
+        data = req.json()
+        collaborators = data['collaborators']
+        ul = document['collaborators']
+        ul.clear()
+        for collaborator in collaborators:
+            li = document.createElement('li')
+            li.textContent = collaborator
+            ul &lt;= li
+
+def get_collaborators(event):
+    repo_url = document['repo-url'].value
+    req = ajax.ajax()
+    req.bind('complete', on_complete)
+    req.open('GET', f'http://localhost:5000/collaborators?repo_url={repo_url}', True)
+    req.send()
+
+document['get-collaborators'].bind('click', get_collaborators)
+&lt;/script&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr/>
+<p>Using websocket to do the same thing as previous example</p>
+<p>Flask site:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask
+# pip install flask-socketio
+from flask_socketio import SocketIO, emit
+from github import Github
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@socketio.on('get_collaborators')
+def handle_get_collaborators(data):
+    repo_url = data['repo_url']
+
+    # Extract the owner and repo name from the URL
+    owner, repo = repo_url.rstrip('/').split('/')[-2:]
+
+    # Authenticate with the GitHub API (optional)
+    g = Github('&lt;your access token here&gt;')
+
+    # Get the repository
+    repo = g.get_repo(f'{owner}/{repo}')
+
+    # Get the collaborators
+    collaborators = [c.login for c in repo.get_collaborators()]
+
+    emit('collaborators', {'collaborators': collaborators})
+
+if __name__ == '__main__':
+    socketio.run(app)</pre>
+<p>Front end:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython_stdlib"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input id="repo-url" type="text" placeholder="Enter repository URL"&gt;
+&lt;button id="get-collaborators"&gt;Get Collaborators&lt;/button&gt;
+&lt;ul id="collaborators"&gt;&lt;/ul&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, websocket
+
+ws = websocket.WebSocket(f'ws://{document.location.host}/socket.io/?EIO=4&amp;transport=websocket')
+ws.bind('open', lambda: print('WebSocket connection opened'))
+
+def on_message(event):
+    data = event.data
+    if 'collaborators' in data:
+        collaborators = data['collaborators']
+        ul = document['collaborators']
+        ul.clear()
+        for collaborator in collaborators:
+            li = document.createElement('li')
+            li.textContent = collaborator
+            ul &lt;= li
+
+ws.bind('message', on_message)
+
+def get_collaborators(event):
+    repo_url = document['repo-url'].value
+    ws.send({'get_collaborators': {'repo_url': repo_url}})
+
+document['get-collaborators'].bind('click', get_collaborators)
+&lt;/script&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr/>
+<p>using wss and https on both ends:</p>
+<p>Flask side:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask
+from flask_socketio import SocketIO, emit
+from github import Github
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@socketio.on('get_collaborators')
+def handle_get_collaborators(data):
+    repo_url = data['repo_url']
+
+    # Extract the owner and repo name from the URL
+    owner, repo = repo_url.rstrip('/').split('/')[-2:]
+
+    # Authenticate with the GitHub API (optional)
+    g = Github('&lt;your access token here&gt;')
+
+    # Get the repository
+    repo = g.get_repo(f'{owner}/{repo}')
+
+    # Get the collaborators
+    collaborators = [c.login for c in repo.get_collaborators()]
+
+    emit('collaborators', {'collaborators': collaborators})
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5000, keyfile='key.pem', certfile='cert.pem')</pre>
+<p>Brython side:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython_stdlib"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input id="repo-url" type="text" placeholder="Enter repository URL"&gt;
+&lt;button id="get-collaborators"&gt;Get Collaborators&lt;/button&gt;
+&lt;ul id="collaborators"&gt;&lt;/ul&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, websocket
+
+ws = websocket.WebSocket(f'wss://{document.location.host}/socket.io/?EIO=4&amp;transport=websocket')
+ws.bind('open', lambda: print('WebSocket connection opened'))
+
+def on_message(event):
+    data = event.data
+    if 'collaborators' in data:
+        collaborators = data['collaborators']
+        ul = document['collaborators']
+        ul.clear()
+        for collaborator in collaborators:
+            li = document.createElement('li')
+            li.textContent = collaborator
+            ul &lt;= li
+
+ws.bind('message', on_message)
+
+def get_collaborators(event):
+    repo_url = document['repo-url'].value
+    ws.send({'get_collaborators': {'repo_url': repo_url}})
+
+document['get-collaborators'].bind('click', get_collaborators)
+&lt;/script&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p></p><h1>LaTeX</h1>
 <p>LaTeX 是一種基於 TeX(<a href="https://ctan.org/tex-archive/systems/knuth/dist/tex">https://ctan.org/tex-archive/systems/knuth/dist/tex</a>) 的 macro-package: <a href="https://github.com/latex3/">https://github.com/latex3/</a></p>
 <p>TeX book 的原始碼: <a href="http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex">http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex</a></p>
 <p>新手入門 LaTeX:</p>
