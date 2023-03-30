@@ -1899,6 +1899,77 @@ document['get-collaborators'].bind('click', get_collaborators)
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 <hr/>
+<p>using wss and https on both ends:</p>
+<p>Flask side:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask
+from flask_socketio import SocketIO, emit
+from github import Github
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@socketio.on('get_collaborators')
+def handle_get_collaborators(data):
+    repo_url = data['repo_url']
+
+    # Extract the owner and repo name from the URL
+    owner, repo = repo_url.rstrip('/').split('/')[-2:]
+
+    # Authenticate with the GitHub API (optional)
+    g = Github('&lt;your access token here&gt;')
+
+    # Get the repository
+    repo = g.get_repo(f'{owner}/{repo}')
+
+    # Get the collaborators
+    collaborators = [c.login for c in repo.get_collaborators()]
+
+    emit('collaborators', {'collaborators': collaborators})
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5000, keyfile='key.pem', certfile='cert.pem')</pre>
+<p>Brython side:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython_stdlib"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;input id="repo-url" type="text" placeholder="Enter repository URL"&gt;
+&lt;button id="get-collaborators"&gt;Get Collaborators&lt;/button&gt;
+&lt;ul id="collaborators"&gt;&lt;/ul&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document, websocket
+
+ws = websocket.WebSocket(f'wss://{document.location.host}/socket.io/?EIO=4&amp;transport=websocket')
+ws.bind('open', lambda: print('WebSocket connection opened'))
+
+def on_message(event):
+    data = event.data
+    if 'collaborators' in data:
+        collaborators = data['collaborators']
+        ul = document['collaborators']
+        ul.clear()
+        for collaborator in collaborators:
+            li = document.createElement('li')
+            li.textContent = collaborator
+            ul &lt;= li
+
+ws.bind('message', on_message)
+
+def get_collaborators(event):
+    repo_url = document['repo-url'].value
+    ws.send({'get_collaborators': {'repo_url': repo_url}})
+
+document['get-collaborators'].bind('click', get_collaborators)
+&lt;/script&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 <p></p><h1>LaTeX</h1>
 <p>LaTeX 是一種基於 TeX(<a href="https://ctan.org/tex-archive/systems/knuth/dist/tex">https://ctan.org/tex-archive/systems/knuth/dist/tex</a>) 的 macro-package: <a href="https://github.com/latex3/">https://github.com/latex3/</a></p>
 <p>TeX book 的原始碼: <a href="http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex">http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex</a></p>
@@ -2609,7 +2680,107 @@ def init_stl_viewer():
 
 # Wait for the Stl Viewer Javascript Plugin to load before initializing the viewer
 document.bind("readystatechange", lambda: init_stl_viewer() if document.readyState == "complete" else None)
-</script><h3>Websocket</h3>
+</script>
+<p>Using <a href="https://www.sciencedirect.com/science/article/pii/S0950705115005043">sine-cosine algorithm</a> to optimize with constraints in Brython:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython_stdlib"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="brython()"&gt;
+
+&lt;div id="output"&gt;&lt;/div&gt;
+
+&lt;script type="text/python"&gt;
+from browser import document
+from random import random, uniform
+from math import sin, cos, pi
+
+# Define the objective function
+def objective_function(x):
+    return x[0]**2 + x[1]**2
+
+# Define the constraint functions
+def constraint1(x):
+    return x[0] + x[1] - 2
+
+def constraint2(x):
+    return 1 - x[0] - x[1]
+
+# Define the penalty function
+def penalty_function(x):
+    penalty = 0
+    if constraint1(x) &gt; 0:
+        penalty += constraint1(x)
+    if constraint2(x) &gt; 0:
+        penalty += constraint2(x)
+    return penalty
+
+# Define the fitness function
+def fitness_function(x):
+    return objective_function(x) + penalty_function(x)
+
+# Define the sine cosine algorithm
+def sine_cosine_algorithm(fitness_function, dimension, lower_bound, upper_bound, population_size, max_iterations):
+    # Initialize the population
+    population = [[uniform(lower_bound, upper_bound) for _ in range(dimension)] for _ in range(population_size)]
+    population_fitness = [fitness_function(individual) for individual in population]
+
+    # Initialize the best solution
+    best_solution = population[0]
+    best_fitness = population_fitness[0]
+
+    # Main loop of the algorithm
+    for iteration in range(max_iterations):
+        # Calculate the value of a and r1
+        a = 2 - iteration * (2 / max_iterations)
+        r1 = 2 * pi * random()
+
+        # Update the population
+        for i in range(population_size):
+            # Calculate the value of r2, r3 and r4
+            r2 = 2 * random()
+            r3 = 2 * random()
+            r4 = random()
+
+            # Update the individual
+            for j in range(dimension):
+                if r4 &lt; 0.5:
+                    population[i][j] += r1 * sin(r2) * abs(r3 * best_solution[j] - population[i][j])
+                else:
+                    population[i][j] += r1 * cos(r2) * abs(r3 * best_solution[j] - population[i][j])
+
+                # Make sure the individual is within the bounds
+                if population[i][j] &lt; lower_bound:
+                    population[i][j] = lower_bound
+                elif population[i][j] &gt; upper_bound:
+                    population[i][j] = upper_bound
+
+            # Calculate the fitness of the individual
+            population_fitness[i] = fitness_function(population[i])
+
+            # Update the best solution
+            if population_fitness[i] &lt; best_fitness:
+                best_solution = population[i]
+                best_fitness = population_fitness[i]
+
+        # Print the current iteration and best fitness
+        print(f'Iteration: {iteration + 1}, Best Fitness: {best_fitness:.6f}')
+
+    return best_solution
+
+# Run the sine cosine algorithm to solve the optimization problem with constraints
+best_solution = sine_cosine_algorithm(fitness_function, dimension=2, lower_bound=-10, upper_bound=10, population_size=50, max_iterations=100)
+
+# Print the result
+output_div = document['output']
+output_div.text = f'Best Solution: {best_solution}'
+&lt;/script&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p></p><h3>Websocket</h3>
 <p>pip install flask-socketio</p>
 <p>back-end flask</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, render_template
