@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,60 +141,24 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit<br /><h1>Git</h1>
-<p><a href="https://www.atlassian.com/git/tutorials/what-is-version-control">https://www.atlassian.com/git/tutorials/what-is-version-control</a></p>
-<p>git 是一種<span style="background-color: #ffff00;">分散式版次管理系統工具</span>, 可讓使用者在多人協同執行專案的過程中, <span style="background-color: #ffff00;">追蹤儲存在倉儲中特定文件的改版歷程</span>. 此外, 採用 git 在團隊間執行專案文件管理, 可協助各成員以<span style="background-color: #ffff00;">同步方式執行專案</span>. 任一成員可以在<span style="background-color: #ffff00;">各自的改版分支</span>中<span style="background-color: #ffff00;">進行各種測試</span>後, 再決定是否要將改版內容<span style="background-color: #ffff00;">合併到主要的團隊版本分支</span>中.</p>
-<p>前述所謂分散式的意思是, 各參與協同人員可以在近端(git server 以外的電腦上)直接進行改版, 而不需要像所謂集中式版次管理系統, 所有成員都必須登入到集中伺服器才能對專案文件進行改版, 因此分散式版次管理系統的改版流程不僅速度快, 且各成員在對資料進行改版提交(commit)時並不需要上網, 只有在推送(push)時才需要從 git client 端聯網到 git server 端(Github 即為一台 web-based git server).</p>
-<p>有關 Head detached:</p>
-<p>當切到某先前的提交點後, 進行數次的內容改版, 就會出現 HEAD detached 的註記, 表示目前的版本並非指向 main 分支.</p>
-<p>這時可以將改版內容進行提交之後, 以 "git branch 分支名稱 版次號" 建立分支, 然後 checkout 至 main 分支後, 再利用 git merge 該分支名稱, 就可以將先前 HEAD detached 之後變更的內容合併至 main 主分支.</p>
-<p>合併內容後, 若要刪除位於近端的分支, 可以執行 git branch --delete 分支名稱.</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">demo@tcexam:~/wcm2023$ git branch
-* (HEAD detached from 2cc9abd)
-  main
-demo@tcexam:~/wcm2023$ git add .
-demo@tcexam:~/wcm2023$ git commit -m "head detached"
-[detached HEAD 7412b5a] head detached
- 6 files changed, 19 insertions(+), 19 deletions(-)
- rewrite content/tipuesearch_content.js (99%)
-demo@tcexam:~/wcm2023$ git checkout main
-Warning: you are leaving 5 commits behind, not connected to
-any of your branches:
-
-  7412b5a head detached
-  57c222d 紀錄 project.cycu 虛擬伺服器建立流程
-  ed4d3a7 add project.cycu server for web-based project git processes
-  2f16a5e add Ubuntu page
-  308e8a6 add Python 3.11.2 and Python 3.10.8 portable system links
-
-If you want to keep them by creating a new branch, this may be a good time
-to do so with:
-
- git branch &lt;new-branch-name&gt; 7412b5a
-
-Switched to branch 'main'
-Your branch is up to date with 'origin/main'.
-demo@tcexam:~/wcm2023$ git branch ubuntu 7412b5a
-demo@tcexam:~/wcm2023$ git branch
-* main
-  ubuntu
-demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
-<p>刪除近端與遠端的倉儲分支:</p>
-<p style="padding-left: 30px;">刪除近端分支:</p>
-<p style="padding-left: 60px;">git branch -d 近端分支名稱</p>
-<p style="padding-left: 30px;">刪除遠端分支:</p>
-<p style="padding-left: 60px;">git push origin --delete 遠端分支名稱</p>
-<p>提交 (commit) 之前, 希望取消 git add .:</p>
-<p style="padding-left: 30px;">git restore --staged .</p>
-<p>推送 (push) 之前, 希望取消上一個提交 (commit):</p>
-<p style="padding-left: 30px;">git reset HEAD~</p>
-<hr/>
-<p>有關使用 Putty ssh 執行 git clone 時出現 WARNING - POTENTIAL SECURITY BREACH! 原因是所建立的 session 尚未從連線 server 接收 public key, 導致 git 透過 putty 進行 ssh 遠端登入時採用先前所使用的其他 key pair 的 public key, 因此造成 git 發出所謂 POTENTIAL SECURITY BREACH 的警告.</p>
-<p>這時只要從 Putty 帶出要連線的 session, 然後以 Open 進行連線, 這時 github 就會在被要求遠端登入的情況下, 更新 public key cache 內容.</p>
-<p>References:</p>
-<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p>
-<hr/>
-<p>當倉儲在近端修改內容後, 但尚未執行 git add . 之前, 若希望忽略近端內容的變更, 則可以在倉儲目錄中執行 git checkout ., 表示要將近端內容的版本與遠端的倉儲內容保持同步.</p><br />jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit</div>
+    <div id="tipue_search_content">五專 << <a href='五專.html'>Previous</a> <a href='ChatGPT.html'>Next</a> >> ChatGPT<br /><h1>如何使用電腦</h1>
+<p>儘量不要使用中文作為檔案名稱或目錄名稱 - 因為某些英語系國家開發的軟體(尤其是開源免費軟體)可能會無法使用或發生問題</p>
+<p>儘量不要直接將英文網頁翻譯成中文 - 因為你需要看得懂這些英文內容(即便不是現在, 但爾後作為一位工程師, 看懂各種英文技術資料是必要能力)</p>
+<p>儘量不要忽略電腦操作過程中回應的英文訊息 - 因為一知半解與電腦溝通, 最後可能無法完成正確的操作</p>
+<p>儘量使用 web-based 介面搜尋資料, 並且經常刪除暫存檔案與歷史搜尋紀錄, 因為不想讓搜索引擎鎖定(限制)你的未來搜尋範圍</p>
+<p>何謂可攜系統?</p>
+<p style="padding-left: 30px;">可以帶走的系統 (因為電腦有裝防寫, 因為設定有些複雜, 因為取下來的網站資料會逐步更新)</p>
+<p style="padding-left: 30px;">可以隨身執行 Python 的程式環境 (其中已經安裝執行 cmsimde 動態網站所需的 Python 模組)</p>
+<p style="padding-left: 30px;">可攜系統利用 Python 的特定模組來執行動態網站 (包含 <span>flask flask_cors bs4 lxml pelican markdown leo pyopenssl 等模組)</span></p>
+<p style="padding-left: 30px;">可攜系統 -</p>
+<p style="padding-left: 60px;">啟動檔案 (批次檔 batch files - 將一系列的指令存在檔案中, 然後 Windows 將副檔名訂為 .bat, 只要副檔名為 .bat 且其中是可以執行的命令.)</p>
+<p style="padding-left: 60px;">編輯器 (SciTE), 經過設定後, 可以直接解譯 Python 程式, 並且可類解譯(即時編譯) ANSI C  程式</p>
+<p style="padding-left: 60px;">電腦啟動時, 有一個命令的搜尋路徑, 可以利用 path 指令取得, 在可攜啟動後所產生的 cmd 就是帶有可攜系統環境的命令列視窗, 其命令搜尋路徑就是定義在 start_ipv6.bat 的 path= 那一行</p>
+<p>cmsimde 是甚麼? </p>
+<p style="padding-left: 30px;">cmsimde 是一套利用 Python 與 Flask 所編寫的網際內容管理程式套件</p>
+<p><a href="https://www.virtualbox.org/">Virtualbox</a> 虛擬主機:</p>
+<p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EZLrP2sxF3JDqbTbEqQfQBQBCiH7SgznX6a3V03EbvpmVw?e=7xXzAq">cdwin_vdi.7z</a> (for @nfu users only)</p>
+<p style="padding-left: 30px;">Why? 弄壞了可以很快再設一個, 方便配置 client-server 網路架構</p><br />五專 << <a href='五專.html'>Previous</a> <a href='ChatGPT.html'>Next</a> >> ChatGPT</div>
         
     <!-- footer -->
       <div class="container">

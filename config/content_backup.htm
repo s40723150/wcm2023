@@ -389,7 +389,9 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>有關使用 Putty ssh 執行 git clone 時出現 WARNING - POTENTIAL SECURITY BREACH! 原因是所建立的 session 尚未從連線 server 接收 public key, 導致 git 透過 putty 進行 ssh 遠端登入時採用先前所使用的其他 key pair 的 public key, 因此造成 git 發出所謂 POTENTIAL SECURITY BREACH 的警告.</p>
 <p>這時只要從 Putty 帶出要連線的 session, 然後以 Open 進行連線, 這時 github 就會在被要求遠端登入的情況下, 更新 public key cache 內容.</p>
 <p>References:</p>
-<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p><h2>Replit</h2>
+<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p>
+<hr/>
+<p>當倉儲在近端修改內容後, 但尚未執行 git add . 之前, 若希望忽略近端內容的變更, 則可以在倉儲目錄中執行 git checkout ., 表示要將近端內容的版本與遠端的倉儲內容保持同步.</p><h2>Replit</h2>
 <p><a href="https://replit.com/">https://replit.com/</a> (use wcms)</p>
 <h2>TCExam</h2>
 <p>設定是否讓用戶自行註冊帳號:</p>
@@ -501,7 +503,22 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>數位教材:</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/ET59eCPLupBGgIUmBog-yE0BMkL4RdYWNzpBxW-PzvnX1A?e=RKYWbq">1999 How to be a star engineer</a>, <a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EQtBbwaFSKdCrnxljlGU9NMBcl70NO4OghYo5caSpLcvcw?e=E9iyjL">如何成為一位傑出的工程師</a> (for @nfu users only)</p>
 <p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZzE7rKRQ3ZIvSoavwvZB6gBmupyVpzqRuvH7yO1i0Yj1w?e=h5SBg0">2023 Cloud Computing Technology</a> (for @nfu users only)</p>
-<p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZpULDm6GfNCsuTiqfloxnYBV1GzC1lG39SjU6ooqLWbyA?e=vuIlOV">2021 Cloud Computing Basics</a> (for @nfu users only)</p><h3>ChatGPT</h3>
+<p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:b:/g/personal/yen_nfu_edu_tw/EZpULDm6GfNCsuTiqfloxnYBV1GzC1lG39SjU6ooqLWbyA?e=vuIlOV">2021 Cloud Computing Basics</a> (for @nfu users only)</p><h3>如何使用電腦</h3>
+<p>儘量不要使用中文作為檔案名稱或目錄名稱 - 因為某些英語系國家開發的軟體(尤其是開源免費軟體)可能會無法使用或發生問題</p>
+<p>儘量不要直接將英文網頁翻譯成中文 - 因為你需要看得懂這些英文內容(即便不是現在, 但爾後作為一位工程師, 看懂各種英文技術資料是必要能力)</p>
+<p>儘量不要忽略電腦操作過程中回應的英文訊息 - 因為一知半解與電腦溝通, 最後可能無法完成正確的操作</p>
+<p>儘量使用 web-based 介面搜尋資料, 並且經常刪除暫存檔案與歷史搜尋紀錄, 因為不想讓搜索引擎鎖定(限制)你的未來搜尋範圍</p>
+<p>何謂可攜系統?</p>
+<p style="padding-left: 30px;">可以帶走的系統 (因為電腦有裝防寫, 因為設定有些複雜, 因為取下來的網站資料會逐步更新)</p>
+<p style="padding-left: 30px;">可以隨身執行 Python 的程式環境 (其中已經安裝執行 cmsimde 動態網站所需的 Python 模組)</p>
+<p style="padding-left: 30px;">可攜系統利用 Python 的特定模組來執行動態網站 (包含 <span>flask flask_cors bs4 lxml pelican markdown leo pyopenssl 等模組)</span></p>
+<p style="padding-left: 30px;">可攜系統 -</p>
+<p style="padding-left: 60px;">啟動檔案 (批次檔 batch files - 將一系列的指令存在檔案中, 然後 Windows 將副檔名訂為 .bat, 只要副檔名為 .bat 且其中是可以執行的命令.)</p>
+<p style="padding-left: 60px;">編輯器 (SciTE), 經過設定後, 可以直接解譯 Python 程式, 並且可類解譯(即時編譯) ANSI C  程式</p>
+<p style="padding-left: 60px;">電腦啟動時, 有一個命令的搜尋路徑, 可以利用 path 指令取得, 在可攜啟動後所產生的 cmd 就是帶有可攜系統環境的命令列視窗, 其命令搜尋路徑就是定義在 start_ipv6.bat 的 path= 那一行</p>
+<p><a href="https://www.virtualbox.org/">Virtualbox</a> 虛擬主機:</p>
+<p style="padding-left: 30px;"><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EZLrP2sxF3JDqbTbEqQfQBQBCiH7SgznX6a3V03EbvpmVw?e=7xXzAq">cdwin_vdi.7z</a> (for @nfu users only)</p>
+<p style="padding-left: 30px;">Why? 弄壞了可以很快再設一個, 方便配置 client-server 網路架構</p><h3>ChatGPT</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
 <p><a href="https://en.wikipedia.org/wiki/ChatGPT">https://en.wikipedia.org/wiki/ChatGPT</a></p>
 <p>Chat Generative Pre-trained Transformer</p>
