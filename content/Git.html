@@ -192,7 +192,9 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>有關使用 Putty ssh 執行 git clone 時出現 WARNING - POTENTIAL SECURITY BREACH! 原因是所建立的 session 尚未從連線 server 接收 public key, 導致 git 透過 putty 進行 ssh 遠端登入時採用先前所使用的其他 key pair 的 public key, 因此造成 git 發出所謂 POTENTIAL SECURITY BREACH 的警告.</p>
 <p>這時只要從 Putty 帶出要連線的 session, 然後以 Open 進行連線, 這時 github 就會在被要求遠端登入的情況下, 更新 public key cache 內容.</p>
 <p>References:</p>
-<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p><br />jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit</div>
+<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p>
+<hr/>
+<p>當倉儲在近端修改內容後, 但尚未執行 git add . 之前, 若希望忽略近端內容的變更, 則可以在倉儲目錄中執行 git checkout ., 表示要將近端內容的版本與遠端的倉儲內容保持同步.</p><br />jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit</div>
         
     <!-- footer -->
       <div class="container">
