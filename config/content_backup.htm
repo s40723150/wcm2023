@@ -206,6 +206,7 @@ if __name__ == '__main__':
 <p>::4</p>
 <p>::5 為 office</p>
 <p>::6</p>
+<p>::10 88 為 wcm</p>
 <h4>Stud</h4>
 <p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
 <p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
@@ -291,7 +292,7 @@ ProxyCommand /usr/bin/ncat --proxy p42.cycu.org:3128 --proxy-type http %h %p</pr
 <p style="padding-left: 30px;">sudo ln -s /snap/bin/certbot /usr/bin/certbot</p>
 <p>Get certificate:</p>
 <p style="padding-left: 30px;">sudo certbot certonly --standalone</p>
-<hr>
+<hr/>
 <p>install waitress:</p>
 <p style="padding-left: 30px;">pip3 install waitress</p>
 <p>server.py</p>
@@ -615,6 +616,20 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p>台灣在模流分析領域自行開發的電腦輔助機械工程分析套件為 <a href="https://www.moldex3d.com/">https://www.moldex3d.com/</a> </p>
 <hr/>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EY9GinJ2ns5Iiy-ih3-y9xwBdgl3H-ajMPZOIxZhd9Nssg?e=jP7Y4T">下載 SolidWorks 2022 安裝檔案</a> (檔案大小 16GB, for @nfu users only, 請先根據安裝序號與認證主機在校園網路中或透過 VPN (從 <a href="https://ecare.nfu.edu.tw/">ecare 登入</a>申請) 連網, 必須完整安裝結束後, 再進行 service pack 更新)</p>
+<p>安裝 SoildWorks 2022 過程畫面 (因為必須在校園內或使用 VPN 認證才能完成安裝, 因此以下直接顯示出 Serialnumber 與認證主機 IP 位址):</p>
+<p>下載後解開壓縮檔案, 執行 Setup.exe 進行安裝:</p>
+<p><img caption="false" height="353" src="/images/solidworks2022_installation_1.png" width="400"/></p>
+<p>輸入安裝序號, 以下只安裝基本模組, 並沒有勾選其餘套件:</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_2.png" width="400"/></p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_3.png" width="400"/></p>
+<p>在安裝過程必須先安裝與序號對應的版本內容後再進行更新, 因此以下使用內定的否, 表示先不下載更新檔案:</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_4.png" width="400"/></p>
+<p>勾選接受 SolidWorks 條款後進行安裝:</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_5.png" width="400"/></p>
+<p>點選馬上安裝後,  會跳出認證伺服器的視窗表單, 必須輸入正確的認證埠號與 IPv4 位址才可進行安裝, 截至 2023.04.07, 校內的 SolidWorks 認證主機僅支援 IPv4 網路協定認證, 若希望取得認證的電腦僅啟動 IPv6 網路協定, 將無法取得認證授權.</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_6.png" width="400"/></p>
+<p>接著按下確定後, 就可以進行漫長且容量達 20 GB 的 SolidWorks 安裝:</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_7.png" width="400"/></p>
 <p><br/><br/></p>
 <div id="gtx-trans" style="position: absolute; left: -10px; top: 340.719px;">
 <div class="gtx-trans-icon"></div>
@@ -1282,7 +1297,7 @@ print(output)
 <p style="padding-left: 30px;">瞭解業界常用的操作系統除了 Windows, 還有 <a href="https://zh.wikipedia.org/zh-tw/linux">Linux</a> (<a href="https://zh.wikipedia.org/zh-tw/UNIX">Unix</a>) 以及 <a href="https://zh.wikipedia.org/wiki/%E9%BA%A6%E9%87%91%E5%A1%94%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">Mac OS</a>: <a href="https://link.springer.com/book/10.1007/978-1-4842-3000-8">2017 Beginning Ubuntu for Windows and Mac Users 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">便於涉入 Robotics 機器人領域: <a href="https://link.springer.com/book/10.1007/978-1-4842-7750-8">2022 Robot Operating System (ROS) for Absolute Beginners 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">想要跨操作系統進行程式開發: <a href="https://link.springer.com/book/10.1007/978-1-4842-6873-5">2021 Pro Windows Subsystem for Linux (WSL) 電子書</a> (可在學校網路下載)</p>
-<hr/>
+<hr>
 <p>若要讓虛擬主機作為 Server 直接連外, 虛擬網路卡可設為 Bridged, 以橋接從宿主電腦的實體網路卡對外連線.</p>
 <p style="padding-left: 30px;">Network 設為橋接 (Bridged):</p>
 <p style="padding-left: 60px;">disable IPv4</p>
@@ -2321,7 +2336,7 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/><!-- ########################################## -->
+<!-- editor1 結束 --><hr><!-- ########################################## -->
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
@@ -3607,4 +3622,4 @@ auto_tetris = button2(auto_tetris_url)
 doc["auto_tetris"].bind("click", auto_tetris.do)
 ################################## auto tetris end
 </script>
-</p></hr>
+</p></hr></hr>
