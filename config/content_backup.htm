@@ -594,7 +594,7 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p><span>Siemens (西門子) 公司的中階電腦輔助機械設計套件為 Solid Edge (<a href="https://solidedge.siemens.com/en/solutions/users/hobbyists-and-makers/">community 版 Siemens Solid Edge</a><span> -<span> </span></span><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a>, 可攜版比較<span>建議在有還原卡或虛擬主機中使用, for @nfu users only</span>), 其高階電腦輔助機械設計套件為 NX.</span></p>
 <p><span>AutoDesk 公司的中階電腦輔助機械設計套件為 Inventor 可<a href="https://software.nfu.edu.tw/Autodesk/autodesk2022.pdf">直接從學校網站下載</a>, 該公司還提供<a href="https://accounts.autodesk.com/register">教育版的 A360</a> (可在雲端或近端啟動, 但近端必須安裝對應套件)</span></p>
 <p>中國比較常見的電腦輔助機械設計套件為 <a href="https://www.zwcad.com/">https://www.zwcad.com/</a> </p>
-<p><span> </span></p>
+<p>台灣在模流分析領域自行開發的電腦輔助機械工程分析套件為 <a href="https://www.moldex3d.com/">https://www.moldex3d.com/</a> </p>
 <p><span></span></p>
 <p><br/><br/></p><h3>5jtopics1</h3>
 <p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
@@ -637,6 +637,13 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p style="padding-left: 30px;"><a href="https://youtu.be/Zd5jSDRjWfA">Learn Git and Github in 15 分鐘</a></p>
 <p style="padding-left: 30px;"><a href="https://git-scm.com/book/zh-tw/v2">Pro Git 電子書繁體中文版</a></p>
 <p style="padding-left: 30px;"><a href="https://backlog.com/git-tutorial/tw/">連猴子都能懂的 Git 入門指南</a></p><h3>建立網站</h3>
+<p>cmsimde 網際內容管理的架構與相關事項:</p>
+<ol>
+<li>動態網站是利用 cms.bat 啟動, 因為批次檔案帶有副檔名, 所以 windows 操作系統必須在檢視設定將<span style="background-color: #ffff00;">副檔名選項開啟</span>.</li>
+<li>因為 cmsimde 對應的靜態網站是利用 github pages 作為 WWW 伺服器 (只處理<span style="background-color: #ffff00;">超文件, css 與 Javascript</span>), 由於 github.com 倉儲的管理版本是儲存於 .git 隱藏目錄下,  所以 <span>windows 操作系統必須在檢視設定<span style="background-color: #ffff00;">將隱藏項目開啟</span>.</span></li>
+<li><span>cmsimde 的動態網站儲存在 config 目錄下的 content.htm, 且其內容管理是利用超文件中的 h1, h2 或 h3 標註進行分頁, 因此若 content.htm 中完全沒有上述這三個標註, cmsimde 就無法針對 content.htm  進行正確分頁, 因此就會出現錯誤.</span></li>
+<li><span>cmsimde 的靜態網頁內容是存在 content 目錄下, 且以各頁面的標題 (可能為 h1, h2, 或 h3) 作為檔案名稱, 且存為"標題.html", 因此若動態網站出現一個以上的同名頁面, 轉為靜態網站時, cmsimde 會自動在各相同標題的頁面下加入 "-1, -2, -3.html", 但是此狀態下的動態網站只能編輯第一個同名的標題網頁.<br/></span></li>
+</ol>
 <p>原理說明:</p>
 <p style="padding-left: 30px;">這裡主要是利用 Github 所提供的 Pages 服務, <span style="background-color: #ffff00;">將倉儲的內容轉為全球資訊網站</span>, 由於 WWW 網站的內容主要由 html (超文件), Javascript, css, 文件檔案(.pdf, .txt, .7z 等)與多媒體檔案(jpg, png, gif, mp4 等)所組成. 因此所謂建立網站, 就是在倉儲中設法放入能夠直接由瀏覽器擷取的超文件內容, 其中包含如何導入各種文字, 圖檔與連結.</p>
 <p style="padding-left: 30px;">Github 倉儲的擁有者, 若採用手動方式直接在倉儲中建立網站的 html, 並設定該倉儲的 Pages 頁面, 選擇特定分支(branch)作為網站的根目錄(root directory), 當 Github 擁有者對倉儲內容改版後, Github 就會透過 Actions 中的內建轉檔程式, 檢查倉儲內容是否能夠轉為網站, 若轉檔成功, 就會部署到特定的虛擬主機, 直接啟動網站(靜態).</p>
@@ -665,9 +672,9 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p>Putty - 一種可以執行 ssh 協定的工具 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EdlmK0apQEpNgJqgYRbpce4BOgfxfgY95mHLlMy21HB5FQ?e=5fu2rL">下載 0.78 版的 putty.7z</a>)</p>
 <p>維護倉儲, 希望採用 SSH 的協定進行維護, 在 Windows 操作系統可以利用 Putty 工具中的 puttygen.exe 建立 OpenSSH 格式的 public key (可視為鎖頭), 必須要登錄到 Github 個人帳號設定中的 SSH and GPG keys 頁面中. 並將 Putty 格式的 private key(副檔名為 .ppk, 表示為 putty 格式的 private key).</p>
 <h4>參考資料:</h4>
-<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/github-pages/">https://kinsta.com/blog/github-pages/</a> </p>
-<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/generate-ssh-key/">https://kinsta.com/blog/generate-ssh-key/</a> </p>
-<p style="padding-left: 30px;"><a href="https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf">https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf</a> </p><h3>5jexam</h3>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/github-pages/">https://kinsta.com/blog/github-pages/</a></p>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/generate-ssh-key/">https://kinsta.com/blog/generate-ssh-key/</a></p>
+<p style="padding-left: 30px;"><a href="https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf">https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf</a></p><h3>5jexam</h3>
 <p>xml 格式的 TCExam 考試題目範例:</p>
 <p style="padding-left: 30px;"><a href="/downloads/tcexam_5j_w1-w5_test1.7z">tcexam_5j_w1-w5_test1.7z</a></p><h3>PGP</h3>
 <p><a href="https://zh.wikipedia.org/zh-tw/PGP">https://zh.wikipedia.org/zh-tw/PGP</a></p>
@@ -1057,7 +1064,7 @@ plt.show()</pre>
 <p><img alt="" height="273" src="/images/python_solve_ode2.png" width="400"/></p>
 <p>提問: how to use cmsime and github pages to create static web site</p>
 <p>回答:</p>
-<p>cmsimde is a web-based content management system that is based on the World Wide Web1. You can use cmsimde to manage digital content by having a good understanding of HTML, CSS, and JavaScript<a href="https://mde.tw/content/cmsimde.html">1</a>.<br/><br/>You can use GitHub Pages to host a static website about yourself, your organization, or your project directly from a repository on GitHub.comGitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub, optionally runs the files through a build process, and publishes a website<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages">2</a>.<br/><br/>To create a GitHub Pages site, you can either create a new repository or choose an existing repository for your site. Then you need to decide which publishing source you want to use and create the entry file for your siteGitHub Pages will look for an index.html, index.md, or README.md file as the entry file for your site<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">3</a>.<br/><br/>Is there anything specific you would like to know about using cmsimde and GitHub Pages to create a static website?</p>
+<p>cmsimde is a web-based content management system that is based on the World Wide Web1. You can use cmsimde to manage digital content by having a good understanding of HTML, CSS, and JavaScript<a href="https://mde.tw/content/cmsimde.html">1</a>.<br/><br/>You can use GitHub Pages to host a static website about yourself, your organization, or your project directly from a repository on GitHub.comGitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub, optionally runs the files through a build process, and publishes a website<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages">2</a>.<br/><br>To create a GitHub Pages site, you can either create a new repository or choose an existing repository for your site. Then you need to decide which publishing source you want to use and create the entry file for your siteGitHub Pages will look for an index.html, index.md, or README.md file as the entry file for your site<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">3</a>.<br/><br/>Is there anything specific you would like to know about using cmsimde and GitHub Pages to create a static website?</br></p>
 <p>提問: can you repeat the last answer in traditional chinese</p>
 <p>回答:</p>
 <p>當然可以。cmsimde 是一種基於全球資訊網的網頁內容管理系統。您可以通過對 HTML、CSS 和 JavaScript 有良好的理解來使用 cmsimde 管理數字內容。<br/><br/>您可以使用 GitHub Pages 直接從 GitHub.com 上的存儲庫中托管有關您自己、您的組織或您的項目的靜態網站。GitHub Pages 是一種靜態站點託管服務，它直接從 GitHub 存儲庫中提取 HTML、CSS 和 JavaScript 文件，可選地通過構建過程運行文件並發布網站。<br/><br/>要創建 GitHub Pages 站點，您可以創建一個新存儲庫或選擇一個現有存儲庫作為您的站點。然後您需要決定要使用哪個發布源並創建站點的入口文件。GitHub Pages 將查找 index.html、index.md 或 README.md 文件作為站點的入口文件。</p>

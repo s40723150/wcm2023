@@ -142,6 +142,13 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">5jtopics1 << <a href='5jtopics1.html'>Previous</a> <a href='5jexam.html'>Next</a> >> 5jexam<br /><h1>建立網站</h1>
+<p>cmsimde 網際內容管理的架構與相關事項:</p>
+<ol>
+<li>動態網站是利用 cms.bat 啟動, 因為批次檔案帶有副檔名, 所以 windows 操作系統必須在檢視設定將<span style="background-color: #ffff00;">副檔名選項開啟</span>.</li>
+<li>因為 cmsimde 對應的靜態網站是利用 github pages 作為 WWW 伺服器 (只處理<span style="background-color: #ffff00;">超文件, css 與 Javascript</span>), 由於 github.com 倉儲的管理版本是儲存於 .git 隱藏目錄下,  所以 <span>windows 操作系統必須在檢視設定<span style="background-color: #ffff00;">將隱藏項目開啟</span>.</span></li>
+<li><span>cmsimde 的動態網站儲存在 config 目錄下的 content.htm, 且其內容管理是利用超文件中的 h1, h2 或 h3 標註進行分頁, 因此若 content.htm 中完全沒有上述這三個標註, cmsimde 就無法針對 content.htm  進行正確分頁, 因此就會出現錯誤.</span></li>
+<li><span>cmsimde 的靜態網頁內容是存在 content 目錄下, 且以各頁面的標題 (可能為 h1, h2, 或 h3) 作為檔案名稱, 且存為"標題.html", 因此若動態網站出現一個以上的同名頁面, 轉為靜態網站時, cmsimde 會自動在各相同標題的頁面下加入 "-1, -2, -3.html", 但是此狀態下的動態網站只能編輯第一個同名的標題網頁. 若需處理多個同名頁面, 可以利用 Edit All 修改頁面標題.<br/></span></li>
+</ol>
 <p>原理說明:</p>
 <p style="padding-left: 30px;">這裡主要是利用 Github 所提供的 Pages 服務, <span style="background-color: #ffff00;">將倉儲的內容轉為全球資訊網站</span>, 由於 WWW 網站的內容主要由 html (超文件), Javascript, css, 文件檔案(.pdf, .txt, .7z 等)與多媒體檔案(jpg, png, gif, mp4 等)所組成. 因此所謂建立網站, 就是在倉儲中設法放入能夠直接由瀏覽器擷取的超文件內容, 其中包含如何導入各種文字, 圖檔與連結.</p>
 <p style="padding-left: 30px;">Github 倉儲的擁有者, 若採用手動方式直接在倉儲中建立網站的 html, 並設定該倉儲的 Pages 頁面, 選擇特定分支(branch)作為網站的根目錄(root directory), 當 Github 擁有者對倉儲內容改版後, Github 就會透過 Actions 中的內建轉檔程式, 檢查倉儲內容是否能夠轉為網站, 若轉檔成功, 就會部署到特定的虛擬主機, 直接啟動網站(靜態).</p>
@@ -170,9 +177,9 @@ img.add_border {
 <p>Putty - 一種可以執行 ssh 協定的工具 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EdlmK0apQEpNgJqgYRbpce4BOgfxfgY95mHLlMy21HB5FQ?e=5fu2rL">下載 0.78 版的 putty.7z</a>)</p>
 <p>維護倉儲, 希望採用 SSH 的協定進行維護, 在 Windows 操作系統可以利用 Putty 工具中的 puttygen.exe 建立 OpenSSH 格式的 public key (可視為鎖頭), 必須要登錄到 Github 個人帳號設定中的 SSH and GPG keys 頁面中. 並將 Putty 格式的 private key(副檔名為 .ppk, 表示為 putty 格式的 private key).</p>
 <h4>參考資料:</h4>
-<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/github-pages/">https://kinsta.com/blog/github-pages/</a> </p>
-<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/generate-ssh-key/">https://kinsta.com/blog/generate-ssh-key/</a> </p>
-<p style="padding-left: 30px;"><a href="https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf">https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf</a> </p><br />5jtopics1 << <a href='5jtopics1.html'>Previous</a> <a href='5jexam.html'>Next</a> >> 5jexam</div>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/github-pages/">https://kinsta.com/blog/github-pages/</a></p>
+<p style="padding-left: 30px;"><a href="https://kinsta.com/blog/generate-ssh-key/">https://kinsta.com/blog/generate-ssh-key/</a></p>
+<p style="padding-left: 30px;"><a href="https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf">https://www.uio.no/studier/emner/matnat/ifi/IN5320/h18/assignments/git-with-ssh.pdf</a></p><br />5jtopics1 << <a href='5jtopics1.html'>Previous</a> <a href='5jexam.html'>Next</a> >> 5jexam</div>
         
     <!-- footer -->
       <div class="container">
