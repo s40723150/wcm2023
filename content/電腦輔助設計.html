@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,60 +141,16 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit<br /><h1>Git</h1>
-<p><a href="https://www.atlassian.com/git/tutorials/what-is-version-control">https://www.atlassian.com/git/tutorials/what-is-version-control</a></p>
-<p>git 是一種<span style="background-color: #ffff00;">分散式版次管理系統工具</span>, 可讓使用者在多人協同執行專案的過程中, <span style="background-color: #ffff00;">追蹤儲存在倉儲中特定文件的改版歷程</span>. 此外, 採用 git 在團隊間執行專案文件管理, 可協助各成員以<span style="background-color: #ffff00;">同步方式執行專案</span>. 任一成員可以在<span style="background-color: #ffff00;">各自的改版分支</span>中<span style="background-color: #ffff00;">進行各種測試</span>後, 再決定是否要將改版內容<span style="background-color: #ffff00;">合併到主要的團隊版本分支</span>中.</p>
-<p>前述所謂分散式的意思是, 各參與協同人員可以在近端(git server 以外的電腦上)直接進行改版, 而不需要像所謂集中式版次管理系統, 所有成員都必須登入到集中伺服器才能對專案文件進行改版, 因此分散式版次管理系統的改版流程不僅速度快, 且各成員在對資料進行改版提交(commit)時並不需要上網, 只有在推送(push)時才需要從 git client 端聯網到 git server 端(Github 即為一台 web-based git server).</p>
-<p>有關 Head detached:</p>
-<p>當切到某先前的提交點後, 進行數次的內容改版, 就會出現 HEAD detached 的註記, 表示目前的版本並非指向 main 分支.</p>
-<p>這時可以將改版內容進行提交之後, 以 "git branch 分支名稱 版次號" 建立分支, 然後 checkout 至 main 分支後, 再利用 git merge 該分支名稱, 就可以將先前 HEAD detached 之後變更的內容合併至 main 主分支.</p>
-<p>合併內容後, 若要刪除位於近端的分支, 可以執行 git branch --delete 分支名稱.</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">demo@tcexam:~/wcm2023$ git branch
-* (HEAD detached from 2cc9abd)
-  main
-demo@tcexam:~/wcm2023$ git add .
-demo@tcexam:~/wcm2023$ git commit -m "head detached"
-[detached HEAD 7412b5a] head detached
- 6 files changed, 19 insertions(+), 19 deletions(-)
- rewrite content/tipuesearch_content.js (99%)
-demo@tcexam:~/wcm2023$ git checkout main
-Warning: you are leaving 5 commits behind, not connected to
-any of your branches:
-
-  7412b5a head detached
-  57c222d 紀錄 project.cycu 虛擬伺服器建立流程
-  ed4d3a7 add project.cycu server for web-based project git processes
-  2f16a5e add Ubuntu page
-  308e8a6 add Python 3.11.2 and Python 3.10.8 portable system links
-
-If you want to keep them by creating a new branch, this may be a good time
-to do so with:
-
- git branch &lt;new-branch-name&gt; 7412b5a
-
-Switched to branch 'main'
-Your branch is up to date with 'origin/main'.
-demo@tcexam:~/wcm2023$ git branch ubuntu 7412b5a
-demo@tcexam:~/wcm2023$ git branch
-* main
-  ubuntu
-demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
-<p>刪除近端與遠端的倉儲分支:</p>
-<p style="padding-left: 30px;">刪除近端分支:</p>
-<p style="padding-left: 60px;">git branch -d 近端分支名稱</p>
-<p style="padding-left: 30px;">刪除遠端分支:</p>
-<p style="padding-left: 60px;">git push origin --delete 遠端分支名稱</p>
-<p>提交 (commit) 之前, 希望取消 git add .:</p>
-<p style="padding-left: 30px;">git restore --staged .</p>
-<p>推送 (push) 之前, 希望取消上一個提交 (commit):</p>
-<p style="padding-left: 30px;">git reset HEAD~</p>
-<hr/>
-<p>有關使用 Putty ssh 執行 git clone 時出現 WARNING - POTENTIAL SECURITY BREACH! 原因是所建立的 session 尚未從連線 server 接收 public key, 導致 git 透過 putty 進行 ssh 遠端登入時採用先前所使用的其他 key pair 的 public key, 因此造成 git 發出所謂 POTENTIAL SECURITY BREACH 的警告.</p>
-<p>這時只要從 Putty 帶出要連線的 session, 然後以 Open 進行連線, 這時 github 就會在被要求遠端登入的情況下, 更新 public key cache 內容.</p>
-<p>References:</p>
-<p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p>
-<hr/>
-<p>當倉儲在近端修改內容後, 但尚未執行 git add . 之前, 若希望忽略近端內容的變更, 則可以在倉儲目錄中執行 git checkout ., 表示要將近端內容的版本與遠端的倉儲內容保持同步.</p><br />jitsi << <a href='jitsi.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit</div>
+    <div id="tipue_search_content">cadlab << <a href='cadlab.html'>Previous</a> <a href='5jtopics1.html'>Next</a> >> 5jtopics1<br /><h1>電腦輔助設計</h1>
+<p><a href="https://www.onshape.com/en/education/sign-up">利用學校電子郵箱申請 onshape 帳號</a></p>
+<p>Onshape 是開發 SolidWorks 的創始者所建立的<span style="background-color: #ffff00;">全雲端</span>電腦輔助機械設計套件 (也可以在手機或平板上利用 Apps 進行繪圖), 目前隸屬於 <a href="https://www.ptc.com/tw/About">PTC</a> (也就是 Creo (前身稱為 Pro/Engineer, 簡稱為 ProE) 的開發公司).</p>
+<p>SolidWorks 應該是全球銷售數量最多的中階<span>電腦輔助機械設計套件, 目前隸屬於法國 Dassault 公司, 該公司的高階電腦輔助機械設計套件為 Catia.</span></p>
+<p><span>Siemens (西門子) 公司的中階電腦輔助機械設計套件為 Solid Edge (<a href="https://solidedge.siemens.com/en/solutions/users/hobbyists-and-makers/">community 版 Siemens Solid Edge</a><span> -<span> </span></span><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a>, 可攜版比較<span>建議在有還原卡或虛擬主機中使用, for @nfu users only</span>), 其高階電腦輔助機械設計套件為 NX.</span></p>
+<p><span>AutoDesk 公司的中階電腦輔助機械設計套件為 Inventor 可<a href="https://software.nfu.edu.tw/Autodesk/autodesk2022.pdf">直接從學校網站下載</a>, 該公司還提供<a href="https://accounts.autodesk.com/register">教育版的 A360</a> (可在雲端或近端啟動, 但近端必須安裝對應套件)</span></p>
+<p>中國比較常見的電腦輔助機械設計套件為 <a href="https://www.zwcad.com/">https://www.zwcad.com/</a> </p>
+<p><span> </span></p>
+<p><span></span></p>
+<p><br/><br/></p><br />cadlab << <a href='cadlab.html'>Previous</a> <a href='5jtopics1.html'>Next</a> >> 5jtopics1</div>
         
     <!-- footer -->
       <div class="container">
