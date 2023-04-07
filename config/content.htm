@@ -199,7 +199,15 @@ def studlist():
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)</pre>
 <p>以下將可透過 nfulist 與 studlist 中的資料, 列出各班學員的對應課程倉儲與網頁:</p>
-<p></p><h2>Stud</h2>
+<p></p><h2>Servers</h2>
+<p>工作站室中的 server 10ff</p>
+<p>::1 pj2023</p>
+<p>::2 pj2022 (3 為 Ubuntu 虛擬主機)</p>
+<p>::4</p>
+<p>::5 為 office</p>
+<p>::6</p>
+<p>::10 88 為 wcm</p>
+<h4>Stud</h4>
 <p>stud 是一台 Ubuntu server, 讓每一個用戶透過兩個 ports 共享 server  中所設置的外部與內部 ports.</p>
 <p>其中以 9 開頭的 port 設定為內部 port,  而 8 開頭的 port 則用於外部連線.</p>
 <p>當某一用戶誤用所分配的內部 port 時, 管理者就可以透過 lsof 指令找出該用戶, 並即時加以糾正.</p>
@@ -230,8 +238,7 @@ def delete_user():
          sys.exit(1)
   
 delete_user()</pre>
-<p>stud template server in vdi</p>
-<h3>建立 stud</h3>
+<p>stud template server in vdi</p><h3>建立 stud</h3>
 <p><a href="https://geekrewind.com/configure-nginx-userdir-feature-on-ubuntu-16-04-lts-servers/">Nginx per user web directories</a> 可以伺服各用戶的靜態網站. 而 stunnel 加上 waitress 則可以伺服各用戶的動態網站.</p>
 <p>使用 Ubuntu server 22.04 LTS v2.</p>
 <hr/>
