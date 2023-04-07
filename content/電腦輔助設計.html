@@ -147,7 +147,7 @@ img.add_border {
 <li>因為 <span style="background-color: #ffff00;">SolidWorks</span> 是目前全球機械業界使用最普遍的設計與繪圖套件 (估計全球有超過 300 萬名工程師用戶), 因此可以先從 SolidWorks 學起</li>
 <li>至於與 SolidWorks 同級的 AutoDesk <span style="background-color: #ffff00;">Inventor</span> 與 Siemens <span style="background-color: #ffff00;">Solid Edge</span> 也有許多業者採用, 因此在學習 SolidWorks 的過程也可以試著利用相似的繪圖概念, 操作相較對教育版使用授權更為寬鬆 (可自由免費使用) 的 Inventor 與 Solid Edge. 看完上述這三套源自美國的 CAD 套件, 也可以試用看看來自中國的<a href="https://www.cadexam.com/soft/459.html">中望 CAD 教育版</a>.</li>
 <li>因為上列中階 MCAD (Mechanical Computer Aided Design) 套件, 除了設計繪圖之外, 都提供常用機械零組件輔助設計的延伸模組 (在 Solid Edge 稱為 <span style="background-color: #ffff00;"><a href="https://www.cadalyst.com/manufacturing/on-edge-engineering-reference-solid-edge-10654" style="background-color: #ffff00;">Engineering Reference</a></span>), 或者試著利用 <span style="background-color: #ffff00;">Python API</span> (非正統, 但透過 <a href="https://zh.wikipedia.org/zh-tw/%E7%BB%84%E4%BB%B6%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B">COM</a> 可以呼叫各種 CAD 所提供的 <a href="https://learn.microsoft.com/en-us/windows/win32/midl/com-dcom-and-type-libraries">Windows Type Libraries</a>), 與上述套件進行互動.</li>
-<li>一旦使用著熟悉電腦輔助機械設計套件建立零組件後, 可以再將學習延伸至 <span style="background-color: #ffff00;">CAE</span> (電腦輔助工程分析), 針對設計環境進行有限元素應力分析或系統的運動 (<span style="background-color: #ffff00;">Kinematics</span>) 或動態 (<span style="background-color: #ffff00;">Dynamics</span>) 分析.</li>
+<li>一旦使用者熟悉電腦輔助機械設計套件建立零組件後, 可以再將學習延伸至 <span style="background-color: #ffff00;">CAE</span> (電腦輔助工程分析), 針對設計環境進行有限元素應力分析或系統的運動 (<span style="background-color: #ffff00;">Kinematics</span>) 或動態 (<span style="background-color: #ffff00;">Dynamics</span>) 分析.</li>
 <li>對中階 MCAD 有一定認識之後, 就可以將學習觸角伸向高階電腦輔助機械設計套件的應用分析, 例如: <span style="background-color: #ffff00;">Siemens NX</span> (<a href="https://nfuedu.sharepoint.com/:u:/s/cad2022/EclS-NMhqJ9JvCa-pIQ_jMsBQB1tipr_Zgc8kT8ha1kMtg?e=RvnCpR">NX2027.3401_lite_cad2022.7z</a> for @nfu users only), 或者是 PTC 的 Creo (有些 MCAD 分類將 Creo 定位為中高階套件), 抑或源自 Dassault 公司的 Catia (目前機械設計系並沒有導入 Catia 與 Creo)</li>
 </ol>
 <p><a href="https://www.youtube.com/watch?v=BXMPY36xWJY">CAD 緣起介紹影片</a></p>
@@ -164,7 +164,7 @@ img.add_border {
 <hr/>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EY9GinJ2ns5Iiy-ih3-y9xwBdgl3H-ajMPZOIxZhd9Nssg?e=jP7Y4T">下載 SolidWorks 2022 安裝檔案</a> (檔案大小 16GB, for @nfu users only, 請先根據安裝序號與認證主機在校園網路中或透過 VPN (從 <a href="https://ecare.nfu.edu.tw/">ecare 登入</a>申請) 連網, 必須完整安裝結束後, 再進行 service pack 更新)</p>
 <p>安裝 SoildWorks 2022 過程畫面 (因為必須在校園內或使用 VPN 認證才能完成安裝, 因此以下直接顯示出 Serial Number 與認證主機 IP 位址):</p>
-<p>下載後解開壓縮檔案, 執行 Setup.exe 進行安裝:</p>
+<p>下載後解開壓縮檔案, 執行 Setup.exe 進行安裝 (以::2 主機的安裝為例):</p>
 <p><img caption="false" height="353" src="./../images/solidworks2022_installation_1.png" width="400"/></p>
 <p>輸入安裝序號, 以下只安裝基本模組, 並沒有勾選其餘套件:</p>
 <p><img alt="" height="353" src="./../images/solidworks2022_installation_2.png" width="400"/></p>
@@ -177,6 +177,22 @@ img.add_border {
 <p><img alt="" height="353" src="./../images/solidworks2022_installation_6.png" width="400"/></p>
 <p>接著按下確定後, 就可以進行漫長且容量達 20 GB 的 SolidWorks 安裝:</p>
 <p><img alt="" height="353" src="./../images/solidworks2022_installation_7.png" width="400"/></p>
+<p>安裝完成之前, 會跳出下列視窗, 可以選擇不參加客戶經驗改進計畫, 或許能讓操作過程更加順暢:</p>
+<p><img alt="" height="353" src="./../images/solidworks2022_installation_8.png" width="400"/></p>
+<p>最後按下完成鍵就可以執行 SolidWorks 2022 了.</p>
+<p>啟動時顯示共有 500 個用戶可以同時連線:</p>
+<p><img alt="" height="273" src="./../images/solidworks2022_installation_9.png" width="400"/></p>
+<p>啟動時必須允許 SolidWorks 通過公用網路防火牆:</p>
+<p><img alt="" height="293" src="./../images/solidworks2022_installation_10.png" width="400"/></p>
+<p>而且必須接受 SolidWorks 的使用授權:</p>
+<p><img alt="" height="293" src="./../images/solidworks2022_installation_11.png" width="400"/></p>
+<p>然後還要進行各模組的資料更新, 以下選擇更新所有模組:</p>
+<p><img alt="" height="290" src="./../images/solidworks2022_installation_12.png" width="400"/></p>
+<p>更新完成後, 在開始選單中執行 SOLIDWORKS 2022, 然後同意使用授權:</p>
+<p><img alt="" height="347" src="./../images/solidworks2022_installation_13.png" width="400"/></p>
+<p>終於可以使用這個佔用 20GB 硬碟資料的 SolidWorks 了:</p>
+<p><img alt="" height="216" src="./../images/solidworks2022_installation_14.png" width="400"/></p>
+<p></p>
 <p><br/><br/></p>
 <div id="gtx-trans" style="position: absolute; left: -10px; top: 340.719px;">
 <div class="gtx-trans-icon"></div>

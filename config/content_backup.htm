@@ -515,6 +515,7 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>儘量<span style="background-color: #ffff00;">不要直接將英文網頁翻譯成中文</span> - 因為你需要看得懂這些英文內容(即便不是現在, 但爾後作為一位工程師, 看懂各種英文技術資料是必要能力)</p>
 <p>儘量<span style="background-color: #ffff00;">不要忽略電腦操作過程中回應的英文訊息</span> - 因為一知半解與電腦溝通, 最後可能無法完成正確的操作</p>
 <p>儘量<span style="background-color: #ffff00;">使用 web-based 介面搜尋資料</span>, 並且經常刪除暫存檔案與歷史搜尋紀錄, 因為不想讓搜索引擎鎖定(限制)你的未來搜尋範圍</p>
+<p>針對學校與住家的<span style="background-color: #ffff00;">網路環境</span>, 必須儘量深入研究各種使用情境與軟硬體技術規範, 以便找出最佳使用的模式或設置條件. (例如: 在學校要如何設置網路, 才能在不同協定、不同軟體套件與不同 client 端 (例如: git) 或 server 端 (例如: Nginx 或 cmsimde on Ubuntu) 的整合下達到最佳使用模式) - 例如: <a href="https://www.amazon.com/dp/B08M13B8B6">透過電力系統傳輸網路的不同硬體選擇</a>.</p>
 <p>何謂可攜系統?</p>
 <p style="padding-left: 30px;">可以帶走的系統 (因為電腦有裝防寫, 因為設定有些複雜, 因為取下來的網站資料會逐步更新)</p>
 <p style="padding-left: 30px;">可以隨身執行 Python 的程式環境 (其中已經安裝執行 cmsimde 動態網站所需的 Python 模組)</p>
@@ -600,7 +601,7 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <li>因為 <span style="background-color: #ffff00;">SolidWorks</span> 是目前全球機械業界使用最普遍的設計與繪圖套件 (估計全球有超過 300 萬名工程師用戶), 因此可以先從 SolidWorks 學起</li>
 <li>至於與 SolidWorks 同級的 AutoDesk <span style="background-color: #ffff00;">Inventor</span> 與 Siemens <span style="background-color: #ffff00;">Solid Edge</span> 也有許多業者採用, 因此在學習 SolidWorks 的過程也可以試著利用相似的繪圖概念, 操作相較對教育版使用授權更為寬鬆 (可自由免費使用) 的 Inventor 與 Solid Edge. 看完上述這三套源自美國的 CAD 套件, 也可以試用看看來自中國的<a href="https://www.cadexam.com/soft/459.html">中望 CAD 教育版</a>.</li>
 <li>因為上列中階 MCAD (Mechanical Computer Aided Design) 套件, 除了設計繪圖之外, 都提供常用機械零組件輔助設計的延伸模組 (在 Solid Edge 稱為 <span style="background-color: #ffff00;"><a href="https://www.cadalyst.com/manufacturing/on-edge-engineering-reference-solid-edge-10654" style="background-color: #ffff00;">Engineering Reference</a></span>), 或者試著利用 <span style="background-color: #ffff00;">Python API</span> (非正統, 但透過 <a href="https://zh.wikipedia.org/zh-tw/%E7%BB%84%E4%BB%B6%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B">COM</a> 可以呼叫各種 CAD 所提供的 <a href="https://learn.microsoft.com/en-us/windows/win32/midl/com-dcom-and-type-libraries">Windows Type Libraries</a>), 與上述套件進行互動.</li>
-<li>一旦使用著熟悉電腦輔助機械設計套件建立零組件後, 可以再將學習延伸至 <span style="background-color: #ffff00;">CAE</span> (電腦輔助工程分析), 針對設計環境進行有限元素應力分析或系統的運動 (<span style="background-color: #ffff00;">Kinematics</span>) 或動態 (<span style="background-color: #ffff00;">Dynamics</span>) 分析.</li>
+<li>一旦使用者熟悉電腦輔助機械設計套件建立零組件後, 可以再將學習延伸至 <span style="background-color: #ffff00;">CAE</span> (電腦輔助工程分析), 針對設計環境進行有限元素應力分析或系統的運動 (<span style="background-color: #ffff00;">Kinematics</span>) 或動態 (<span style="background-color: #ffff00;">Dynamics</span>) 分析.</li>
 <li>對中階 MCAD 有一定認識之後, 就可以將學習觸角伸向高階電腦輔助機械設計套件的應用分析, 例如: <span style="background-color: #ffff00;">Siemens NX</span> (<a href="https://nfuedu.sharepoint.com/:u:/s/cad2022/EclS-NMhqJ9JvCa-pIQ_jMsBQB1tipr_Zgc8kT8ha1kMtg?e=RvnCpR">NX2027.3401_lite_cad2022.7z</a> for @nfu users only), 或者是 PTC 的 Creo (有些 MCAD 分類將 Creo 定位為中高階套件), 抑或源自 Dassault 公司的 Catia (目前機械設計系並沒有導入 Catia 與 Creo)</li>
 </ol>
 <p><a href="https://www.youtube.com/watch?v=BXMPY36xWJY">CAD 緣起介紹影片</a></p>
@@ -616,7 +617,7 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p>台灣在模流分析領域自行開發的電腦輔助機械工程分析套件為 <a href="https://www.moldex3d.com/">https://www.moldex3d.com/</a> </p>
 <hr/>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EY9GinJ2ns5Iiy-ih3-y9xwBdgl3H-ajMPZOIxZhd9Nssg?e=jP7Y4T">下載 SolidWorks 2022 安裝檔案</a> (檔案大小 16GB, for @nfu users only, 請先根據安裝序號與認證主機在校園網路中或透過 VPN (從 <a href="https://ecare.nfu.edu.tw/">ecare 登入</a>申請) 連網, 必須完整安裝結束後, 再進行 service pack 更新)</p>
-<p>安裝 SoildWorks 2022 過程畫面 (因為必須在校園內或使用 VPN 認證才能完成安裝, 因此以下直接顯示出 Serialnumber 與認證主機 IP 位址):</p>
+<p>安裝 SoildWorks 2022 過程畫面 (因為必須在校園內或使用 VPN 認證才能完成安裝, 因此以下直接顯示出 Serial Number 與認證主機 IP 位址):</p>
 <p>下載後解開壓縮檔案, 執行 Setup.exe 進行安裝:</p>
 <p><img caption="false" height="353" src="/images/solidworks2022_installation_1.png" width="400"/></p>
 <p>輸入安裝序號, 以下只安裝基本模組, 並沒有勾選其餘套件:</p>
@@ -630,6 +631,22 @@ ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</pre
 <p><img alt="" height="353" src="/images/solidworks2022_installation_6.png" width="400"/></p>
 <p>接著按下確定後, 就可以進行漫長且容量達 20 GB 的 SolidWorks 安裝:</p>
 <p><img alt="" height="353" src="/images/solidworks2022_installation_7.png" width="400"/></p>
+<p>安裝完成之前, 會跳出下列視窗, 可以選擇不參加客戶經驗改進計畫, 或許能讓操作過程更加順暢:</p>
+<p><img alt="" height="353" src="/images/solidworks2022_installation_8.png" width="400"/></p>
+<p>最後按下完成鍵就可以執行 SolidWorks 2022 了.</p>
+<p>啟動時顯示共有 500 個用戶可以同時連線:</p>
+<p><img alt="" height="273" src="/images/solidworks2022_installation_9.png" width="400"/></p>
+<p>啟動時必須允許 SolidWorks 通過公用網路防火牆:</p>
+<p><img alt="" height="293" src="/images/solidworks2022_installation_10.png" width="400"/></p>
+<p>而且必須接受 SolidWorks 的使用授權:</p>
+<p><img alt="" height="293" src="/images/solidworks2022_installation_11.png" width="400"/></p>
+<p>然後還要進行各模組的資料更新, 以下選擇更新所有模組:</p>
+<p><img alt="" height="290" src="/images/solidworks2022_installation_12.png" width="400"/></p>
+<p>更新完成後, 在開始選單中執行 SOLIDWORKS 2022, 然後同意使用授權:</p>
+<p><img alt="" height="347" src="/images/solidworks2022_installation_13.png" width="400"/></p>
+<p>終於可以使用這個佔用 20GB 硬碟資料的 SolidWorks 了:</p>
+<p><img alt="" height="216" src="/images/solidworks2022_installation_14.png" width="400"/></p>
+<p></p>
 <p><br/><br/></p>
 <div id="gtx-trans" style="position: absolute; left: -10px; top: 340.719px;">
 <div class="gtx-trans-icon"></div>
@@ -1297,7 +1314,7 @@ print(output)
 <p style="padding-left: 30px;">瞭解業界常用的操作系統除了 Windows, 還有 <a href="https://zh.wikipedia.org/zh-tw/linux">Linux</a> (<a href="https://zh.wikipedia.org/zh-tw/UNIX">Unix</a>) 以及 <a href="https://zh.wikipedia.org/wiki/%E9%BA%A6%E9%87%91%E5%A1%94%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">Mac OS</a>: <a href="https://link.springer.com/book/10.1007/978-1-4842-3000-8">2017 Beginning Ubuntu for Windows and Mac Users 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">便於涉入 Robotics 機器人領域: <a href="https://link.springer.com/book/10.1007/978-1-4842-7750-8">2022 Robot Operating System (ROS) for Absolute Beginners 電子書</a> (可在學校網路下載)</p>
 <p style="padding-left: 30px;">想要跨操作系統進行程式開發: <a href="https://link.springer.com/book/10.1007/978-1-4842-6873-5">2021 Pro Windows Subsystem for Linux (WSL) 電子書</a> (可在學校網路下載)</p>
-<hr>
+<hr/>
 <p>若要讓虛擬主機作為 Server 直接連外, 虛擬網路卡可設為 Bridged, 以橋接從宿主電腦的實體網路卡對外連線.</p>
 <p style="padding-left: 30px;">Network 設為橋接 (Bridged):</p>
 <p style="padding-left: 60px;">disable IPv4</p>
@@ -2336,7 +2353,7 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr><!-- ########################################## -->
+<!-- editor1 結束 --><hr/><!-- ########################################## -->
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
@@ -3622,4 +3639,4 @@ auto_tetris = button2(auto_tetris_url)
 doc["auto_tetris"].bind("click", auto_tetris.do)
 ################################## auto tetris end
 </script>
-</p></hr></hr>
+</p>
