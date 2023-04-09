@@ -1797,7 +1797,115 @@ input.accept = "image/*"
 input.capture = "camera"
 input.bind("change", handle_files)
 document &lt;= input</pre>
-<h2>3D Parts</h2>
+<p>use to upload files:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Plupload Example&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/css/jquery.plupload.queue.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="uploader"&gt;
+        &lt;p&gt;Your browser doesn't have Flash, Silverlight or HTML5 support.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/plupload.full.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/jquery.plupload.queue/jquery.plupload.queue.min.js"&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+        $(function() {
+            $("#uploader").pluploadQueue({
+                runtimes : 'html5,flash,silverlight,html4',
+                url : '/upload',
+                chunk_size : '1mb',
+                unique_names : true,
+                filters : {
+                    max_file_size : '10mb',
+                    mime_types: [
+                        {title : "Image files", extensions : "jpg,gif,png"},
+                        {title : "Zip files", extensions : "zip"}
+                    ]
+                },
+                flash_swf_url : 'https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/Moxie.swf',
+                silverlight_xap_url : 'https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/Moxie.xap'
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>reduce image file before upload</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Plupload Example&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/css/jquery.plupload.queue.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="uploader"&gt;
+        &lt;p&gt;Your browser doesn't have HTML5 support.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/plupload.full.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.2/jquery.plupload.queue/jquery.plupload.queue.min.js"&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+        $(function() {
+            $("#uploader").pluploadQueue({
+                runtimes : 'html5',
+                url : '/upload',
+                chunk_size : '1mb',
+                unique_names : true,
+                filters : {
+                    max_file_size : '10mb',
+                    mime_types: [
+                        {title : "Image files", extensions : "jpg,gif,png"},
+                        {title : "Zip files", extensions : "zip"}
+                    ]
+                },
+                resize: {
+                    width: 800,
+                    height: 600,
+                    quality: 90
+                }
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>Flask server side to receive upload file in chunk:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import os
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    chunk = request.form.get('chunk', '0')
+    chunks = request.form.get('chunks', '0')
+    filename = request.form.get('name', '')
+
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+
+    with open(os.path.join('temp', filename + '.part' + chunk), 'wb') as f:
+        f.write(file.stream.read())
+
+    if int(chunk) + 1 == int(chunks):
+        with open(os.path.join('uploads', filename), 'wb') as f:
+            for i in range(int(chunks)):
+                part_filename = os.path.join('temp', filename + '.part' + str(i))
+                with open(part_filename, 'rb') as part_file:
+                    f.write(part_file.read())
+                os.remove(part_filename)
+
+    return 'OK'
+
+if __name__ == '__main__':
+    app.run()</pre>
+<p></p><h2>3D Parts</h2>
 <p>use Brython with <a href="https://github.com/omrips/viewstl">https://github.com/omrips/viewstl</a> to view 3D parts in STL format</p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -1844,7 +1952,103 @@ loader.load("/downloads/block100.stl", on_load)
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/stl-loader@1.0.0/STLLoader.min.js"></script>
-<h2>Brython_Flask</h2>
+<h3>Threejs</h3>
+<p>import two stl parts and use mouse to move part around:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+const loader = new THREE.STLLoader();
+
+let mesh1, mesh2;
+
+loader.load('part1.stl', function (geometry) {
+    const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+    mesh1 = new THREE.Mesh(geometry, material);
+    scene.add(mesh1);
+});
+
+loader.load('part2.stl', function (geometry) {
+    const material = new THREE.MeshBasicMaterial({color: 0xff0000});
+    mesh2 = new THREE.Mesh(geometry, material);
+    scene.add(mesh2);
+});
+
+camera.position.z = 5;
+
+const dragControls = new THREE.DragControls([mesh1, mesh2], camera, renderer.domElement);
+dragControls.addEventListener('dragstart', function (event) {
+    controls.enabled = false;
+});
+dragControls.addEventListener('dragend', function (event) {
+    controls.enabled = true;
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+animate();</pre>
+<p>use Brython to rewrite the above program:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, window
+
+THREE = window.THREE
+
+scene = THREE.Scene.new()
+camera = THREE.PerspectiveCamera.new(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+
+renderer = THREE.WebGLRenderer.new()
+renderer.setSize(window.innerWidth, window.innerHeight)
+document.body.appendChild(renderer.domElement)
+
+controls = THREE.OrbitControls.new(camera, renderer.domElement)
+
+loader = THREE.STLLoader.new()
+
+mesh1 = None
+mesh2 = None
+
+def onPart1Load(geometry):
+    global mesh1
+    material = THREE.MeshBasicMaterial.new({"color": 0x00ff00})
+    mesh1 = THREE.Mesh.new(geometry, material)
+    scene.add(mesh1)
+
+loader.load('part1.stl', onPart1Load)
+
+def onPart2Load(geometry):
+    global mesh2
+    material = THREE.MeshBasicMaterial.new({"color": 0xff0000})
+    mesh2 = THREE.Mesh.new(geometry, material)
+    scene.add(mesh2)
+
+loader.load('part2.stl', onPart2Load)
+
+camera.position.z = 5
+
+dragControls = THREE.DragControls.new([mesh1, mesh2], camera, renderer.domElement)
+
+def onDragStart(event):
+    controls.enabled = False
+
+dragControls.addEventListener('dragstart', onDragStart)
+
+def onDragEnd(event):
+    controls.enabled = True
+
+dragControls.addEventListener('dragend', onDragEnd)
+
+def animate():
+    window.requestAnimationFrame(animate)
+    renderer.render(scene, camera)
+
+animate()</pre>
+<p></p><h2>Brython_Flask</h2>
 <p>An example of a Brython front-end and Flask back-end that allows you to retrieve GitHub collaborators by knowing the public repository URL.</p>
 <p>Flask side:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
