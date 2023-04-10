@@ -931,7 +931,7 @@ subst %Disk%: /D
 REM 關閉 cmd 指令視窗
 taskkill /IM cmd.exe /F
 
-EXIT</pre><h3>w2-w6</h3>
+EXIT</pre><h3>w2-w8</h3>
 <p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EWHmUoI6S_lGt9l6lr1rAigB7OyGECvBqca2XvF9fxymZw?e=1OC1YL">w6 利用下列第五版可攜程式從倉儲建立網站.mp4</a></p>
 <p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EegNjb-jkRFNoKJf2dD3MQEBkrJplqtKK9g0er-DktDODg?e=IetGT3">w6 利用 token 進行改版 git push.mp4</a></p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EV5lw40RXvNFue1Cr2sivioBuOj_QA5KzAxDMU0Mkf7z8w?e=NtOJeN">wcm_portable_w2-5.7z</a> (下載 220MB 解開後 880MB)</p>
@@ -1066,6 +1066,9 @@ for i in data[1:-1]:
 <p>git config --global http.proxy "<a href='http://p4.cycu.org:3128"'>http://p4.cycu.org:3128"</a></p>
 <p>git config --global user.name "scrum-1"</p>
 <p>git config --global user.email "scrum1@mde.tw"</p>
+<h3>機電模擬</h3>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/ESSpGnPyEVFIuPh6UHQ3ln0B7t5kT4uJlHrF0IjF9d-dTg?e=OATlkN">說明如何透過 zmq 以 arrow keys 控制 BubbleRob 雙輪車.mp4</a></p>
+<p><a href="https://mde.tw/cd2023/downloads/bubbleRob_zmq_examples.7z">假如採用 zmqRemoteApi 對 BubbleRob 進行操控的參考程式.7z</a></p>
 <h3>newbing</h3>
 <p>提問: write me a python program to solve ordinary differential equation</p>
 <p>回答:</p>
@@ -1874,6 +1877,37 @@ document &lt;= input</pre>
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
+<p>Flask server side to receive upload file in chunk:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request
+import os
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    chunk = request.form.get('chunk', '0')
+    chunks = request.form.get('chunks', '0')
+    filename = request.form.get('name', '')
+
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+
+    with open(os.path.join('temp', filename + '.part' + chunk), 'wb') as f:
+        f.write(file.stream.read())
+
+    if int(chunk) + 1 == int(chunks):
+        with open(os.path.join('uploads', filename), 'wb') as f:
+            for i in range(int(chunks)):
+                part_filename = os.path.join('temp', filename + '.part' + str(i))
+                with open(part_filename, 'rb') as part_file:
+                    f.write(part_file.read())
+                os.remove(part_filename)
+
+    return 'OK'
+
+if __name__ == '__main__':
+    app.run()</pre>
 <p></p><h2>3D Parts</h2>
 <p>use Brython with <a href="https://github.com/omrips/viewstl">https://github.com/omrips/viewstl</a> to view 3D parts in STL format</p>
 <script src="/static/brython.js"></script>
