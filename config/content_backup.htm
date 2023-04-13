@@ -13,6 +13,7 @@
 <p>課程靜態網頁: <a href="https://mde.tw/wcm2023">https://mde.tw/wcm2023</a></p>
 <p>MS Teams: sblk6ao (for @nfu users only)</p>
 <p>1a 修課學員: <a href="https://nfu.cycu.org/?semester=1112&amp;courseno=0739&amp;column=True">https://nfu.cycu.org/?semester=1112&amp;courseno=0739&amp;column=True</a> </p>
+<p>5j 修課學員: <a href="https://nfu.cycu.org/?semester=1112&amp;courseno=2464&amp;column=True">https://nfu.cycu.org/?semester=1112&amp;courseno=2464&amp;column=True</a> </p>
 <p>本課程在使用並研究如何改善 <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> 網際內容管理系統.</p>
 <p>本課程要求學員下載下載</p>
 <ol>
@@ -23,8 +24,7 @@
 <p>有關如何自行製作可攜 Python 程式套件, 請參考 <a href="https://mde.tw/wcm2023/content/Python.html">https://mde.tw/wcm2023/content/Python.html</a> 說明.</p>
 <p>行事曆</p>
 <p><a href="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei">全頁檢視</a></p>
-<p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p>
-<h2>Motivation</h2>
+<p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p><h2>Motivation</h2>
 <p>學習網際內容管理的動機:</p>
 <p style="padding-left: 30px;">將數位內容放入 www 伺服器, 以方便維護管理及展示</p>
 <p>網際內容管理牽涉:</p>
@@ -1061,6 +1061,18 @@ for i in data[1:-1]:
 <li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
 </ol>
 <h3>建網頁</h3>
+<p>從個人的 site-帳號 建立網頁的流程:</p>
+<ol>
+<li>git clone 倉儲到近端</li>
+<li>add <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> 倉儲</li>
+<li>將 up_dir 內容複製到個人倉儲的根目錄</li>
+<li>有關提交 (git config - 設定存至可攜 home 目錄中的 .gitconfig)與推送 (htts by token, SSH by keys) 的設定</li>
+<li>配合將 github.com 上的倉儲設為 Github Pages, 把 main 分支設為網頁根目錄</li>
+</ol>
+<p>https token 必須勾選 repo 權限, 若要利用 Github Actions, 則同時勾選 Actions</p>
+<p>SSH - 分為 Windows 採 Putty 設定, Ubuntu 採 ncat 設定.</p>
+<p>相關說明請參考: <a href="http://mde.tw/content/Token%20and%20SSH.html">mde.tw</a></p>
+<hr/>
 <p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EV5lw40RXvNFue1Cr2sivioBuOj_QA5KzAxDMU0Mkf7z8w?e=NtOJeN">wcm_portable_w2-5.7z</a> (下載 220MB 解開後 880MB)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EfxPBN4umu1JlOhrosRe32wBbB5g3jUPZUaoRS3PFv7ARA?e=OWe7en">miktex_portable.7z</a> (下載 314MB 解開後 964MB)</p>
@@ -1088,8 +1100,7 @@ for i in data[1:-1]:
 	email = scrum1@mde.tw</pre>
 <p>git config --global http.proxy "<a href='http://p4.cycu.org:3128"'>http://p4.cycu.org:3128"</a></p>
 <p>git config --global user.name "scrum-1"</p>
-<p>git config --global user.email "scrum1@mde.tw"</p>
-<h3>機電模擬</h3>
+<p>git config --global user.email "scrum1@mde.tw"</p><h3>機電模擬</h3>
 <p>使用工具:</p>
 <p style="padding-left: 30px;"><a href="https://www.coppeliarobotics.com/">https://www.coppeliarobotics.com/</a></p>
 <p style="padding-left: 30px;"><a href="https://nfuedu.sharepoint.com/:u:/s/cad2022/EWdB5MhlZRJKjt5UiNRebR8BN6_AmU0IX1HC7Y6dnRBzQw?e=dLPcDi">Download CoppeliasimEdu_4.3.0rev12.7z</a><span> </span>(for @nfu users only)</p>
@@ -1367,7 +1378,7 @@ print(output)
 <p>若虛擬主機並不上網, 而是要在宿主中設定多台互相連線的虛擬主機, 則可將虛擬網路卡設為 Host only, 各虛擬主機則使用自訂的內部網路位址區段進行設定.</p>
 <p style="padding-left: 30px;">Network 設為 Host only:</p>
 <p style="padding-left: 60px;">虛擬主機可經由內部網路區段與宿主電腦連接.</p>
-<hr/>
+<hr>
 <p>學習 Ubuntu 最好的方式之一是採用虛擬主機, 無論在網路修改設定或相關套件安裝測試, 都能採用與實體主機相同的方式進行.</p>
 <p>安裝 Ubuntu 操作系統最重要的步驟, 應該是網路設定:</p>
 <p>當 Ubuntu 操作系統網路設定完成後, 通常會進行系統更新:</p>
@@ -2716,7 +2727,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/>
+<!-- editor2 結束 --><hr>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
 </p>
@@ -3886,4 +3897,4 @@ auto_tetris = button2(auto_tetris_url)
 doc["auto_tetris"].bind("click", auto_tetris.do)
 ################################## auto tetris end
 </script>
-</p>
+</p></hr></hr>
