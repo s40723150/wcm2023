@@ -142,6 +142,12 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image<br /><h1>cmsimde</h1>
+<p>cmsimde 動態網站運作原理:</p>
+<p>利用 Python 的 bs4 與 lxml 模組 對 config/content.htm 超文件檔案<span style="background-color: #ffff00;">進行分頁</span>, 而分頁的依據是透過檔案中的 <span style="color: #ffff00;">H1, H2 或 H3 標註進行切割</span>, 若該頁面為  H1, 則在頁面表單中列為最外圍的網頁, 若是 H2, 則列為第二階頁面, 而 H3 則列為第三階頁面.</p>
+<p>換言之, 利用 cmsimde 建立的動態網站, 是<span style="background-color: #ffff00;">以 Python + Flask 框架所寫的全球資訊網網站建構程式</span>, 動態網站的目的主要是之後要將網站轉為<span style="background-color: #ffff00;">只帶有 css, html 與 Javascript 的靜態網頁</span>內容. 並將靜態網頁內容與 Github Pages 結合,  以 Github 的全球資訊網伺服器建構網站 (靜態網站).</p>
+<p>由於 cmsimde 採超文件前三個 H 標註進行分頁, 若 config/content.htm 中<span style="background-color: #ffff00;">無任何分頁標題的標註</span>, 在分頁過程就會產生錯誤.</p>
+<p>另外, cmsimde 動態網站登入的權限設為 <span style="background-color: #ffff00;">local 事項</span>, 表示 config/config  中所儲存的密碼編碼, 只會對近端的指令有效. 一旦忘記密碼或密碼已經被更動, 則可<span style="background-color: #ffff00;">刪除 config/config</span> 檔案後, 執行動態網站時, 密碼就會 <span style="background-color: #ffff00;">reset 為 admin</span>.</p>
+<hr/>
 <p>有關 cmsimde 與 github pages:</p>
 <ol>
 <li>cmsimde 是一套利用 Python 程式語言編寫的網際內容管理系統</li>
@@ -162,8 +168,7 @@ img.add_border {
 <ol>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol>
-<br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image</div>
+</ol><br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image</div>
         
     <!-- footer -->
       <div class="container">
