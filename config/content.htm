@@ -1065,7 +1065,137 @@ for i in data[1:-1]:
 <li>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰. token 取得後, 必須放到倉儲 .git 目錄中 config 檔案裡的 url 連結, 也就是放在 https:// 之後, github.com 之前, 且在 token 與 github.com 中間加上 @ 符號.</li>
 <li>當個人倉儲中的 cmsimde 放入, 且 up_dir 目錄取出到倉儲根目錄後, 使用者在可攜程式環境中的命令列, 就可以 cd 進入個人倉儲目錄後, 執行 cms.bat 執行動態網站, 之後用瀏覽器連結, 以 admin 共用密碼登入管理.</li>
 <li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
-</ol><h3>建網頁</h3>
+</ol><h3>w9</h3>
+<p>本頁面的<a href="/downloads/w9_html.7z">超文件內容.7z</a></p>
+<p>先前考過五次線上考試的成績列表, 讀出後可以列出各學員的平均分數:</p>
+<p>new bing 建議採取的程式內容為:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html, document
+brython_div = document["brython_div"]
+# Example data for five tests
+url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
+url2 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt"
+url3 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt"
+url4 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt"
+url5 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"
+
+'''
+test1 = ["12345:80", "67890:70"]
+test2 = ["12345:85", "67890:75"]
+test3 = ["12345:90", "67890:80"]
+test4 = ["12345:95", "67890:85"]
+test5 = ["12345:100", "67890:90"]
+'''
+test1 = open(url1).read().split("\n")[1:]
+test2 = open(url2).read().split("\n")[1:]
+test3 = open(url3).read().split("\n")[1:]
+test4 = open(url4).read().split("\n")[1:]
+test5 = open(url5).read().split("\n")[1:]
+
+
+# Create a dictionary to store the student numbers and their test scores
+student_scores = {}
+ 
+# Iterate over the data for each test
+for test_data in [test1, test2, test3, test4, test5]:
+    # Iterate over the data for this test
+    for item in test_data:
+        # Split the item into its components
+        student_number, score = item.split(":")
+         
+        # Convert the score to an integer
+        try:
+            score = int(score)
+        except:
+            score = 0
+         
+        # Add the score to the list of scores for this student
+        if student_number not in student_scores:
+            student_scores[student_number] = []
+        student_scores[student_number].append(score)
+ 
+# Calculate the average score for each student
+for student_number, scores in student_scores.items():
+    average_score = int(sum(scores) / len(scores))
+    #print(f"Student {student_number} has an average score of {average_score}")
+    brython_div &lt;= student_number
+    brython_div &lt;= ":"
+    brython_div &lt;= average_score
+    brython_div &lt;= html.BR()
+
+brython_div &lt;= data</pre>
+<p>將上述程式, 在本頁面導入 Brython 環境後, 可以直接執行, 並且將結果以 Brython browser 的 html 模組列在頁面中:</p>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div"></div>
+<p>
+<script type="text/python">
+from browser import html, document
+brython_div = document["brython_div"]
+# Example data for five tests
+url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
+url2 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt"
+url3 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt"
+url4 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt"
+url5 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"
+
+'''
+test1 = ["12345:80", "67890:70"]
+test2 = ["12345:85", "67890:75"]
+test3 = ["12345:90", "67890:80"]
+test4 = ["12345:95", "67890:85"]
+test5 = ["12345:100", "67890:90"]
+'''
+test1 = open(url1).read().split("\n")[1:]
+test2 = open(url2).read().split("\n")[1:]
+test3 = open(url3).read().split("\n")[1:]
+test4 = open(url4).read().split("\n")[1:]
+test5 = open(url5).read().split("\n")[1:]
+
+
+# Create a dictionary to store the student numbers and their test scores
+student_scores = {}
+ 
+# Iterate over the data for each test
+for test_data in [test1, test2, test3, test4, test5]:
+    # Iterate over the data for this test
+    for item in test_data:
+        # Split the item into its components
+        student_number, score = item.split(":")
+         
+        # Convert the score to an integer
+        try:
+            score = int(score)
+        except:
+            score = 0
+         
+        # Add the score to the list of scores for this student
+        if student_number not in student_scores:
+            student_scores[student_number] = []
+        student_scores[student_number].append(score)
+ 
+# Calculate the average score for each student
+for student_number, scores in student_scores.items():
+    average_score = int(sum(scores) / len(scores))
+    #print(f"Student {student_number} has an average score of {average_score}")
+    brython_div <= student_number
+    brython_div <= ":"
+    brython_div <= average_score
+    brython_div <= html.BR()
+
+brython_div <= data
+</script>
+</p><h3>建網頁</h3>
 <p>從個人的 site-帳號 建立網頁的流程:</p>
 <ol>
 <li>git clone 倉儲到近端</li>
@@ -2321,9 +2451,22 @@ document['get-collaborators'].bind('click', get_collaborators)
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 <p></p>
-<h2>JSMind</h2>
-<p><a href="https://github.com/hizzgdev/jsmind">https://github.com/hizzgdev/jsmind</a> </p>
-<h1>LaTeX</h1>
+<h2>Virtualbox</h2>
+<p>Network setup:</p>
+<p>NAT:</p>
+<p>VirtualBox NAT (Network Address Translation) network is a type of virtual network that allows a virtual machine to access the internet using the host machine’s internet connection. This is useful when you want to provide internet access to a guest system without having to configure a bridged or host-only network.</p>
+<p>Host only:</p>
+<p>When host-only networking is used, VirtualBox creates a new software interface on the host which then appears next to your existing network interfaces. This allows for communication between the host and the guest systems, but the guest systems cannot access the internet through this network.</p>
+<p>Host-only networking is useful when you want to create a network that contains only the host and the guest systems. This can be useful for testing network configurations, setting up a development environment, or creating a private network for file sharing or other purposes. Since the guest systems cannot access the internet through this network, it also provides an additional layer of security.</p>
+<p>Bridged:</p>
+<p>With bridged networking, VirtualBox uses a device driver on your host system that filters data from your physical network adapter. This allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When a guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. This means that you can set up routing or bridging between the guest and the rest of your network</p>
+<p>Internal:</p>
+<p>Internal networking, which allows you to create a network that is completely contained within the host system and is not visible to the outside world. There is also Generic networking, which allows you to use third-party drivers to create custom virtual networks.</p>
+<hr/>
+<p>因為同一個 Virtualbox 下的虛擬主機檔案都必須用有獨一的 uuid, 因此若經由檔案複製產生虛擬主機檔案, 就必須修改其中一個主機檔案的 <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">uuid</a>.</p>
+<p>Modify uuid of virtual system file:</p>
+<p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid &lt;path to vdi file&gt;</p><h2>JSMind</h2>
+<p><a href="https://github.com/hizzgdev/jsmind">https://github.com/hizzgdev/jsmind</a> </p><h1>LaTeX</h1>
 <p>LaTeX 是一種基於 TeX(<a href="https://ctan.org/tex-archive/systems/knuth/dist/tex">https://ctan.org/tex-archive/systems/knuth/dist/tex</a>) 的 macro-package: <a href="https://github.com/latex3/">https://github.com/latex3/</a></p>
 <p>TeX book 的原始碼: <a href="http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex">http://mirrors.ctan.org/systems/knuth/dist/tex/texbook.tex</a></p>
 <p>新手入門 LaTeX:</p>

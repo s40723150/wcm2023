@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,114 +141,21 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">行前準備 << <a href='行前準備.html'>Previous</a> <a href='w9.html'>Next</a> >> w9<br /><h1>w2-w8</h1>
-<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EZLrP2sxF3JDqbTbEqQfQBQBCiH7SgznX6a3V03EbvpmVw?e=g4eChp">cdwin_vdi.7z</a> (for @nfu users only)</p>
-<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EWHmUoI6S_lGt9l6lr1rAigB7OyGECvBqca2XvF9fxymZw?e=1OC1YL">w6 利用下列第五版可攜程式從倉儲建立網站.mp4</a></p>
-<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EegNjb-jkRFNoKJf2dD3MQEBkrJplqtKK9g0er-DktDODg?e=IetGT3">w6 利用 token 進行改版 git push.mp4</a></p>
-<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EV5lw40RXvNFue1Cr2sivioBuOj_QA5KzAxDMU0Mkf7z8w?e=NtOJeN">wcm_portable_w2-5.7z</a> (下載 220MB 解開後 880MB)</p>
-<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EfxPBN4umu1JlOhrosRe32wBbB5g3jUPZUaoRS3PFv7ARA?e=OWe7en">miktex_portable.7z</a> (下載 314MB 解開後 964MB)</p>
-<p>納入 Portable MiKTeX 之後的 可攜 Python 程式套件: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ecr0uG0UzJlBtwpYzztBupUBkUdQsQgmd9PWzfjTZBsB8w?e=zlb42j">wcm_portable_w2-4-miktex.7z</a></p>
-<p>電腦輔助機械設計套件 - <a href="https://solidedge.siemens.com/en/solutions/users/hobbyists-and-makers/">community 版 Siemens Solid Edge</a> - <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a> (建議在有還原卡或虛擬主機中使用, for @nfu users only)</p>
+    <div id="tipue_search_content">Brython_Flask << <a href='Brython_Flask.html'>Previous</a> <a href='JSMind.html'>Next</a> >> JSMind<br /><h1>Virtualbox</h1>
+<p>Network setup:</p>
+<p>NAT:</p>
+<p>VirtualBox NAT (Network Address Translation) network is a type of virtual network that allows a virtual machine to access the internet using the host machine’s internet connection. This is useful when you want to provide internet access to a guest system without having to configure a bridged or host-only network.</p>
+<p>Host only:</p>
+<p>When host-only networking is used, VirtualBox creates a new software interface on the host which then appears next to your existing network interfaces. This allows for communication between the host and the guest systems, but the guest systems cannot access the internet through this network.</p>
+<p>Host-only networking is useful when you want to create a network that contains only the host and the guest systems. This can be useful for testing network configurations, setting up a development environment, or creating a private network for file sharing or other purposes. Since the guest systems cannot access the internet through this network, it also provides an additional layer of security.</p>
+<p>Bridged:</p>
+<p>With bridged networking, VirtualBox uses a device driver on your host system that filters data from your physical network adapter. This allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When a guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. This means that you can set up routing or bridging between the guest and the rest of your network</p>
+<p>Internal:</p>
+<p>Internal networking, which allows you to create a network that is completely contained within the host system and is not visible to the outside world. There is also Generic networking, which allows you to use third-party drivers to create custom virtual networks.</p>
 <hr/>
-<p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EVdigN-bvp9BoLQnMBJHW_QBvYjTxSiiAF4FYvenXUYtUQ?e=Tcj4rN">說明如何建立可攜 Python 第一步.mp4</a> (Python, SciTE, pip)</p>
-<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EaCCYSDwemdEgl_YUiwNglEByPmHyHFW9CboFFS7ao1hLw?e=seZeSo">wcm_portable_w2-1.7z</a></p>
-<p>為了執行 cmsimde, 需要安裝以下模組:</p>
-<p style="padding-left: 30px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
-<p>為了使用 git, 必須下載 portablegit:</p>
-<p style="padding-left: 30px;"><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>  (取得 portable)</p>
-<p style="padding-left: 30px;"><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a> (中文版 git book)</p>
-<p>Windows 命令列中的常用指令:</p>
-<p>cd - change directory</p>
-<p>dir - show directory content</p>
-<p>y:\&gt; 代表目前位於 Y 槽根目錄, 以 &gt; 作為 prompt (回應), 等待使用者輸入指令</p>
-<p><span>y:\&gt;c: 表示要從 Y 切換到 C</span></p>
-<p><span>cd \ 因為 "\" 代表根目錄.</span></p>
-<hr/>
-<p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EZNog084xGJEuyfPk_zQchEBzyGhwXRAs5cuWsAScLMDFQ?e=85DhLj">說明如何利用 pip 安裝 cmimse 所需模組.mp4</a>, 並下載 <a href="https://git-scm.com/download/win">portablegit</a> 以及指定 <a href="https://github.com/mdewcm2023">site</a> 作業 (取得作業連結請參考 Team 中的連結)</p>
-<p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXQljJw1yE9At9MDkIklVFAB9Ef3q59sTJnbRiVWOSSGdw?e=AtNFlJ">wcm_portable_w2-2.7z</a></p>
-<h4>w3 筆記</h4>
-<p>Windows 利用 Ctrl + Shift + Esc 帶出工作管理員中的效能, 可以檢視電腦硬體與網路的運作狀況.</p>
-<p>檢查電腦 services, 開始 -&gt; 滑鼠右鍵帶出電腦管理 -&gt; 服務與應用程式 可以查看電腦目前所設定或啟動的 services</p>
-<p>從上述第二版可攜 Python 轉進第三版:</p>
-<p>進行下列修改:</p>
-<ol>
-<li>建立 home_ipv6 目錄下的 DeskTop 目錄 (與 AppData 接受程式執行時的暫存檔案)</li>
-<li>編輯 python.properties 將 line 153 改為: python.command=pythonw</li>
-<li>編輯 SciTEGlobal.properties 將 line 162 改為: load.on.activate=1 (若編輯中的檔案在其他應用程式修 改後, 可直接在 SciTE 中自動 load.</li>
-<li>編輯 SciTEGlobal.properties 將 line 204 改為: tabsize=4</li>
-<li>編輯 SciTEGlobal.properties 將 line 205 改為: indent.size=4</li>
-<li>編輯 SciTEGlobal.properties 將 line 335 # 拿掉 (code.page=65001, 表示編輯區使用 UTF-8 編碼)</li>
-<li>編輯 SciTEGlobal.properties 將 line 336 以 # 蓋掉 (code.page=0, 表示要用系統的中文編碼, 也就是 big-5)</li>
-</ol>
-<p>修改之後的可攜 Python: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/ESbmgwyK-5xGj9A18njOsXoBOmk8gsB0317yaUD3jnK2wQ?e=oOsAnr">wcm_portable_w2-3.7z</a></p>
-<hr/>
-<p>學號@gm.nfu.edu.tw 為 Gmail 系統, 目前學校已經將此電子郵箱落日, 新生已經不再發送此 @gm 的郵箱.</p>
-<p>學號@nfu.edu.tw 為 Mail 2000 系統,  可以從 <a href="https://mail.nfu.edu.tw">https://mail.nfu.edu.tw</a> 以個人學號及自行設定的密碼登入.</p>
-<p>上述兩種教育版的電子信箱 (都有 nfu.edu.tw 符號名稱), 都可以從 <a href="https://www.microsoft.com/zh-tw/education/products/office">https://www.microsoft.com/zh-tw/education/products/office</a> 登記 onedrive 帳號, 個取得 5T 雲端容量.</p>
-<p>但 wcm2023 Teams 只支援 @nfu 帳號登入, 且登入後, 可以透過 MS Teams: sblk6ao (for @nfu users only) 進入網際內容管理團隊上課.</p>
-<hr/>
-<p>有關學員學號與 github 帳號的對應資料存入 <a href="https://github.com/mdecycu/studlist">https://github.com/mdecycu/studlist</a>, 網頁位於: <a href="https://mde.tw/studlist/2023spring/1a.txt">https://mde.tw/studlist/2023spring/1a.txt</a></p>
-<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/Ef5iQXdMRuBKgLDfRVO_SZUB5fFBsycGgl8hNX9yZf5pAQ?e=FaAGir">四技第四週進度提醒.mp4</a></p>
-<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EYbip3FksIpJihrIQqTVNB4BhvQZKoL3Fxu4RiRTECWdQQ?e=AEaVel">四技第四週第二部影片 - cmsimde 網站建立.mp4</a></p>
-<p>以下則為 wcm2023 各學員的網頁與倉儲:</p>
-<p>
-<script src="./../cmsimde/static/brython.js"></script>
-<script src="./../cmsimde/static/brython_stdlib.js"></script>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/']});
-}
-</script>
-</p>
-<p id="brython_div1"></p>
-<p>
-<script type="text/python3">
-# 從 Brython 的 browser 模組導入 document 與 html 程式庫
-from browser import document, html
-
-brython_div1 = document["brython_div1"]
-try:
-    c = document.query["c"]
-except:
-    c = "1a"
-url = "https://mde.tw/studlist/2023spring/" + c + ".txt"
-data = open(url).read().split("\n")
-url_template = "https://mdewcm2023.github.io/site-"
-repo_template = "https://github.com/mdewcm2023/site-"
-for i in data[1:-1]:
-    num_github = i.split("\t")
-    num =  num_github[0]
-    if num_github[1] == "":
-        github = str(num)
-    else:
-        github = num_github[1]
-    #print(num, github)
-    url_link = html.A(str(num), href=url_template + str(github))
-    repo_link = html.A("repo", href=repo_template + str(github))
-    brython_div1 <= url_link
-    brython_div1 <= " (" + repo_link + ")"
-    brython_div1 <= html.BR()
-</script>
-</p>
-<hr/>
-<p>w5 進度</p>
-<ol>
-<li>建立 1a 學員 <a href="https://exam.cycu.org">https://exam.cycu.org</a> 考試帳號</li>
-<li>提供 Solid Edge 2023 <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/Ef9XW25wCPtCspWavfXRQkYBKeFkOnZDfMyA3Q-1DRhDNA?e=grfmFo">可攜版下載</a><span><span> (for @nfu users only)</span></span></li>
-<li>在個人 site-github帳號 網頁中寫 Brython 程式</li>
-<li>如何在 stud2.cycu.org 中配置個人的動態網站</li>
-</ol>
-<p>可以使用電腦輔助設計室中 C:\2021_cadlab_portable 的程式系統, 雙點擊 start_ipv6.bat, 啟動後, 檢查是否符合執行 cmsimde 網站.</p>
-<p>cmsimde 倉儲網址: <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> </p>
-<p>原先電腦輔助設計室的 Wifi: 801WIFI 並沒有將 IPv4 與 IPv6 協定同時啟用, 目前已經修改, 因此只要在 Wifi 連線後, 將其對應的雙協定啟用後, 將可取得 192.168.50.X 與 2001:288:6004:17:: 等兩組 IP, 同時以 IPv4 與 IPv6 網路協定上網.</p>
-<p>利用 cmsimde 將個人的倉儲轉為可動態啟動網站, 也可將動態網站內容轉為靜態網站的步驟:</p>
-<ol>
-<li>github 上的倉儲必須先設定 Github Pages, 將主倉儲設為網站的根目錄.</li>
-<li>將倉儲 git clone 到近端後, 必須將 cmsimde 倉儲內容放入個人倉儲中, 且目錄名稱必須為 cmsimde, 同時將 cmsimde 中 up_dir 的目錄內容複製到個人倉儲的根目錄.</li>
-<li>由於上述兩個動作, 近端倉儲設定好 cmsimde 動態與靜態網站架構後, 必須擁有修改遠端倉儲的權限, 而此權限, 可以透過 github 帳號下的 token 或 SSH 協定進行配置, 若採 token, 取得管理倉儲的權限, 則該 token 必須在有效期間內, 具備管理 repo 的權限. 若採 SSH,  則近端 session 對應必須設定與 github 上公鑰對應的私鑰. token 取得後, 必須放到倉儲 .git 目錄中 config 檔案裡的 url 連結, 也就是放在 https:// 之後, github.com 之前, 且在 token 與 github.com 中間加上 @ 符號.</li>
-<li>當個人倉儲中的 cmsimde 放入, 且 up_dir 目錄取出到倉儲根目錄後, 使用者在可攜程式環境中的命令列, 就可以 cd 進入個人倉儲目錄後, 執行 cms.bat 執行動態網站, 之後用瀏覽器連結, 以 admin 共用密碼登入管理.</li>
-<li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
-</ol><br />行前準備 << <a href='行前準備.html'>Previous</a> <a href='w9.html'>Next</a> >> w9</div>
+<p>因為同一個 Virtualbox 下的虛擬主機檔案都必須用有獨一的 uuid, 因此若經由檔案複製產生虛擬主機檔案, 就必須修改其中一個主機檔案的 <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">uuid</a>.</p>
+<p>Modify uuid of virtual system file:</p>
+<p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid &lt;path to vdi file&gt;</p><br />Brython_Flask << <a href='Brython_Flask.html'>Previous</a> <a href='JSMind.html'>Next</a> >> JSMind</div>
         
     <!-- footer -->
       <div class="container">
