@@ -407,7 +407,25 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p style="padding-left: 30px;"><a href="https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6">https://opensource.com/life/16/8/how-construct-your-own-git-server-part-6</a></p>
 <hr/>
 <p>當倉儲在近端修改內容後, 但尚未執行 git add . 之前, 若希望忽略近端內容的變更, 則可以在倉儲目錄中執行 git checkout ., 表示要將近端內容的版本與遠端的倉儲內容保持同步.</p>
-<h2>Replit</h2>
+<h3>Git 指令</h3>
+<p>電腦中可以執行安裝版的 git, 也可以執行可攜版的 git.</p>
+<p>git 安裝版: <a href="https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/Git-2.40.0-64-bit.exe">https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/Git-2.40.0-64-bit.exe</a></p>
+<p>git 可攜版: <a href="https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/PortableGit-2.40.0-64-bit.7z.exe">https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/PortableGit-2.40.0-64-bit.7z.exe</a></p>
+<p>git clone 指令可以透過 https 或 ssh 協定取下倉儲資料.</p>
+<p>git clone <a href="https://github.com/帳號/倉儲.git">https://github.com/帳號/倉儲.git</a> 取下倉儲之後, 若要改版後新增提交並執行 git push, 則必須在倉儲的 .git/config 中 [remote "origin"] 下的 url 置入擁有修改 repo 權限的 token.</p>
+<p>https://<span style="background-color: #ffff00;">your_token@</span>github.com/帳號/倉儲.git</p>
+<p>假如倉儲改版會啟動 github actions, 則 token 除了 repo 權限外, 還需加上 actions 權限.</p>
+<p>git clone 與 git push 執行若採 https 協定, 還要注意執行命令當下所使用的網路協定. 因為 github.com 目前仍只支援 IPv4 網路協定連線, 因此當使用者執行 git clone 與 git push 時若採用 IPv4 網路協定則無需在 home_ipv6 (或home_ipv4) 下的 .gitconfig 中設定 http.proxy, 但是若採用 IPv6 網路協定, 則必須設定 .gitconfig 中的 http.proxy</p>
+<p>若使用 ssh 協定:</p>
+<p>則在 git clone 執行之前就必須配置好以下環境:</p>
+<ol>
+<li>start_ipv6.bat 中必須要設定 GIT_SSH 環境變數, 且指向 Putty 中的 plink.exe:</li>
+<li>set GIT_SSH=%Disk%:\putty\plink.exe</li>
+<li>將 OpenSSH 格式的公鑰(鎖頭)放到 Github 所提供的 public key server</li>
+<li>在 Putty 中設定連線 session, 分別代表 session 名稱, 連線至 github.com, 是否需使用 Proxy server 以及Private key (Putty 格式的私鑰) 所在位置.</li>
+<li>git clone 時的語法: git clone git@putty_session:帳號/倉儲.git</li>
+</ol>
+<p></p><h2>Replit</h2>
 <p><a href="https://replit.com/">https://replit.com/</a> (use wcms)</p>
 <h2>TCExam</h2>
 <p>設定是否讓用戶自行註冊帳號:</p>
@@ -1066,6 +1084,7 @@ for i in data[1:-1]:
 <li>當個人倉儲中的 cmsimde 放入, 且 up_dir 目錄取出到倉儲根目錄後, 使用者在可攜程式環境中的命令列, 就可以 cd 進入個人倉儲目錄後, 執行 cms.bat 執行動態網站, 之後用瀏覽器連結, 以 admin 共用密碼登入管理.</li>
 <li>當使用者利用動態網站管理內容後, 可利用 generate_pages 將動態網站轉為靜態網站內容後, 以 acp 按鈕加上提交訊息, 將改版資料送到 github.com, 但需事先設定好可攜系統中 home_ipv6 目錄裡的 .gitconfig, 其內容包含 user.name 與 user.email 等內容, 以便用於 git commit 之提交身分綁定.</li>
 </ol><h3>w9</h3>
+<p>本頁面的<a href="/downloads/w9_html.7z">超文件內容.7z</a></p>
 <p>先前考過五次線上考試的成績列表, 讀出後可以列出各學員的平均分數:</p>
 <p>new bing 建議採取的程式內容為:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html, document
@@ -1719,7 +1738,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 </ol>
 <h1>cmsimde</h1>
 <p>cmsimde 動態網站運作原理:</p>
-<p>利用 Python 的 bs4 與 lxml 模組 對 config/content.htm 超文件檔案<span style="background-color: #ffff00;">進行分頁</span>, 而分頁的依據是透過檔案中的 <span style="color: #ffff00;">H1, H2 或 H3 標註進行切割</span>, 若該頁面為  H1, 則在頁面表單中列為最外圍的網頁, 若是 H2, 則列為第二階頁面, 而 H3 則列為第三階頁面.</p>
+<p>利用 Python 的 bs4 與 lxml 模組 對 config/content.htm 超文件檔案<span style="background-color: #ffff00;">進行分頁</span>, 而分頁的依據是透過檔案中的 <span style="color: #000000;">H1, H2 或 H3 標註進行切割,</span> 若該頁面為  H1, 則在頁面表單中列為最外圍的網頁, 若是 H2, 則列為第二階頁面, 而 H3 則列為第三階頁面.</p>
 <p>換言之, 利用 cmsimde 建立的動態網站, 是<span style="background-color: #ffff00;">以 Python + Flask 框架所寫的全球資訊網網站建構程式</span>, 動態網站的目的主要是之後要將網站轉為<span style="background-color: #ffff00;">只帶有 css, html 與 Javascript 的靜態網頁</span>內容. 並將靜態網頁內容與 Github Pages 結合,  以 Github 的全球資訊網伺服器建構網站 (靜態網站).</p>
 <p>由於 cmsimde 採超文件前三個 H 標註進行分頁, 若 config/content.htm 中<span style="background-color: #ffff00;">無任何分頁標題的標註</span>, 在分頁過程就會產生錯誤.</p>
 <p>另外, cmsimde 動態網站登入的權限設為 <span style="background-color: #ffff00;">local 事項</span>, 表示 config/config  中所儲存的密碼編碼, 只會對近端的指令有效. 一旦忘記密碼或密碼已經被更動, 則可<span style="background-color: #ffff00;">刪除 config/config</span> 檔案後, 執行動態網站時, 密碼就會 <span style="background-color: #ffff00;">reset 為 admin</span>.</p>

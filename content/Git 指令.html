@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,34 +141,26 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image<br /><h1>cmsimde</h1>
-<p>cmsimde 動態網站運作原理:</p>
-<p>利用 Python 的 bs4 與 lxml 模組 對 config/content.htm 超文件檔案<span style="background-color: #ffff00;">進行分頁</span>, 而分頁的依據是透過檔案中的 <span style="color: #000000;">H1, H2 或 H3 標註進行切割,</span> 若該頁面為  H1, 則在頁面表單中列為最外圍的網頁, 若是 H2, 則列為第二階頁面, 而 H3 則列為第三階頁面.</p>
-<p>換言之, 利用 cmsimde 建立的動態網站, 是<span style="background-color: #ffff00;">以 Python + Flask 框架所寫的全球資訊網網站建構程式</span>, 動態網站的目的主要是之後要將網站轉為<span style="background-color: #ffff00;">只帶有 css, html 與 Javascript 的靜態網頁</span>內容. 並將靜態網頁內容與 Github Pages 結合,  以 Github 的全球資訊網伺服器建構網站 (靜態網站).</p>
-<p>由於 cmsimde 採超文件前三個 H 標註進行分頁, 若 config/content.htm 中<span style="background-color: #ffff00;">無任何分頁標題的標註</span>, 在分頁過程就會產生錯誤.</p>
-<p>另外, cmsimde 動態網站登入的權限設為 <span style="background-color: #ffff00;">local 事項</span>, 表示 config/config  中所儲存的密碼編碼, 只會對近端的指令有效. 一旦忘記密碼或密碼已經被更動, 則可<span style="background-color: #ffff00;">刪除 config/config</span> 檔案後, 執行動態網站時, 密碼就會 <span style="background-color: #ffff00;">reset 為 admin</span>.</p>
-<hr/>
-<p>有關 cmsimde 與 github pages:</p>
+    <div id="tipue_search_content">Git << <a href='Git.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit<br /><h1>Git 指令</h1>
+<p>電腦中可以執行安裝版的 git, 也可以執行可攜版的 git.</p>
+<p>git 安裝版: <a href="https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/Git-2.40.0-64-bit.exe">https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/Git-2.40.0-64-bit.exe</a></p>
+<p>git 可攜版: <a href="https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/PortableGit-2.40.0-64-bit.7z.exe">https://github.com/git-for-windows/git/releases/download/v2.40.0.windows.1/PortableGit-2.40.0-64-bit.7z.exe</a></p>
+<p>git clone 指令可以透過 https 或 ssh 協定取下倉儲資料.</p>
+<p>git clone <a href="https://github.com/帳號/倉儲.git">https://github.com/帳號/倉儲.git</a> 取下倉儲之後, 若要改版後新增提交並執行 git push, 則必須在倉儲的 .git/config 中 [remote "origin"] 下的 url 置入擁有修改 repo 權限的 token.</p>
+<p>https://<span style="background-color: #ffff00;">your_token@</span>github.com/帳號/倉儲.git</p>
+<p>假如倉儲改版會啟動 github actions, 則 token 除了 repo 權限外, 還需加上 actions 權限.</p>
+<p>git clone 與 git push 執行若採 https 協定, 還要注意執行命令當下所使用的網路協定. 因為 github.com 目前仍只支援 IPv4 網路協定連線, 因此當使用者執行 git clone 與 git push 時若採用 IPv4 網路協定則無需在 home_ipv6 (或home_ipv4) 下的 .gitconfig 中設定 http.proxy, 但是若採用 IPv6 網路協定, 則必須設定 .gitconfig 中的 http.proxy</p>
+<p>若使用 ssh 協定:</p>
+<p>則在 git clone 執行之前就必須配置好以下環境:</p>
 <ol>
-<li>cmsimde 是一套利用 Python 程式語言編寫的網際內容管理系統</li>
-<li>cmsimde 執行時需要 flask flask_cors bs4 lxml pelican markdown leo pyopenssl Python 模組</li>
-<li>github pages 是一個可以將倉儲內的超文件轉為網站的雲端服務</li>
-<li>利用 cmsimde 執行動態網站的目的是以<span style="background-color: #ffff00;">相對較簡潔</span>的方式來建立網站</li>
+<li>start_ipv6.bat 中必須要設定 GIT_SSH 環境變數, 且指向 Putty 中的 plink.exe:</li>
+<li>set GIT_SSH=%Disk%:\putty\plink.exe</li>
+<li>將 OpenSSH 格式的公鑰(鎖頭)放到 Github 所提供的 public key server</li>
+<li>在 Putty 中設定連線 session, 分別代表 session 名稱, 連線至 github.com, 是否需使用 Proxy server 以及Private key (Putty 格式的私鑰) 所在位置.</li>
+<li>git clone 時的語法: git clone <a href="mailto:git@putty_session:帳號/倉儲.git">git@putty_session:帳號/倉儲.git</a></li>
 </ol>
-<p><a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a></p>
-<p>執行 cmsimde 動態網站需要下列 Python 模組:</p>
-<p style="padding-left: 30px;">For Windows:</p>
-<p style="padding-left: 60px;">pip install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
-<p style="padding-left: 30px;">For Ubuntu:</p>
-<p style="padding-left: 60px;">先安裝 pip3:</p>
-<p style="padding-left: 90px;">sudo apt install python3-pip</p>
-<p style="padding-left: 60px;">接著利用 pip3 安裝執行 cmsimde 所需模組:</p>
-<p style="padding-left: 60px;">pip3 install flask flask_cors bs4 lxml pelican markdown leo pyopenssl</p>
-<p>本課程第三部分在說明 <a href="https://github.com/mdecycu/cmsite">https://github.com/mdecycu/cmsite</a> 與 <a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 如何搭建, 程式架構與應用的發展如何從個人電腦導向手機.</p>
-<ol>
-<li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
-<li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
-</ol><br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Resize image.html'>Next</a> >> Resize image</div>
+<p>git commit 時必須在 home_ipv6(或 home_ipv4) 目錄中的 .gitconfig 設定 user.name 與 user.email</p>
+<p></p><br />Git << <a href='Git.html'>Previous</a> <a href='Replit.html'>Next</a> >> Replit</div>
         
     <!-- footer -->
       <div class="container">
