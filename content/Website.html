@@ -165,7 +165,8 @@ img.add_border {
 <p style="padding-left: 60px;">下載 nginx-1.24.0.zip, 解開壓縮檔案後, 點選 nginx.exe 即可以下列設定檔案啟動:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">    server {
         listen       80;
-        server_name  localhost;
+        server_name  192.168.1.8;
+        # 防火牆必須開啟 TCP port 80 的輸入規則
 
         #charset koi8-r;
 
