@@ -429,6 +429,9 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p></p><h2>Replit</h2>
 <p><a href="https://replit.com/">https://replit.com/</a> (use wcms)</p>
 <h2>TCExam</h2>
+<p><a href="http://mde.tw/wcm2023/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9c7450fd01f8090b986047161cc87e0a/raw/876ae28f749da012cab6ef3dcab260197f4fae18/2023_spring_get_score_from_tcexam_json.py">Get score from json</a></p>
+<p><a href="http://mde.tw/wcm2023/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9c7450fd01f8090b986047161cc87e0a/raw/876ae28f749da012cab6ef3dcab260197f4fae18/read_only_the_score.py">Get score from txt</a></p>
+<hr/>
 <p>設定是否讓用戶自行註冊帳號:</p>
 <p>tcexam\shared\config\tce_user_registration.php</p>
 <p> /* kmol1*/<br/>define('K_USRREG_ENABLED', false);</p>
@@ -438,8 +441,7 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <hr/>
 <p>考試結果(json):</p>
 <p><a href="/downloads/1a_w5_exam_json.7z">1a_w5_exam_json.7z</a> (嘗試使用 Python 或 Brython 讀取各學員的考試成績)</p>
-<p><a href="/downloads/1a_w5_test.7z">1a_w5_test.7z</a> (嘗試利用 Leo Editor 處理 xml 格式, 以工具或程式協助出題) - 相關技術可以用來處理 CoppeliaSim 場景檔案. (Solid Edge 建立零件檔案, 以 STL 轉入 CoppeliaSim)</p>
-<h2>Trends</h2>
+<p><a href="/downloads/1a_w5_test.7z">1a_w5_test.7z</a> (嘗試利用 Leo Editor 處理 xml 格式, 以工具或程式協助出題) - 相關技術可以用來處理 CoppeliaSim 場景檔案. (Solid Edge 建立零件檔案, 以 STL 轉入 CoppeliaSim)</p><h2>Trends</h2>
 <p><a href="https://arxiv.org/pdf/2303.12712.pdf">Sparks of Artificial General Intelligence: Early experiments with GPT-4</a></p>
 <p><a href="https://statmodeling.stat.columbia.edu/2023/04/18/chatgpt4-writes-stan-code-so-i-dont-have-to/">https://statmodeling.stat.columbia.edu/2023/04/18/chatgpt4-writes-stan-code-so-i-dont-have-to/</a> </p>
 <hr/>
@@ -1877,6 +1879,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
 </ol><h2>Resize image</h2>
+<p>Check this: <a href="https://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload">https://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload</a></p>
 <p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
 &lt;input id="input" type="file" onchange="handleFiles()"&gt;
@@ -1949,8 +1952,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
         // Load files into file reader
         reader.readAsDataURL(file);
     }
-&lt;/script&gt;</pre>
-<h2>upload images</h2>
+&lt;/script&gt;</pre><h2>upload images</h2>
 <p>resize brython uploaded image to flask (the problem is that Brython can not use PIL directly)</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
 import io

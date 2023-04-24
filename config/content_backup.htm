@@ -645,6 +645,14 @@ if __name__ == '__main__':
             }
         },
         Error: function(up
+
+        Error: function(up, err) {
+                    alert('Error: ' + err.message);
+                }
+            }
+        });
+
+        uploader.init();
 </pre>
 <p></p><h3>如何使用電腦</h3>
 <ol>
@@ -1103,7 +1111,7 @@ EXIT</pre>
 <p>y:\&gt; 代表目前位於 Y 槽根目錄, 以 &gt; 作為 prompt (回應), 等待使用者輸入指令</p>
 <p><span>y:\&gt;c: 表示要從 Y 切換到 C</span></p>
 <p><span>cd \ 因為 "\" 代表根目錄.</span></p>
-<hr>
+<hr/>
 <p><a href="https://nfuedu.sharepoint.com/:v:/s/wcm2023/EZNog084xGJEuyfPk_zQchEBzyGhwXRAs5cuWsAScLMDFQ?e=85DhLj">說明如何利用 pip 安裝 cmimse 所需模組.mp4</a>, 並下載 <a href="https://git-scm.com/download/win">portablegit</a> 以及指定 <a href="https://github.com/mdewcm2023">site</a> 作業 (取得作業連結請參考 Team 中的連結)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXQljJw1yE9At9MDkIklVFAB9Ef3q59sTJnbRiVWOSSGdw?e=AtNFlJ">wcm_portable_w2-2.7z</a></p>
 <h4>w3 筆記</h4>
@@ -1869,6 +1877,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <li>由於手機相機的解析度極高, 因此若能在上傳手機相片前或之後將影像檔案縮減至網站可視之檔案大小, 將可省下頻寬與倉儲儲存的負擔. (<a href="https://medium.com/hootsuite-engineering/mobile-photo-uploads-with-html5-f7ea174ef128">參考資料</a>)</li>
 <li>設法利用 Brython 或 Python 建立將 URL 轉為 QR Code, 以便讓手機可以直接透過手機拍攝後直接進入內容管理系統網站. (<a href="https://segno.readthedocs.io/en/stable/comparison-qrcode-libs.html">參考資料</a>)</li>
 </ol><h2>Resize image</h2>
+<p>Check this: <a href="https://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload">https://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload</a></p>
 <p><a href="https://gist.github.com/lzhbrian/560258a5bbb3ab4ee2c451b7d3801dfd">source</a>, <a href="https://github.com/joelvardy/javascript-image-upload">reference</a>, <a href="https://github.com/pqina/filepond">reference</a></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;img src="" id="image"&gt;
 &lt;input id="input" type="file" onchange="handleFiles()"&gt;
@@ -1941,8 +1950,7 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
         // Load files into file reader
         reader.readAsDataURL(file);
     }
-&lt;/script&gt;</pre>
-<h2>upload images</h2>
+&lt;/script&gt;</pre><h2>upload images</h2>
 <p>resize brython uploaded image to flask (the problem is that Brython can not use PIL directly)</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
 import io
@@ -4178,4 +4186,4 @@ auto_tetris = button2(auto_tetris_url)
 doc["auto_tetris"].bind("click", auto_tetris.do)
 ################################## auto tetris end
 </script>
-</p></hr>
+</p>
