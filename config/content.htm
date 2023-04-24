@@ -205,7 +205,9 @@ if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)</pre>
 <p>以下將可透過 nfulist 與 studlist 中的資料, 列出各班學員的對應課程倉儲與網頁:</p>
 <p></p>
-<h2>Servers</h2>
+<h2>OBS</h2>
+<p>OBS 錄製 mp4 影片檔案設定畫面:</p>
+<p><img caption="false" height="465" src="/images/obs_output_recording_setup.png" width="600"/></p><h2>Servers</h2>
 <p>工作站室中的 server 10ff</p>
 <p>::1 pj2023</p>
 <p>::2 pj2022 (3 為 Ubuntu 虛擬主機)</p>
@@ -244,8 +246,7 @@ def delete_user():
          sys.exit(1)
   
 delete_user()</pre>
-<p>stud template server in vdi</p>
-<h3>建立 stud</h3>
+<p>stud template server in vdi</p><h3>建立 stud</h3>
 <p><a href="https://geekrewind.com/configure-nginx-userdir-feature-on-ubuntu-16-04-lts-servers/">Nginx per user web directories</a> 可以伺服各用戶的靜態網站. 而 stunnel 加上 waitress 則可以伺服各用戶的動態網站.</p>
 <p>使用 Ubuntu server 22.04 LTS v2.</p>
 <hr/>
@@ -1821,7 +1822,36 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
 <li>網站轉檔次數限制在<span style="background-color: #ffff00;">每一小時 10 次</span> (意即每一小時的推送 (push) 次數不要超過 10 次)</li>
 <li>使用者必須遵守 <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service">Github Terms of Service</a></li>
 </ol>
-<h2>Javascript</h2>
+<hr/>
+<p>cmsimde 利用 Python + Flask 建立動態網站, 有 login, logout, 網頁是由 Python + css + javascript 所產生. 主要功能是可以直接編輯後產生動態網頁.</p>
+<p>cmsimde 靜態網頁資料位於 content 目錄下, 內容只有 html + css + javascript, 所有資料都是透過 WWW server 伺服, 所以安全機制在於 WWW server 與操作系統.</p>
+<p>Nginx 建立 WWW 伺服器:</p>
+<p style="padding-left: 30px;">Windows:</p>
+<p style="padding-left: 60px;">下載 nginx-1.24.0.zip, 解開壓縮檔案後, 點選 nginx.exe 即可以下列設定檔案啟動:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }</pre>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EVyPoeWUq3FMgNeinYlZrEsB5aVGcNONF30GI_yUPYE--w?e=4eXmEn">Nginx 設定說明影片.mp4</a></p>
+<p>議題: 是否可以將 localhost 改為 Windows 所在的 IP 位址, 然後設法將個人的靜態網頁目錄置入, 利用 Nginx WWW 伺服器來 server cmsimde 靜態網頁內容?</p>
+<p style="padding-left: 30px;">Ubuntu:</p><h2>Javascript</h2>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
