@@ -151,107 +151,16 @@ img.add_border {
 <p style="padding-left: 30px;">利用 <a href="https://github.com/mdecycu/cmsimde">cmsimde</a> 建立的網際內容管理, 除了 Web site 外, 還提供 blog 與 reveal 等兩項功能.</p>
 <p style="padding-left: 30px;">blog 是網誌, 採用 <a href="https://getpelican.com/">Pelican</a> 建置, 使用者可以利用  <a href="https://leoeditor.com">Leo Editor</a> 編輯 config 目錄中的 pelican.leo, 以 <a href="https://markdown.tw/">Markdown</a> 建立網誌原始資料後, 再利用  Pelican 將原始網誌檔案轉為超文件格式的網誌內容, 轉出的網誌檔案將存入 blog 目錄中.</p>
 <p style="padding-left: 30px;">而 reveal 則是網際簡報的功能, 使用 <a href="https://revealjs.com/">reveal.js</a> 建立, 使用者可以利用 <a href="https://leoeditor.com">Leo Editor</a> 編輯 config 目錄中的 reveal.leo, 以 html 或 <a href="https://markdown.tw/">Markdown</a> 格式建立簡報, 網際簡報檔案則位於 reveal 目錄中.</p>
-<p>Uploader:</p>
-<p><a href="https://github.com/mdecycu/cmsimde">cmsimde</a> 為了要讓手機瀏覽器可以上傳適當大小的影像檔案, 必須在 upload 之前就縮小圖檔, 除了修改目前所使用的 uploader 外, 也可以改採 <a href="https://github.com/moxiecode/plupload">https://github.com/moxiecode/plupload</a> 執行檔案上傳.</p>
-<p>有關使用 plupload:</p>
-<p>Flask side:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request, jsonify, render_template
-from PIL import Image
-import os
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/upload', methods=['POST'])
-def upload():
-    chunk = request.files['file'].read()
-    filename = request.form['name']
-    chunk_index = int(request.form['chunk'])
-    total_chunks = int(request.form['chunks'])
-
-    # Create the file if it doesn't exist yet
-    if not os.path.exists(os.path.join('uploads', filename)):
-        with open(os.path.join('uploads', filename), 'wb') as f:
-            f.write(b'')
-
-    # Append the chunk to the file
-    with open(os.path.join('uploads', filename), 'ab') as f:
-        f.seek(chunk_index * 1024 * 1024) # Move the file pointer to the right chunk
-        f.write(chunk)
-
-    # Check if all chunks have been uploaded
-    if chunk_index == total_chunks - 1:
-        # Resize the image if it's a JPEG or PNG
-        if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
-            image_path = os.path.join('uploads', filename)
-            with Image.open(image_path) as image:
-                # Resize the image to a maximum width of 800 pixels
-                width, height = image.size
-                if width &gt; 800:
-                    new_height = int(800 / width * height)
-                    image = image.resize((800, new_height))
-                # Save the resized image to disk
-                image.save(image_path)
-
-        return jsonify({'message': 'File uploaded successfully!'})
-    else:
-        return jsonify({'message': 'Chunk uploaded successfully!'})
-
-if __name__ == '__main__':
-    app.run(debug=True)
-</pre>
-<p>front side:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">var uploader = new plupload.Uploader({
-    browse_button: 'uploader',
-    url: '/upload',
-    method: 'POST',
-    multipart: true,
-    chunk_size: '1mb',
-    max_retries: 3,
-    resize: {
-        width: 800,
-        height: 0,
-        quality: 90,
-        preserve_headers: false
-    },
-    filters: {
-        max_file_size: '100mb',
-        mime_types: [
-            { title: 'Image files', extensions: 'jpg,jpeg,gif,png' },
-            { title: 'Document files', extensions: 'pdf,doc,docx,xls,xlsx' }
-        ]
-    },
-    init: {
-        BeforeUpload: function(up, file) {
-            up.settings.url = '/upload';
-            up.settings.multipart_params = {
-                name: file.name,
-                chunks: Math.ceil(file.size / up.getOption('chunk_size')),
-            };
-        },
-        ChunkUploaded: function(up, file, response) {
-            var chunk_index = parseInt(response.chunk);
-            var total_chunks = parseInt(response.total);
-
-            if (chunk_index == total_chunks - 1) {
-                alert('File uploaded successfully!');
-            } else {
-                up.trigger('NextChunk');
-            }
-        },
-        Error: function(up
-
-        Error: function(up, err) {
-                    alert('Error: ' + err.message);
-                }
-            }
-        });
-
-        uploader.init();
-</pre>
+<hr/>
+<p>自建網際伺服器:</p>
+<p style="padding-left: 30px;">cad2 與 cad5 伺服器:</p>
+<p style="padding-left: 30px;">cad2 Ubuntu 22.04 server</p>
+<p style="padding-left: 30px;">cad5 Ubuntu 22.04 desktop</p>
+<p style="padding-left: 30px;">將分別建立對應的使用者帳號, 以便用來配置各分組的動態與靜態網站.</p>
+<p>使用免費雲端主機:</p>
+<p style="padding-left: 30px;">靜態: Github Pages</p>
+<p style="padding-left: 30px;">動態: Replit</p>
+<p style="padding-left: 30px;"></p>
 <p></p><br />五專 << <a href='五專.html'>Previous</a> <a href='如何使用電腦.html'>Next</a> >> 如何使用電腦</div>
         
     <!-- footer -->
