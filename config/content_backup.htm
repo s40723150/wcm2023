@@ -596,6 +596,7 @@ demo@tcexam:~/wcm2023$ git merge ubuntu</pre>
 <p>使用免費雲端主機:</p>
 <p style="padding-left: 30px;">靜態: Github Pages</p>
 <p style="padding-left: 30px;">動態: Replit</p>
+<p style="padding-left: 30px;"></p>
 <p></p><h3>如何使用電腦</h3>
 <ol>
 <li>儘量<span style="background-color: #ffff00;">不要使用中文作為檔案名稱或目錄名稱</span> - 因為某些英語系國家開發的軟體(尤其是開源免費軟體)可能會無法使用或發生問題.</li>
@@ -1118,7 +1119,7 @@ for i in data[1:-1]:
     brython_div1 <= html.BR()
 </script>
 </p>
-<hr>
+<hr/>
 <p>w5 進度</p>
 <ol>
 <li>建立 1a 學員 <a href="https://exam.cycu.org">https://exam.cycu.org</a> 考試帳號</li>
@@ -1278,7 +1279,7 @@ brython_div <= data
 <p>https token 必須勾選 repo 權限, 若要利用 Github Actions, 則同時勾選 Actions</p>
 <p>SSH - 分為 Windows 採 Putty 設定, Ubuntu 採 ncat 設定.</p>
 <p>相關說明請參考: <a href="http://mde.tw/content/Token%20and%20SSH.html">Token 與 SSH 說明</a></p>
-<hr>
+<hr/>
 <p>About <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches</a></p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EV5lw40RXvNFue1Cr2sivioBuOj_QA5KzAxDMU0Mkf7z8w?e=NtOJeN">wcm_portable_w2-5.7z</a> (下載 220MB 解開後 880MB)</p>
 <p><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EXvjttk-fBxOmauSgbw77EgBstfLmwy0w3eunU_osL2hRg?e=fampQ1">miktex_portable.7z</a><span> </span><span>(下載 168MB 解開後 968MB)</span></p>
@@ -1789,7 +1790,24 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
         }</pre>
 <p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EVyPoeWUq3FMgNeinYlZrEsB5aVGcNONF30GI_yUPYE--w?e=4eXmEn">Nginx 設定說明影片.mp4</a></p>
 <p>議題: 是否可以將 localhost 改為 Windows 所在的 IP 位址, 然後設法將個人的靜態網頁目錄置入, 利用 Nginx WWW 伺服器來 server cmsimde 靜態網頁內容?</p>
-<p style="padding-left: 30px;">Ubuntu:</p><h2>Javascript</h2>
+<p style="padding-left: 30px;">Ubuntu:</p>
+<p style="padding-left: 60px;">關閉執行中的 nginx: sudo systemctl stop nginx</p>
+<p style="padding-left: 60px;">徹底刪除先前安裝的 nginx: sudo apt-get purge nginx nginx-common nginx-full</p>
+<p style="padding-left: 60px;">重新安裝 nginx: sudo apt install nginx</p>
+<p style="padding-left: 30px;">為每位系統用戶設定 www 伺服目錄:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">sudo_user@cad2:~#sudo vi /etc/nginx/sites-available/default
+# 設定讓各用戶的 public_html 目錄可以作為 nginx 伺服網頁目錄
+server {
+        .....
+        .....
+        location ~ ^/~(.+?)(/.*)?$ {
+              alias /home/$1/public_html$2;
+              index  index.html index.htm;
+              autoindex on;
+        }
+# 設定完成後必須重新啟動 nginx
+sudo_user@cad2:~# systemctl restart nginx</pre>
+<p style="padding-left: 30px;"></p><h2>Javascript</h2>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
@@ -2406,7 +2424,7 @@ document['get-collaborators'].bind('click', get_collaborators)
 &lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
-<hr>
+<hr/>
 <p>Using websocket to do the same thing as previous example</p>
 <p>Flask site:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask
@@ -2479,7 +2497,7 @@ document['get-collaborators'].bind('click', get_collaborators)
 &lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
-<hr>
+<hr/>
 <p>using wss and https on both ends:</p>
 <p>Flask side:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask
@@ -2563,7 +2581,7 @@ document['get-collaborators'].bind('click', get_collaborators)
 <p>With bridged networking, VirtualBox uses a device driver on your host system that filters data from your physical network adapter. This allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When a guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. This means that you can set up routing or bridging between the guest and the rest of your network</p>
 <p>Internal:</p>
 <p>Internal networking, which allows you to create a network that is completely contained within the host system and is not visible to the outside world. There is also Generic networking, which allows you to use third-party drivers to create custom virtual networks.</p>
-<hr/>
+<hr>
 <p>因為同一個 Virtualbox 下的虛擬主機檔案都必須用有獨一的 uuid, 因此若經由檔案複製產生虛擬主機檔案, 就必須修改其中一個主機檔案的 <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">uuid</a>.</p>
 <p>Modify uuid of virtual system file:</p>
 <p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid &lt;path to vdi file&gt;</p><h2>JSMind</h2>
@@ -4156,4 +4174,4 @@ auto_tetris = button2(auto_tetris_url)
 doc["auto_tetris"].bind("click", auto_tetris.do)
 ################################## auto tetris end
 </script>
-</p></hr></hr></hr></hr>
+</p></hr>

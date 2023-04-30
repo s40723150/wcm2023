@@ -1790,7 +1790,24 @@ os.environ['HTTPS_PROXY'] = proxy</pre>
         }</pre>
 <p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EVyPoeWUq3FMgNeinYlZrEsB5aVGcNONF30GI_yUPYE--w?e=4eXmEn">Nginx 設定說明影片.mp4</a></p>
 <p>議題: 是否可以將 localhost 改為 Windows 所在的 IP 位址, 然後設法將個人的靜態網頁目錄置入, 利用 Nginx WWW 伺服器來 server cmsimde 靜態網頁內容?</p>
-<p style="padding-left: 30px;">Ubuntu:</p><h2>Javascript</h2>
+<p style="padding-left: 30px;">Ubuntu:</p>
+<p style="padding-left: 60px;">關閉執行中的 nginx: sudo systemctl stop nginx</p>
+<p style="padding-left: 60px;">徹底刪除先前安裝的 nginx: sudo apt-get purge nginx nginx-common nginx-full</p>
+<p style="padding-left: 60px;">重新安裝 nginx: sudo apt install nginx</p>
+<p style="padding-left: 30px;">為每位系統用戶設定 www 伺服目錄:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">sudo_user@cad2:~#sudo vi /etc/nginx/sites-available/default
+# 設定讓各用戶的 public_html 目錄可以作為 nginx 伺服網頁目錄
+server {
+        .....
+        .....
+        location ~ ^/~(.+?)(/.*)?$ {
+              alias /home/$1/public_html$2;
+              index  index.html index.htm;
+              autoindex on;
+        }
+# 設定完成後必須重新啟動 nginx
+sudo_user@cad2:~# systemctl restart nginx</pre>
+<p style="padding-left: 30px;">設定範例: <a href="http://cad2.cycu.org/~yen/5jgx/">http://cad2.cycu.org/~yen/5jgx/</a></p><h2>Javascript</h2>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
