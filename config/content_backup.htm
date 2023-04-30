@@ -1807,7 +1807,8 @@ server {
         }
 # 設定完成後必須重新啟動 nginx
 sudo_user@cad2:~# systemctl restart nginx</pre>
-<p style="padding-left: 30px;"></p><h2>Javascript</h2>
+<p style="padding-left: 30px;">設定範例: <a href="http://cad2.cycu.org/~yen/5jgx/">http://cad2.cycu.org/~yen/5jgx/</a></p>
+<p style="padding-left: 30px;">請注意: 利用 public_html 設定 nginx 下的用戶倉儲, 一旦放入公開目錄後, 所有檔案都可經由全球資訊網連結取下, 其中包括 .git 目錄下的 config 設定檔案, 因此若採 git clone 將個人或分組倉儲放入各帳號 public_html 目錄下之後, <span style="background-color: #ffff00;">不可將維護倉儲用的 token 放入 .git 目錄下的 config 檔案中</span>, 而必須使用 SSH 協定進行設定.</p><h2>Javascript</h2>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>

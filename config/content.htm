@@ -1807,7 +1807,14 @@ server {
         }
 # 設定完成後必須重新啟動 nginx
 sudo_user@cad2:~# systemctl restart nginx</pre>
-<p style="padding-left: 30px;">設定範例: <a href="http://cad2.cycu.org/~yen/5jgx/">http://cad2.cycu.org/~yen/5jgx/</a></p><h2>Javascript</h2>
+<p style="padding-left: 30px;">設定範例: <a href="http://cad2.cycu.org/~yen/5jgx/">http://cad2.cycu.org/~yen/5jgx/</a></p>
+<p style="padding-left: 30px;">請注意: 利用 public_html 設定 nginx 下的用戶倉儲, 一旦放入公開目錄後, 所有檔案都可經由全球資訊網連結取下, 其中包括 .git 目錄下的 config 設定檔案, 因此若採 git clone 將個人或分組倉儲放入各帳號 public_html 目錄下之後, <span style="background-color: #ffff00;">不可將維護倉儲用的 token 放入 .git 目錄下的 config 檔案中</span>, 而必須使用 SSH 協定進行設定.</p>
+<p style="padding-left: 30px;">此外, <span style="background-color: #ffff00;">也不可利用 public_html 目錄下的倉儲建立 cmsimde 動態網站</span>, 因為其中的 config/config 設定屬於近端帳號密碼編碼, 一旦放入 public_html, 將原先 admin 密碼修改後的密碼編碼將會暴露在公開網站中.</p>
+<p style="padding-left: 30px;">總結上述注意事項, 為了在多人帳號下同時利用 Python 伺服 cmsimde 動態網站 (目前採 <a href="https://pypi.org/project/hupper/">hupper</a> -m server.py 啟動 <a href="https://pypi.org/project/waitress/">waitress</a> based Flask WSGI 網站), 在個人帳號下的 cmsimde 倉儲必須分為:</p>
+<ol>
+<li style="padding-left: 30px;">以 SSH 協定在 public_html 目錄中取下個人或分組倉儲, 可以額外以目錄命名多個倉儲, 或直接將倉儲放入 public_html 進行伺服, 一旦遠端 github 倉儲更新後, 可以透過 git pull 取下最新版本.</li>
+<li style="padding-left: 30px;">另外以 SSH 協定, 在 public_html 的目錄中取下個人或分組倉儲, 以 hupper -m server.py 啟動後, 透過瀏覽器連結後更改管理者密碼, 之後可以利用各自分配到的 port 在瀏覽器中登入維護, 並以 acp 新增提交推送至遠端 github.com 對應倉儲, 更新後再進入 public_html, 以 git pull 取下最新版本.</li>
+</ol><h2>Javascript</h2>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
 <p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
