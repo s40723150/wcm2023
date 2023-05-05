@@ -2,7 +2,7 @@
         <head>
         <title>wcm2023</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,11 +141,32 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Website << <a href='Website.html'>Previous</a> <a href='JQuery.html'>Next</a> >> JQuery<br /><h1>Javascript</h1>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-3027-5">Beginning JQuery</a> (2017)</p>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-6071-5">Practical Bootstrap</a> (2020)</p>
-<p><a href="https://link.springer.com/book/10.1007/978-1-4842-8176-5">Pro Angular</a> (2022)</p>
-<br />Website << <a href='Website.html'>Previous</a> <a href='JQuery.html'>Next</a> >> JQuery</div>
+    <div id="tipue_search_content">五專 << <a href='五專.html'>Previous</a> <a href='5jgx.html'>Next</a> >> 5jgx<br /><h1>cad2伺服器</h1>
+<p>電腦硬體:</p>
+<p style="padding-left: 30px;">cad2_cycu 主機板為 Acer Veriton M670G/M670 (cmd 視窗輸入 msinfo32 即可顯示出電腦硬體, 其中包括主機板型號) 出廠時間為 2009/3/20</p>
+<p style="padding-left: 30px;">先前安裝 Ubuntu 20.04 LTS, 於 2023/04 底更新為 Ubuntu 22.04 LTS (How?)</p>
+<p style="padding-left: 30px;">以下是從舊版的 LTS 升級為新版 LTS 的步驟:</p>
+<p style="padding-left: 30px;">先查目前 Ubuntu 操作系統的版本:<br/><br/>lsb_release -a<br/><br/>更新 LTS 版本步驟:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">sudo apt update
+ 
+sudo apt upgrade
+ 
+sudo apt autoremove
+ 
+sudo retoob
+ 
+sudo do-release-upgrade</pre>
+<p style="padding-left: 30px;">更新為 Ubuntu 22.04 後, 查詢一下 cad2_cycu 所安裝的記憶體:</p>
+<p style="padding-left: 30px;">grep MemTotal /proc/meminfo</p>
+<p style="padding-left: 30px;">發現共安裝 8GB, 也就是兩條 4GB 的記憶體, 而主機板上應該有四個記憶體的插槽, 因此若再加上相容的另外兩條 4GB, 則這一台已經服役 14 年的 Acer 電腦, 將會有 16GB 的記憶體.</p>
+<p>電腦軟體:</p>
+<p style="padding-left: 30px;">操作系統: Ubuntu 22.04 LTS <a href="https://ubuntu.com/about/release-cycle">生命週期</a>顯示硬體相容性更新可至 2027 年,  且 security patch 可服務至 2033 年, 且若到了 24.04 時可以再升級至下一版的 LTS, 因此在 Power Supply 與硬碟仍然堪用的情況下, 應該還能服役幾年.</p>
+<p style="padding-left: 30px;">Ubuntu 已經內建基本的 Python3 與 Git, 因此只要利用 pip3 安裝 cmsimde 所需的模組, 就能夠啟動 Flask based site, 也就是所謂的動態系統.</p>
+<p style="padding-left: 30px;">至於目前 cmsimde 網站需要的 Python 模組有:</p>
+<p style="padding-left: 30px;">install flask flask_cors bs4 lxml pelican markdown pyopenssl</p>
+<p style="padding-left: 30px;">因此需要執行 pip3 install install flask flask_cors bs4 lxml pelican markdown pyopenssl</p>
+<p style="padding-left: 30px;">其中 flask 是 WWW 程式框架, flask_cors 延伸模組則可讓網站設定跨網域擷取資料, bs4 與 lxml 則用來進行網頁的分頁 (針對 config 目錄下的 content.htm 動態網站檔案), pelican 與 markdown 則用來建立 Blog 網誌文章, 最後的 pyopenssl 則當 cmsimde 網站以 localhost 啟動時 (在 Windows 執行 cms.bat 或在 Ubuntu 執行 ./cms), 自動建立 https 協定所需的 self-signed 數位簽章.</p>
+<p style="padding-left: 30px;">WWW server 套件: 採用 Nginx</p><br />五專 << <a href='五專.html'>Previous</a> <a href='5jgx.html'>Next</a> >> 5jgx</div>
         
     <!-- footer -->
       <div class="container">
