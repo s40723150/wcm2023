@@ -618,6 +618,31 @@ sudo do-release-upgrade</pre>
 <p style="padding-left: 30px;">其中 flask 是 WWW 程式框架, flask_cors 延伸模組則可讓網站設定跨網域擷取資料, bs4 與 lxml 則用來進行網頁的分頁 (針對 config 目錄下的 content.htm 動態網站檔案), pelican 與 markdown 則用來建立 Blog 網誌文章, 最後的 pyopenssl 則當 cmsimde 網站以 localhost 啟動時 (在 Windows 執行 cms.bat 或在 Ubuntu 執行 ./cms), 自動建立 https 協定所需的 self-signed 數位簽章.</p>
 <p style="padding-left: 30px;">WWW server 套件: 採用 Nginx</p>
 <p style="padding-left: 30px;">wsgi 執行設定: <a href="https://letsencrypt.org">letsencrypt</a> + <a href="https://www.stunnel.org/">stunnel</a> + <a href="https://pypi.org/project/waitress/">waitress</a> + <a href="https://pypi.org/project/hupper/">hupper</a></p>
+<p style="padding-left: 30px;">建立 stunnel.conf 的程式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 想要透過程式方法, 建立 stunnel.conf 設定檔案, 其中分別從 9001 到 9300, 8001 到 8300
+first = '''
+[https]
+accept = cad2.cycu.org:
+'''
+second = '''
+connect = 127.0.0.1:
+'''
+third = '''cert = /etc/letsencrypt/live/cad2.cycu.org/fullchain.pem
+key = /etc/letsencrypt/live/cad2.cycu.org/privkey.pem
+TIMEOUTclose = 0
+'''
+list8 =[str(i) for i  in range(8001, 8301)]
+list9=[str(i) for i  in range(9001, 9301)]
+
+setup = ""
+for i in zip(list8, list9):
+    #print(i)
+    print(i[0], i[1])
+    setup += first.strip() + i[0] + "\n" + second.strip() + i[1] + "\n" + third
+
+with open("stunnel.conf", "w") as f:
+    f.write(setup)
+</pre>
 <p style="padding-left: 30px;">使用者必須學會:</p>
 <p style="padding-left: 60px;">以 ssh-keygen 建立 public and private keys</p>
 <p style="padding-left: 60px;">使用 sftp 或 filezilla 取下 public keys 登錄到 Github.com</p>
