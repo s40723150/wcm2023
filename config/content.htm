@@ -696,6 +696,42 @@ ufw enable</pre>
 <p>ufw 刪除特定 rule<br/><br/>在 ufw enable 之後, 可以使用 ufw status numbered 列出 rules 順序編號, 然後再以:<br/><br/>ufw delete 編號<br/><br/>刪除特定編號的 rule 後, 例如:<br/><br/>ufw delete 21<br/><br/>而編號 21 的 rule 為 ufw deny 3389, 即除了前面所允許的主機網址可以對伺服器 3389 port 連線外, 其餘一律禁止連線, 此地則將 ufw deny 3389 刪除, 接著以:<br/><br/>ufw allow from 2001:xxxx:d005::/24 to any port 3389<br/><br/>納入允許 3389 port 連線的主機網址範圍後, 再加上:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">ufw deny 3389
 ufw enable</pre>
+<hr/>
+<p>nginx 設定:</p>
+<p>sudo /etc/init.d/nginx restart</p>
+<p>/etc/nginx/sites-available/default 設定檔案如下:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">server {
+    # for http://
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	
+	# for https://
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+	ssl_certificate /etc/letsencrypt/live/cad2.cycu.org/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/cad2.cycu.org/privkey.pem;
+    
+	# default root
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+    
+	# server name
+	server_name cad2.cycu.org;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+    # setup for public_html
+	location ~ ^/~(.+?)(/.*)?$ {
+		alias /home/$1/public_html$2;
+		index index.html index.htm;
+		autoindex on;
+	}
+}
+</pre>
 <p></p><h3>5jgx</h3>
 <p>使用 Letsencrypt 設定 https 環境時:</p>
 <p>相關連線: <a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=ubuntufocal">https://certbot.eff.org/instructions?ws=nginx&amp;os=ubuntufocal</a> </p>
